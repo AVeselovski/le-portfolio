@@ -1,0 +1,20 @@
+[
+  {
+    "id": "p1",
+    "description": "Lorem ipsum project.",
+    "pinned": true,
+    "title": "Some project"
+  },
+  {
+    "id": "p2",
+    "description": "Lorem ipsum project.",
+    "pinned": false,
+    "title": "Another project"
+  },
+  {
+    "id": "p3",
+    "description": "Lorem ipsum project.",
+    "pinned": true,
+    "title": "Le projectus"
+  }
+]
