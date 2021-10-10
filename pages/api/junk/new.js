@@ -1,10 +1,10 @@
 import { v4 as uuid } from "uuid";
 
-import { writeNewJunk } from "../../../services/server";
+import { writeNewJunk } from "../../../lib/api-utils";
 
 function handler(req, res) {
   if (req.method === "POST") {
-    const { title, description, pinned, slugs } = req.body;
+    const { title, description, pinned, tags } = req.body;
 
     if (
       !title ||
@@ -19,10 +19,12 @@ function handler(req, res) {
     const newJunk = {
       id: uuid(),
       title,
+      slug: "",
       description,
+      body: "...",
       pinned: pinned || false,
-      slugs: slugs || [],
-      image: "images/junk-general.jpg",
+      tags: tags || [],
+      image: "junk-general.jpg",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

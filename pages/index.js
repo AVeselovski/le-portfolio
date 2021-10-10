@@ -1,8 +1,7 @@
 // arveselovski.com/
 import Head from "next/head";
 
-import { getPinnedJunk, getPinnedProjects } from "../services/client";
-import { readPinnedJunk, readPinnedProjects } from "../services/server";
+import { readPinnedJunk, readPinnedProjects } from "../lib/api-utils";
 
 import JunkList from "../components/junk/JunkList";
 import ProjectList from "../components/projects/ProjectList";

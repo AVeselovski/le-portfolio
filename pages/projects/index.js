@@ -1,27 +1,31 @@
 // arveselovski.com/projects
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { getAllProjects } from "../../services/client";
-import { readAllProjects } from "../../services/server";
+import { readAllProjects } from "../../lib/api-utils";
 
+import NotificationContext from "../../store/notificatons";
 import ProjectList from "../../components/projects/ProjectList";
 
 export default function Projects(props) {
   const [projects, setProjects] = useState(props.projects);
+  const { showNotification } = useContext(NotificationContext);
 
   const { data, error } = useSWR("api/projects", getAllProjects);
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setProjects(data);
     }
   }, [data]);
 
   useEffect(() => {
     if (error) {
-      console.log("WTF", error?.info?.message);
+      showNotification(error?.info?.message);
+      console.error(error?.info?.message);
     }
   }, [error]);
 

@@ -1,19 +1,18 @@
 import JunkSummary from "./JunkSummary";
 import JunkContent from "./JunkContent";
-import JunkSlugs from "../JunkSlugs";
+import JunkTags from "../JunkTags";
 
-export default function JunkDetails({
-  title,
-  description,
-  image,
-  updatedAt,
-  slugs = [],
-}) {
+export default function JunkDetails({ junk }) {
   return (
-    <>
-      <JunkSummary title={title} image={image} updatedAt={updatedAt} />
-      <JunkContent content={description} />
-      <JunkSlugs slugs={slugs} />
-    </>
+    <article>
+      <JunkSummary
+        image={junk.image}
+        slug={junk.slug}
+        title={junk.title}
+        updatedAt={junk.updatedAt}
+      />
+      <JunkContent content={junk.content} slug={junk.slug} />
+      <JunkTags tags={junk.tags} />
+    </article>
   );
 }

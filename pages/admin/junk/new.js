@@ -1,27 +1,31 @@
 // arveselovski.com/admin/junk
 import Head from "next/head";
 import router from "next/router";
-import { useRef, useState } from "react";
-import { JunkSlugSelector } from "../../../components/junk/JunkSlugs";
+import { useContext, useRef, useState } from "react";
+import { JunkTagSelector } from "../../../components/junk/JunkTags";
+
+import NotificationContext from "../../../store/notificatons";
 
 import { postNewJunk } from "../../../services/client";
-import { readAllSlugs } from "../../../services/server";
+import { readAllTags } from "../../../services/server";
 
 export default function NewJunk(props) {
-  const [slugs, setSlugs] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  const { showNotification } = useContext(NotificationContext);
 
   const titleRef = useRef();
   const descriptionRef = useRef();
   const pinnedRef = useRef();
 
-  function handleSlugSelect(selected, e) {
+  function handleTagSelect(selected, e) {
     e.preventDefault();
 
-    if (slugs.includes(selected)) {
-      const filteredSlugs = slugs.filter((s) => s !== selected);
-      setSlugs(filteredSlugs);
+    if (tags.includes(selected)) {
+      const filteredTags = tags.filter((t) => t !== selected);
+      setTags(filteredTags);
     } else {
-      setSlugs([...slugs, selected]);
+      setTags([...tags, selected]);
     }
   }
 
@@ -32,11 +36,18 @@ export default function NewJunk(props) {
       title: titleRef.current.value,
       description: descriptionRef.current.value,
       pinned: pinnedRef.current.checked,
-      slugs: slugs,
+      tags: tags,
     };
-    const { data } = await postNewJunk(body);
 
-    router.push(`/junkyard/${data.id}`);
+    try {
+      const { data } = await postNewJunk(body);
+
+      showNotification("Added junk.", "success");
+      router.push(`/junkyard/${data.id}`);
+    } catch (error) {
+      console.error(error?.info?.message || error);
+      showNotification(error?.info?.message || "Something went wrong!");
+    }
   }
 
   return (
@@ -75,11 +86,11 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm">Slugs</label>
-            <JunkSlugSelector
-              slugs={props.slugs}
-              selected={slugs}
-              onSelect={handleSlugSelect}
+            <label className="block mb-1 text-sm">Tags</label>
+            <JunkTagSelector
+              tags={props.tags}
+              selected={tags}
+              onSelect={handleTagSelect}
             />
           </div>
 
@@ -111,9 +122,9 @@ export default function NewJunk(props) {
 }
 
 export async function getServerSideProps() {
-  const allSlugs = readAllSlugs();
+  const allTags = readAllTags();
 
   return {
-    props: { slugs: allSlugs },
+    props: { tags: allTags },
   };
 }

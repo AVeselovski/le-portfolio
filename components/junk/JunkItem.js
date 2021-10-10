@@ -1,9 +1,11 @@
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
-import JunkSlugs from "./JunkSlugs";
+import JunkTags from "./JunkTags";
 
-function JunkItem({ id, title, description, updatedAt, slugs = [] }) {
-  const junkLink = `/junkyard/${id}`;
+function JunkItem({ junk }) {
+  const { description, slug, tags = [], title, updatedAt } = junk;
+  const junkLink = `/junkyard/${slug}`;
   const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
     day: "numeric",
     month: "numeric",
@@ -26,9 +28,11 @@ function JunkItem({ id, title, description, updatedAt, slugs = [] }) {
             </a>
           </Link>
         </header>
-        <div className="mb-5">{description}</div>
+        <div className="mb-5">
+          <ReactMarkdown>{description}</ReactMarkdown>
+        </div>
         <footer className="flex justify-between items-center">
-          <JunkSlugs slugs={slugs} />
+          <JunkTags tags={tags} />
           <Link href={junkLink}>
             <a className="text-blue-500">Read junk...</a>
           </Link>

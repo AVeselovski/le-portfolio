@@ -1,4 +1,4 @@
-import { readAllJunk } from "../../../services/server";
+import { readAllJunk } from "../../../lib/api-utils";
 
 function handler(req, res) {
   if (req.method === "GET") {

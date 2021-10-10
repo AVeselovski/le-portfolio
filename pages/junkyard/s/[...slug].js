@@ -1,12 +1,12 @@
 // arveselovski.com/junkyard/[...slug]
 import Head from "next/head";
 
-import { readAllSlugs, readFilteredJunk } from "../../../services/server";
+import { readAllTags, readFilteredJunk } from "../../../lib/api-utils";
 
-import JunkSlugs from "../../../components/junk/JunkSlugs";
+import JunkTags from "../../../components/junk/JunkTags";
 import JunkList from "../../../components/junk/JunkList";
 
-export default function FilteredJunk({ slugs, junk }) {
+export default function FilteredJunk({ junk, tags }) {
   let content;
 
   if (!junk.length) {
@@ -31,7 +31,7 @@ export default function FilteredJunk({ slugs, junk }) {
             & "How to's" for quick reference.
           </p>
 
-          <JunkSlugs slugs={slugs} />
+          <JunkTags tags={tags} />
         </header>
 
         {content}
@@ -46,13 +46,13 @@ export async function getServerSideProps(context) {
     params: { slug },
   } = context;
 
-  const allSlugs = readAllSlugs();
+  const allTags = readAllTags();
   const filteredJunk = readFilteredJunk(slug[0]);
 
   return {
     props: {
-      slugs: allSlugs,
       junk: filteredJunk,
+      tags: allTags,
     },
   };
 }

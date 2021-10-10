@@ -1,1 +1,38 @@
-[{"id":"j1","title":"Deploying to heroku (Rails)","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?","slugs":["Rails","Git"],"pinned":false,"image":"images/junk-rails.jpg","createdAt":"2021-10-01","updatedAt":"2021-10-01"},{"id":"j2","title":"Eslint & Prettier Setup (Standard)","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?","slugs":["JavaScript","Node"],"pinned":true,"image":"images/junk-general.jpg","createdAt":"2021-10-01","updatedAt":"2021-10-01"},{"id":"j3","title":"Rails 6 Webpacker Setup","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?","slugs":["Rails","JavaScript","CSS"],"pinned":false,"image":"images/junk-rails.jpg","createdAt":"2021-10-01","updatedAt":"2021-10-01"},{"id":"j4","title":"Testi","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?","pinned":false,"slugs":[],"image":"images/junk-general.jpg","createdAt":"2021-10-06T17:03:33.816Z","updatedAt":"2021-10-06T17:03:33.816Z"},{"id":"493c5d8c-c718-46c1-9214-ef197de3a256","title":"Test","description":"Le testing il kikel.","pinned":true,"slugs":["CSS"],"image":"images/junk-general.jpg","createdAt":"2021-10-07T17:48:40.369Z","updatedAt":"2021-10-07T17:48:40.369Z"},{"id":"7980a0cd-52e3-4ee3-a836-bb6ddbe2e808","title":"Perkele","description":"...","pinned":false,"slugs":["CSS"],"image":"images/junk-general.jpg","createdAt":"2021-10-08T14:57:06.327Z","updatedAt":"2021-10-08T14:57:06.327Z"}]
+[
+  {
+    "id": "j1",
+    "title": "Deploying to heroku (Rails)",
+    "slug": "deploying-to-heroku-rails",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?",
+    "body": "...",
+    "tags": ["Rails", "Git"],
+    "pinned": false,
+    "image": "junk-rails.jpg",
+    "createdAt": "2021-10-01T17:00:00.816Z",
+    "updatedAt": "2021-10-01T17:00:00.816Z"
+  },
+  {
+    "id": "j2",
+    "title": "Eslint & Prettier Setup (Standard)",
+    "slug": "eslint-and-prettier-setup-standard",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?",
+    "body": "# Some text... # title",
+    "tags": ["JavaScript", "Node"],
+    "pinned": true,
+    "image": "junk-general.jpg",
+    "createdAt": "2021-10-01T17:00:00.816Z",
+    "updatedAt": "2021-10-01T17:00:00.816Z"
+  },
+  {
+    "id": "j3",
+    "title": "Rails 6 Webpacker Setup",
+    "slug": "rails-6-webpacker-setup",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cumque quam cupiditate corporis consequatur corrupti quaerat temporibus possimus commodi minima? Aspernatur maiores exercitationem alias repellendus aut libero, in voluptatem dignissimos?",
+    "body": "...",
+    "tags": ["Rails", "JavaScript", "CSS"],
+    "pinned": false,
+    "image": "junk-rails.jpg",
+    "createdAt": "2021-10-01T17:00:00.816Z",
+    "updatedAt": "2021-10-01T17:00:00.816Z"
+  }
+]

@@ -1,4 +1,4 @@
-import { readAllProjects } from "../../../services/server";
+import { readAllProjects } from "../../../lib/api-utils";
 
 function handler(req, res) {
   if (req.method === "GET") {

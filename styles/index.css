@@ -26,6 +26,38 @@
   display: block;
 }
 
-.slug {
+.tag {
   @apply rounded-full py-1 px-2 mr-2 text-sm;
+}
+
+.notification-overlay {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+}
+.notification {
+  @apply max-w-xs p-3 px-4 shadow-md border rounded-sm mr-2 mb-2;
+}
+.notification.error {
+  @apply bg-red-500 text-white;
+}
+.notification.success {
+  @apply bg-green-500 text-white;
+}
+
+/** 
+ * Trick to get NextJS Image component responsive without pre-defining height/width.
+ * Courtesy of https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351.
+ **/
+.image-container {
+  width: 100%;
+}
+.image-container > div {
+  position: unset !important;
+}
+.image-container .image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }

@@ -1,12 +1,12 @@
 // arveselovski.com/junkyard
 import Head from "next/head";
 
-import { readAllJunk, readAllSlugs } from "../../services/server";
+import { readAllJunk, readAllTags } from "../../lib/api-utils";
 
-import JunkSlugs from "../../components/junk/JunkSlugs";
+import JunkTags from "../../components/junk/JunkTags";
 import JunkList from "../../components/junk/JunkList";
 
-export default function Junkyard({ junk, slugs }) {
+export default function Junkyard({ junk, tags }) {
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ export default function Junkyard({ junk, slugs }) {
             Just a source of "Might be useful" pieces, code snippets, "Gotchas"
             & "How to's" for quick reference.
           </p>
-          <JunkSlugs slugs={slugs} />
+          <JunkTags tags={tags} />
         </header>
         <JunkList junk={junk} />
       </div>
@@ -36,9 +36,9 @@ export async function getStaticProps(context) {
    * const filePath = path.join(process.cwd(), "data", "dummy_data.json");
    * const jsonData = await fs.readFile(filePath);
    * const data = JSON.parse(jsonData);
-   */
+   ***/
 
-  const allSlugs = readAllSlugs();
+  const allTags = readAllTags();
   const allJunk = readAllJunk();
 
   if (!allJunk) {
@@ -50,5 +50,5 @@ export async function getStaticProps(context) {
     };
   }
 
-  return { props: { junk: allJunk, slugs: allSlugs }, revalidate: 30 };
+  return { props: { junk: allJunk, tags: allTags }, revalidate: 30 };
 }

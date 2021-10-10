@@ -6,4 +6,4 @@ This shall act as a personal "portfolio" website. While technically could be cat
 
 ## NextJS
 
-This is done with NextJS with the purpose of testing out NextJS capabilities.
+This is done with NextJS with the purpose of learning & testing out NextJS capabilities.
