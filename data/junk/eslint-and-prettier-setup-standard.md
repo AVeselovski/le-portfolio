@@ -2,8 +2,11 @@
 title: "Eslint & Prettier Setup (Standard)"
 slug: "eslint-and-prettier-setup-standard"
 description: "Simple setup with Eslint (Standard) & Prettier for when you don’t want to bother with custom setups. Clean and simple. Additional rules / exceptions can always be added as needed."
-image: "junk-general.jpg"
-tags: ["JavaScript", "Node"]
+image:
+  height: 3741
+  width: 5840
+  src: "junk-general.jpg"
+tags: "JavaScript,Node"
 createdAt: "2021-10-01T18:00:00.816Z"
 updatedAt: "2021-10-01T18:00:00.816Z"
 pinned: true

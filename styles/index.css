@@ -44,6 +44,9 @@
 .notification.success {
   @apply bg-green-500 text-white;
 }
+.notification.warning {
+  @apply bg-yellow-500 text-white;
+}
 
 /** 
  * Trick to get NextJS Image component responsive without pre-defining height/width.

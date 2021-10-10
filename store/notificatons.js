@@ -12,8 +12,9 @@ export function NotificationProvider({ children }) {
   const [notification, setNotification] = useState(null);
 
   function addNotification(message, status = "error") {
+    const msg = typeof message === "object" ? JSON.stringify(message) : message;
     setNotification({
-      message,
+      message: msg,
       status,
     });
   }

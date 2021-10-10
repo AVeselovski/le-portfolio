@@ -5,31 +5,25 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 export default function JunkContent({ content, slug }) {
   const customRenderers = {
-    // img(image) {
-    //   return (
-    //     <div className="image-container px-3">
-    //       <Image
-    //         className="image"
-    //         alt={image.alt}
-    //         src={`/images/junk/${slug}/${image.src}`}
-    //         layout="fill"
-    //       />
-    //     </div>
-    //   );
-    // },
     p(paragraph) {
       const { node } = paragraph;
 
       if (node.children[0].tagName === "img") {
         const image = node.children[0];
 
+        /***
+         * This needs more work & thought. Ignoring for now.
+         * How to provide proper dimensions without sacrificing Image performance?
+         ***/
+
         return (
-          <div className="image-container p-3">
+          <div className="p-3">
             <Image
-              className="image rounded-md"
+              className="rounded-md"
               alt={image.alt}
               src={`/images/junk/${slug}/${image.properties.src}`}
-              layout="fill"
+              height={400}
+              width={600}
             />
           </div>
         );
@@ -42,6 +36,7 @@ export default function JunkContent({ content, slug }) {
       if (inline) {
         return <code>{children}</code>;
       }
+
       const language = className?.split("-")[1] || null;
 
       return (

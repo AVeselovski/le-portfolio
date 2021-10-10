@@ -2,8 +2,11 @@
 title: "Deploying To Heroku (Rails)"
 slug: "deploying-to-heroku-rails"
 description: "Deploying Rails applications to heroku, using Heroku CLI."
-image: "junk-rails.jpg"
-tags: ["Rails", "Git"]
+image:
+  height: 2848
+  width: 4288
+  src: junk-rails.jpg
+tags: "Rails,Git"
 createdAt: "2021-10-01T17:30:00.816Z"
 updatedAt: "2021-10-01T17:30:00.816Z"
 pinned: false

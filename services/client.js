@@ -72,10 +72,7 @@ export async function getPinnedProjects() {
 export async function postNewJunk(junk) {
   const res = await fetch("/api/junk/new", {
     method: "POST",
-    body: JSON.stringify(junk),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: junk,
   });
 
   if (!res.ok) {

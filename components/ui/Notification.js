@@ -6,6 +6,7 @@ export default function Notification(props) {
   const titles = {
     error: "Error:",
     success: "Success:",
+    warning: "Warning:",
   };
 
   return ReactDOM.createPortal(

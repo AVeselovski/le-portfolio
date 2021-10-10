@@ -2,8 +2,11 @@
 title: "Rails 6 Webpacker Setup"
 slug: "rails-6-webpacker-setup"
 description: 'Basic webpacker setup for Rails 6 with "default" jQuery option and / or React.'
-image: "junk-rails.jpg"
-tags: ["Rails", "JavaScript", "CSS"]
+image:
+  height: 2848
+  width: 4288
+  src: junk-rails.jpg
+tags: "Rails,JavaScript,CSS"
 createdAt: "2021-10-01T17:00:00.816Z"
 updatedAt: "2021-10-01T17:00:00.816Z"
 pinned: false
@@ -65,10 +68,6 @@ $ bundle exec rails webpacker:install:react
 ```
 
 ...and follow appropriate instructions.
-
-#### Image test
-
-![Test](junk-rails.jpg)
 
 #### Other notes
 
