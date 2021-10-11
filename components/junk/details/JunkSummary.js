@@ -1,6 +1,14 @@
 import Image from "next/image";
 
-export default function JunkSummary({ image = null, slug, title, updatedAt }) {
+import JunkTags from "../JunkTags";
+
+export default function JunkSummary({
+  image = null,
+  slug,
+  tags,
+  title,
+  updatedAt,
+}) {
   const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
     day: "numeric",
     month: "numeric",
@@ -14,7 +22,7 @@ export default function JunkSummary({ image = null, slug, title, updatedAt }) {
   return (
     <header className="mb-6">
       {!!image?.height && (
-        <div className="mb-6">
+        <div className="mb-2">
           <Image
             alt={title}
             className="rounded-md"
@@ -25,6 +33,9 @@ export default function JunkSummary({ image = null, slug, title, updatedAt }) {
           />
         </div>
       )}
+      <div className="mb-6">
+        <JunkTags tags={tags} />
+      </div>
       <div>
         <h2 className="text-4xl">{title}</h2>
         <span className="text-gray-500 text-sm">

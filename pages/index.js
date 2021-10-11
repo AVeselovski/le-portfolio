@@ -11,7 +11,7 @@ export default function Home({ junk, projects }) {
     <>
       <Head></Head>
 
-      <div className="max-w-3xl">
+      <div className="container">
         <div className="mb-4">
           <h2 className="text-2xl mb-4">Junk</h2>
           <JunkList junk={junk} />

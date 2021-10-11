@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { ghcolors } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 export default function JunkContent({ content, slug }) {
   const customRenderers = {
@@ -41,7 +41,7 @@ export default function JunkContent({ content, slug }) {
 
       return (
         <SyntaxHighlighter
-          style={atomDark}
+          style={ghcolors}
           language={language}
           children={children}
         />
@@ -50,7 +50,7 @@ export default function JunkContent({ content, slug }) {
   };
 
   return (
-    <section className="mb-6">
+    <section className="markdown">
       <ReactMarkdown components={customRenderers}>{content}</ReactMarkdown>
     </section>
   );

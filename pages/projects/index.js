@@ -17,7 +17,6 @@ export default function Projects(props) {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setProjects(data);
     }
   }, [data]);
@@ -50,7 +49,7 @@ export default function Projects(props) {
         <meta description="A bunch of projects." />
       </Head>
 
-      <div className="max-w-3xl">{content}</div>
+      <div className="container">{content}</div>
     </>
   );
 }

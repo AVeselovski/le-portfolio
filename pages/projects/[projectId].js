@@ -8,7 +8,7 @@ export default function Project() {
         <title>[project.name] | Artur Veselovski</title>
       </Head>
 
-      <div className="max-w-3xl">Project page</div>
+      <div className="container">Project page</div>
     </>
   );
 }

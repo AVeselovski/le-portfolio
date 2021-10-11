@@ -1,6 +1,5 @@
 import JunkSummary from "./JunkSummary";
 import JunkContent from "./JunkContent";
-import JunkTags from "../JunkTags";
 
 export default function JunkDetails({ junk }) {
   return (
@@ -8,11 +7,11 @@ export default function JunkDetails({ junk }) {
       <JunkSummary
         image={junk.image}
         slug={junk.slug}
+        tags={junk.tags}
         title={junk.title}
         updatedAt={junk.updatedAt}
       />
       <JunkContent content={junk.content} slug={junk.slug} />
-      <JunkTags tags={junk.tags} />
     </article>
   );
 }

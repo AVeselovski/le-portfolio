@@ -13,28 +13,28 @@ function JunkItem({ junk }) {
   });
 
   return (
-    <li className="border border-gray-200 rounded-md py-3 px-5 mb-3">
+    <li className="post-item">
       <div>
         <header className="mb-5">
           <Link href={junkLink}>
             <a className="flex items-start justify-between">
               <div>
-                <h2 className="text-4xl">{title}</h2>
+                <h2 className="text-3xl md:text-4xl">{title}</h2>
                 <span className="text-gray-500 text-sm">
                   Last updated: {humanReadableDate}
                 </span>
               </div>
-              <div className="text-4xl">&rarr;</div>
+              <div className="text-3xl md:text-4xl ml-2">&rarr;</div>
             </a>
           </Link>
         </header>
-        <div className="mb-5">
+        <div className="markdown mb-6">
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
-        <footer className="flex justify-between items-center">
+        <footer className="flex justify-between items-center flex-wrap">
           <JunkTags tags={tags} />
           <Link href={junkLink}>
-            <a className="text-blue-500">Read junk...</a>
+            <a className="post-link">Read junk...</a>
           </Link>
         </footer>
       </div>

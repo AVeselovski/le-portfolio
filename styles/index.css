@@ -9,13 +9,23 @@
 }
 
 .footer {
-  @apply h-16 flex items-center justify-center border-t mx-10 p-2;
+  @apply h-16 flex items-center justify-center border-t mx-4 p-2;
+}
+@media (min-width: 640px) {
+  .footer {
+    @apply h-16 flex items-center justify-center border-t mx-8 p-2;
+  }
 }
 
 .project-item {
-  @apply border border-gray-200 rounded-md py-3 px-5 mb-3 w-1/2 hover:text-blue-600 focus:text-blue-600;
+  @apply border border-gray-200 rounded-md py-3 px-5 mb-2 w-full hover:text-blue-600 focus:text-blue-600;
+}
+@media (min-width: 640px) {
+  .project-item {
+    @apply py-3 px-5 mb-2 hover:text-blue-600 focus:text-blue-600;
 
-  width: calc(50% - 0.5rem);
+    width: calc(50% - 0.5rem);
+  }
 }
 
 .input-group {
@@ -26,8 +36,29 @@
   display: block;
 }
 
+.tag-container {
+  @apply gap-1;
+
+  display: flex;
+  flex-wrap: wrap;
+}
 .tag {
-  @apply rounded-full py-1 px-2 mr-2 text-sm;
+  @apply rounded-full py-0.5 px-2 text-sm block;
+}
+
+.post-item {
+  @apply border border-gray-200 rounded-md py-3 pb-4 px-3 md:px-5 mb-3;
+}
+
+.post-link {
+  @apply text-blue-500 whitespace-nowrap;
+
+  display: none;
+}
+@media (min-width: 640px) {
+  .post-link {
+    display: unset;
+  }
 }
 
 .notification-overlay {
@@ -36,7 +67,9 @@
   right: 0;
 }
 .notification {
-  @apply max-w-xs p-3 px-4 shadow-md border rounded-sm mr-2 mb-2;
+  @apply max-w-xs p-3 px-4 shadow-md rounded-sm mr-2 mb-2;
+
+  border-width: 1px;
 }
 .notification.error {
   @apply bg-red-500 text-white;
@@ -51,6 +84,7 @@
 /** 
  * Trick to get NextJS Image component responsive without pre-defining height/width.
  * Courtesy of https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351.
+ * Not used, but leaving here just in case.
  **/
 .image-container {
   width: 100%;
@@ -63,4 +97,61 @@
   width: 100% !important;
   position: relative !important;
   height: unset !important;
+}
+
+.container {
+  @apply max-w-3xl px-4 pb-8 pt-2;
+}
+
+.profile-image {
+  @apply rounded-md;
+
+  display: flex;
+  max-width: 300px;
+  overflow: hidden;
+}
+
+.markdown h2 {
+  @apply text-3xl mb-4;
+}
+.markdown h3 {
+  @apply text-2xl mb-4;
+}
+.markdown h4 {
+  @apply text-xl mb-4;
+}
+.markdown p {
+  @apply mb-4;
+
+  line-height: 1.7;
+}
+.markdown ol {
+  @apply pl-6 my-2;
+
+  list-style-type: decimal;
+}
+.markdown li {
+  @apply my-2;
+}
+.markdown ul {
+  @apply pl-6 my-2;
+
+  list-style-type: circle;
+}
+.markdown li {
+  @apply my-2;
+}
+.markdown p code,
+.markdown ol code,
+.markdown ul code {
+  @apply bg-gray-100 p-1 px-2 rounded-md text-indigo-600 text-sm;
+}
+.markdown pre {
+  @apply mb-4 pb-0;
+}
+.markdown pre > pre {
+  @apply rounded-md;
+
+  /* background-color: rgba(243, 244, 246, var(--tw-bg-opacity)) !important; */
+  padding-bottom: 0 !important;
 }

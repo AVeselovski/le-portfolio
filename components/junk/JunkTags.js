@@ -19,13 +19,24 @@ export function JunkTagSelector({ tags, selected, onSelect }) {
   );
 }
 
-export default function JunkTags({ tags }) {
+export default function JunkTags({ tags, withAll = false }) {
   return (
-    <div>
+    <div className="tag-container">
+      {withAll && (
+        <Link href={`/junkyard`} key="all">
+          <a>
+            <span className="tag bg-white border border-indigo-400 text-indigo-400">
+              All...
+            </span>
+          </a>
+        </Link>
+      )}
       {tags.map((tag) => (
         <Link href={`/junkyard/s/${tag}`} key={tag}>
           <a>
-            <span className="tag bg-indigo-400 text-white text-sm">{tag}</span>
+            <span className="tag bg-indigo-400 border border-indigo-400 text-white">
+              {tag}
+            </span>
           </a>
         </Link>
       ))}

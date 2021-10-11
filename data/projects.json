@@ -1,20 +1,20 @@
 [
   {
     "id": "p1",
-    "description": "Lorem ipsum project.",
+    "description": "Kanban tool akin to Trello.",
     "pinned": true,
-    "title": "Some project"
+    "title": "Zero Tool"
   },
   {
     "id": "p2",
-    "description": "Lorem ipsum project.",
+    "description": "Recruitment assignment made useful.",
     "pinned": false,
-    "title": "Another project"
+    "title": "Photo Browser"
   },
   {
     "id": "p3",
-    "description": "Lorem ipsum project.",
+    "description": "React component library.",
     "pinned": true,
-    "title": "Le projectus"
+    "title": "Component library"
   }
 ]

@@ -43,13 +43,13 @@ Run `bundle install --without production` to install the gems properly, without 
 
 ## Deploying
 
-With new app, run `heroku create`, to create a "shell" for the app.
+1. With new app, run `heroku create`, to create a "shell" for the app.
 
-`git push heroku master` to deploy the app.
+2. `git push heroku master` to deploy the app.
 
-`heroku run rails db:migrate` to migrate.
+3. `heroku run rails db:migrate` to migrate.
 
-`heroku open` to open it after deployment
+4. `heroku open` to open it after deployment
 
 ## Heroku commands
 

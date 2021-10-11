@@ -1,8 +1,10 @@
 // arveselovski.com/junkyard/[...slug]
 import Head from "next/head";
 
+import siteConf from "../../../data/config.json";
 import { readAllTags, readFilteredJunk } from "../../../lib/api-utils";
 
+import JunkHeader from "../../../components/junk/JunkHeader";
 import JunkTags from "../../../components/junk/JunkTags";
 import JunkList from "../../../components/junk/JunkList";
 
@@ -18,21 +20,14 @@ export default function FilteredJunk({ junk, tags }) {
   return (
     <>
       <Head>
-        <title>Junkyard | Artur Veselovski</title>
-        <meta
-          description={`Just a source of "Might be useful" pieces, code snippets, "Gotchas" & "How to's" for quick reference.`}
-        />
+        <title>Junkyard | {siteConf.name}</title>
+        <meta description={siteConf.blogDescription} />
       </Head>
 
-      <div className="max-w-3xl w-full px-2">
-        <header className="mb-8">
-          <p className="text-lg mb-3">
-            Just a source of "Might be useful" pieces, code snippets, "Gotchas"
-            & "How to's" for quick reference.
-          </p>
-
-          <JunkTags tags={tags} />
-        </header>
+      <div className="container">
+        <JunkHeader>
+          <JunkTags tags={tags} withAll />
+        </JunkHeader>
 
         {content}
       </div>

@@ -1,10 +1,12 @@
 import Link from "next/link";
 
+import siteConf from "../../data/config.json";
+
 export default function Header() {
   return (
     <header className="flex items-center justify-between w-full h-16 border-b shadow-sm">
       <div className="p-2 pl-5 text-3xl">
-        <Link href="/">AV.</Link>
+        <Link href="/">{siteConf.shortName}</Link>
       </div>
       <nav className="p-2 pr-5">
         <ul className="flex gap-4">

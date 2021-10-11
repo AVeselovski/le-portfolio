@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import siteConf from "../../data/config.json";
 import NotificationContext from "../../store/notificatons";
 
 import Header from "./Header";
@@ -12,7 +13,9 @@ export default function Layout({ children }) {
     <div className="min-h-screen">
       <Header />
       <main className="main">{children}</main>
-      <footer className="footer">This is footer</footer>
+      <footer className="footer">
+        <span className="text-gray-500">© {siteConf.name}</span>
+      </footer>
 
       {notification && (
         <Notification
