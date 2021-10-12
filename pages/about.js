@@ -14,7 +14,7 @@ export default function About({ content }) {
         <meta description="Software developer..." />
       </Head>
 
-      <div className="container">
+      <div className="container content-container">
         <Content content={content} />
       </div>
     </>

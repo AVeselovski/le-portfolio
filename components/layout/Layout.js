@@ -4,17 +4,26 @@ import siteConf from "../../data/config.json";
 import NotificationContext from "../../store/notificatons";
 
 import Header from "./Header";
+import MobileNav from "./MobileNav";
 import Notification from "../ui/Notification";
+
+export const navLinks = [
+  { name: "Junkyard", pathname: "/junkyard" },
+  { name: "Projects", pathname: "/projects" },
+  { name: "About", pathname: "/about" },
+];
 
 export default function Layout({ children }) {
   const { notification } = useContext(NotificationContext);
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header links={navLinks} />
+      <MobileNav links={navLinks} />
+
       <main className="main">{children}</main>
       <footer className="footer">
-        <span className="text-gray-500">© {siteConf.name}</span>
+        <span className="text-gray-500 text-sm">© {siteConf.name}</span>
       </footer>
 
       {notification && (

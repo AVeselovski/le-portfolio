@@ -23,7 +23,7 @@ export default function Junk({ junk, error }) {
         <meta description={junk?.description || "-"} />
       </Head>
 
-      <div className="container">{content}</div>
+      <div className="container content-container">{content}</div>
     </>
   );
 }

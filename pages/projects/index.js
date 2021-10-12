@@ -8,6 +8,7 @@ import { readAllProjects } from "../../lib/api-utils";
 
 import NotificationContext from "../../store/notificatons";
 import ProjectList from "../../components/projects/ProjectList";
+import ProjectsHeader from "../../components/projects/ProjectsHeader";
 
 export default function Projects(props) {
   const [projects, setProjects] = useState(props.projects);
@@ -36,6 +37,7 @@ export default function Projects(props) {
   } else {
     content = (
       <>
+        <ProjectsHeader />
         {!projects.length && "No projects yet!"}
         <ProjectList projects={projects} />
       </>

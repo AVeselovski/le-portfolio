@@ -8,7 +8,7 @@ import JunkHeader from "../../components/junk/JunkHeader";
 import JunkTags from "../../components/junk/JunkTags";
 import JunkList from "../../components/junk/JunkList";
 
-export default function Junkyard({ junk, tags }) {
+export default function Junkyard({ junk = [], tags = [] }) {
   return (
     <>
       <Head>
