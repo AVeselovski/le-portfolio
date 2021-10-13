@@ -6,7 +6,11 @@ import profileImg from "../../public/images/profile.jpg";
 
 import KeyWords from "./KeyWords";
 
-export default function Content({ content = "" }) {
+export default function Content({
+  content = "",
+  hardSkills = [],
+  softSkills = [],
+}) {
   return (
     <>
       <h1 className="text-4xl mb-10 text-center">{siteConf.name}</h1>
@@ -18,18 +22,7 @@ export default function Content({ content = "" }) {
       <section className="markdown">
         <ReactMarkdown>{content}</ReactMarkdown>
       </section>
-      <KeyWords
-        softSkills={["Agile", "Scrum"]}
-        hardSkills={[
-          "JavaScript",
-          "Node",
-          "React",
-          "NextJS",
-          "Ruby on Rails",
-          "SQL",
-          "NoSQL",
-        ]}
-      />
+      <KeyWords softSkills={softSkills} hardSkills={hardSkills} />
     </>
   );
 }

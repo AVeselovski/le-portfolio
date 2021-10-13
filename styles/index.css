@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .header {
-  @apply fixed flex items-center justify-between w-full h-16 bg-white;
+  @apply fixed flex items-center justify-between w-full h-16 bg-white border-b;
 
   /* transition: box-shadow 0.5s ease-in, border 0.5s ease-in; */
   z-index: 1;
@@ -12,7 +12,7 @@
 .main {
   @apply flex flex-col items-center w-full py-6 pt-24;
 
-  min-height: calc(100vh - 8rem);
+  min-height: calc(100vh - 4rem);
 }
 
 .footer {
@@ -141,6 +141,7 @@
   @apply mb-4;
 
   line-height: 1.7;
+  word-break: break-word;
 }
 .markdown ol {
   @apply pl-6 my-2;

@@ -6,6 +6,10 @@ import useSWR from "swr";
 import { getAllProjects } from "../../services/client";
 import { readAllProjects } from "../../lib/api-utils";
 
+import siteConf from "../../data/config.json";
+import en from "../../locales/en.json";
+import fi from "../../locales/fi.json";
+
 import NotificationContext from "../../store/notificatons";
 import ProjectList from "../../components/projects/ProjectList";
 import ProjectsHeader from "../../components/projects/ProjectsHeader";
@@ -31,9 +35,9 @@ export default function Projects(props) {
 
   let content;
   if (error && !projects) {
-    content = <div>Failed to fetch projects...</div>;
+    content = <div>{props.translation.showcaseApiFail}</div>;
   } else if (!data && !projects) {
-    content = <div>Loading...</div>;
+    content = <div>{props.translation.loading}...</div>;
   } else {
     content = (
       <>
@@ -47,7 +51,9 @@ export default function Projects(props) {
   return (
     <>
       <Head>
-        <title>Projects | Artur Veselovski</title>
+        <title>
+          {props.translation.showcaseName} | {siteConf.name}
+        </title>
         <meta description="A bunch of projects." />
       </Head>
 
@@ -57,12 +63,15 @@ export default function Projects(props) {
 }
 
 /** Hybrid way - prepare some data with static generation, then update clientside. */
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const allProjects = readAllProjects();
+
+  const translation = locale === "en" ? en : fi;
 
   return {
     props: {
       projects: allProjects,
+      translation,
     },
   };
 }

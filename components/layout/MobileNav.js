@@ -2,11 +2,13 @@ import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import I18nContext from "../../store/i18n";
 import NavigationContext from "../../store/navigation";
 import CloseIcon from "../icons/CloseIcon";
 
 export default function MobileNav({ links = [] }) {
   const { isOpen, toggleMobileNav } = useContext(NavigationContext);
+  const { t } = useContext(I18nContext);
 
   const router = useRouter();
 
@@ -22,7 +24,7 @@ export default function MobileNav({ links = [] }) {
                 }`}
                 onClick={toggleMobileNav.bind(null)}
               >
-                {l.name}
+                {t[l.name]}
               </a>
             </Link>
           </li>

@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { useContext } from "react";
+
+import I18nContext from "../../store/i18n";
 
 export function JunkTagSelector({ tags, selected, onSelect }) {
   const activeClasses = ["bg-indigo-400", "text-white"];
@@ -20,13 +23,15 @@ export function JunkTagSelector({ tags, selected, onSelect }) {
 }
 
 export default function JunkTags({ tags, withAll = false }) {
+  const { t } = useContext(I18nContext);
+
   return (
     <div className="tag-container">
       {withAll && (
         <Link href={`/junkyard`} key="all">
           <a>
             <span className="tag bg-white border border-indigo-400 text-indigo-400">
-              All...
+              {t.blogShowAll}...
             </span>
           </a>
         </Link>

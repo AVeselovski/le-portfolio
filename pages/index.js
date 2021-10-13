@@ -5,6 +5,7 @@ import { readPinnedJunk, readPinnedProjects } from "../lib/api-utils";
 
 import JunkList from "../components/junk/JunkList";
 import ProjectList from "../components/projects/ProjectList";
+import PinIcon from "../components/icons/PinIcon";
 
 export default function Home({ junk, projects }) {
   return (
@@ -13,11 +14,15 @@ export default function Home({ junk, projects }) {
 
       <div className="container">
         <div className="mb-4">
-          <h2 className="text-2xl mb-4">Junk</h2>
+          <span className="text-2xl mb-4 text-indigo-500 block">
+            <PinIcon />
+          </span>
           <JunkList junk={junk} />
         </div>
         <div className="mt-4">
-          <h2 className="text-2xl mb-4">Projects</h2>
+          <span className="text-2xl mb-4 text-indigo-500 block">
+            <PinIcon />
+          </span>
           <ProjectList projects={projects} />
         </div>
       </div>

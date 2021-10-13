@@ -1,12 +1,15 @@
 import ReactDOM from "react-dom";
+import { useContext } from "react";
 
 export default function Notification(props) {
   const { status = "error", message = "" } = props;
 
+  const { t } = useContext();
+
   const titles = {
-    error: "Error:",
-    success: "Success:",
-    warning: "Warning:",
+    error: `${t.error}:`,
+    success: `${t.success}:`,
+    warning: `${t.warning}:`,
   };
 
   return ReactDOM.createPortal(

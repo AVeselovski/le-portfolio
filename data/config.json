@@ -1,7 +1,5 @@
 {
   "siteName": "Portfolio & Blog",
   "name": "Artur Veselovski",
-  "shortName": "AV.",
-  "blogDescription": "A collection of \"Might be useful later\" pieces, code snippets, \"Gotchas\" & \"How to's\" for quick reference. Not a blog, just me mumbling in the corner to myself.",
-  "showcaseDescription": "Few little projects to demonstrate basic technical knowhow."
+  "shortName": "AV."
 }

@@ -7,10 +7,10 @@ import Header from "./Header";
 import MobileNav from "./MobileNav";
 import Notification from "../ui/Notification";
 
-export const navLinks = [
-  { name: "Junkyard", pathname: "/junkyard" },
-  { name: "Projects", pathname: "/projects" },
-  { name: "About", pathname: "/about" },
+const navLinks = [
+  { name: "blogName", pathname: "/junkyard" },
+  { name: "showcaseName", pathname: "/projects" },
+  { name: "aboutName", pathname: "/about" },
 ];
 
 export default function Layout({ children }) {

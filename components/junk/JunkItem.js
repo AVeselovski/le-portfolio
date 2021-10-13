@@ -1,9 +1,14 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { useContext } from "react";
+
+import I18nContext from "../../store/i18n";
 
 import JunkTags from "./JunkTags";
 
 function JunkItem({ junk }) {
+  const { t } = useContext(I18nContext);
+
   const { description, slug, tags = [], title, updatedAt } = junk;
   const junkLink = `/junkyard/${slug}`;
   const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
@@ -21,7 +26,7 @@ function JunkItem({ junk }) {
               <div>
                 <h2 className="text-3xl md:text-4xl">{title}</h2>
                 <span className="text-gray-500 text-sm">
-                  Last updated: {humanReadableDate}
+                  {t.postLastUpdated}: {humanReadableDate}
                 </span>
               </div>
               <div className="text-3xl md:text-4xl ml-2">&rarr;</div>
@@ -34,7 +39,7 @@ function JunkItem({ junk }) {
         <footer className="flex justify-between items-center flex-wrap">
           <JunkTags tags={tags} />
           <Link href={junkLink}>
-            <a className="post-link">Read junk...</a>
+            <a className="post-link">{t.postRead}...</a>
           </Link>
         </footer>
       </div>

@@ -1,7 +1,13 @@
+import { useContext } from "react";
+
+import I18nContext from "../../store/i18n";
+
 export default function KeyWords({ softSkills = [], hardSkills = [] }) {
+  const { t } = useContext(I18nContext);
+
   return (
     <section>
-      <h2 className="text-2xl mt-8 mb-6">Relevant key words</h2>
+      <h2 className="text-2xl mt-8 mb-6">{t.aboutKeywords}</h2>
       <ul className="tag-container">
         {softSkills.map((s, i) => (
           <li key={`${i}-${s}`}>

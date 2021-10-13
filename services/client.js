@@ -1,14 +1,25 @@
-export const fetcher = async (url) => {
-  const res = await fetch(url);
+/**
+ * "To hell with it, I tried" - type of solution for Next i18n sub-path
+ * routing clientside issues with api routes.
+ */
+function getUrl(url) {
+  let baseUrl;
+  if (typeof window !== "undefined") {
+    baseUrl = window.location.origin;
+  }
 
-  // If the status code is not in the range 200-299,
-  // we still try to parse and throw it.
+  return `${baseUrl}/${url}`;
+}
+
+export const fetcher = async (url) => {
+  const res = await fetch(getUrl(url));
+
   if (!res.ok) {
     const error = new Error("An error occurred while fetching the data.");
     console.error(error);
-    // Attach extra info to the error object.
     error.info = await res.json();
     error.status = res.status;
+
     throw error;
   }
 
