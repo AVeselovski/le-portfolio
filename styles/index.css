@@ -16,13 +16,13 @@
 }
 
 .footer {
-  @apply h-16 flex items-center justify-center border-t mx-4 p-2;
+  @apply h-16 flex items-center justify-center border-t mx-4 md:mx-8 p-2;
 }
-@media (min-width: 640px) {
+/* @media (min-width: 640px) {
   .footer {
     @apply h-16 flex items-center justify-center border-t mx-8 p-2;
   }
-}
+} */
 
 .project-item {
   @apply border border-gray-200 rounded-md py-3 px-5 mb-2 w-full hover:text-blue-600 focus:text-blue-600;

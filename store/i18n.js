@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import en from "../locales/en.json";
@@ -10,9 +10,13 @@ const I18nContext = createContext({
 
 export default I18nContext;
 
+export function useTranslation() {
+  return useContext(I18nContext);
+}
+
 export function I18nProvider({ children }) {
   const [curLocale, setCurLocale] = useState("en");
-  const [t, changeLang] = useState(en);
+  const [t, changeLanguage] = useState(en);
 
   const router = useRouter();
   const { locale } = router;
@@ -20,16 +24,10 @@ export function I18nProvider({ children }) {
 
   useEffect(() => {
     if (locale !== curLocale) {
-      changeLang(translation);
+      changeLanguage(translation);
       setCurLocale(locale);
     }
   }, [locale, curLocale]);
 
-  const context = {
-    t,
-  };
-
-  return (
-    <I18nContext.Provider value={context}>{children}</I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={{ t }}>{children}</I18nContext.Provider>;
 }

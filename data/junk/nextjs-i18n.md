@@ -1,14 +1,13 @@
 ---
-title: Next.js Translations (i18n) Setup
+title: Next.js translations (i18n) setup
 slug: nextjs-i18n
-description: Simple i18n setup within Next.js app without additinal packages.
-pinned: true
+description: Simpleton i18n setup within Next.js app without additinal packages.
 tags: JavaScript,React,Next
+pinned: true
 image:
   height: 0
   width: 0
-createdAt: "2021-10-13T00:00:00.067Z"
-updatedAt: "2021-10-13T00:00:00.067Z"
+createdAt: "2021-10-13"
 ---
 
 Next.js has built in support for i18n in form of internationalized routing since `v10.0.0`. Locale options are provided through next-router and so can be accessed through `getStaticProps(context)` or `useRouter()`. The actual translation handling is up to you. As Vercel states "The i18n routing support is currently meant to complement existing i18n library solutions".
@@ -31,7 +30,7 @@ module.exports = {
 
 Default sub-path routing strategy will append locale to domain (i.e. `www.domain.com/fi/some/path`). `localeDetection` option will automatically redirect users to their default locale if it exists.
 
-Next, create locales folder with translations (`locales/en.json` / `locales/fi.json`). Folders location doesn't matter.
+Next, create locales folder with translations (`locales/en.json`, `locales/fi.json`). Folders location doesn't matter.
 
 ### Locale switch (language switch)
 
@@ -65,9 +64,9 @@ return (
 );
 ```
 
-`const locale = e.target.value + router.asPath` is there to remain on the same path. To just go to front page `e.target.value` is enough. Note that `router.asPath` is used instead of `router.pathname` because in case of a dynamic route `pathname` will print `/[dynamicId]` instead of `/dunamicRouteName`.
+`const locale = e.target.value + router.asPath` is there to remain on the same path. To instead go to the front page on change `e.target.value` is enough. Note that `router.asPath` is used instead of `router.pathname` because in case of a dynamic route `pathname` will print `/[dynamicId]` instead of `/dunamicRouteName`.
 
-### Client-side translations
+### Clientside translations
 
 A simple in component solution would be to import both translation files, access `useRouter()` to pull locale. Along the lines of:
 
@@ -84,6 +83,33 @@ const t = locale === "en" ? en : fi;
 return <div>{t.someValue}</div>;
 ```
 
-#### Using React context
+This can be extracted into React context instead and used as:
 
-...
+```jsx
+const { t } = useContext(I18nContext);
+
+return <div>{t.someValue}</div>;
+```
+
+This works well enough for client-side translations, if SEO and serverside is of no concern. Note that the source ("View Page Source") will have default values specified in context despite locale. For serverside, locale can be accessed in `getStaticProps(context)` and passed down in props.
+
+```jsx
+import en from "./locale/en.json";
+import fi from "./locale/fi.json";
+
+//...
+
+export async function getStaticProps({ locale }) {
+  // ...
+  const translation = locale === "en" ? en : fi;
+
+  return {
+    props: {
+      projects: allProjects,
+      translation,
+    },
+  };
+}
+```
+
+This ensures serverside translation for proper SEO. Props then can be passed down to components via drilling or context. This can then be repeated on every page. HOWEVER, it seems context cannot be accessed "serverside", so trying to update it in `useEffect()` after receiving the props will not give the expected results. It will only update clientside and so page source, once again will be empty (or have context default value). For better, and more serious solutions, look into `next-translate` package (or other similar).

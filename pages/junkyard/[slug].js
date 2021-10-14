@@ -1,17 +1,20 @@
 // arveselovski.com/junkyard/:junkId
 import Head from "next/head";
 
+import siteConf from "../../data/config.json";
+import { useTranslation } from "../../store/i18n";
 import { readJunkBySlug, readPinnedJunk } from "../../lib/api-utils";
 
 import JunkDetails from "../../components/junk/details";
 
-export default function Junk({ junk, error }) {
-  let content;
+export default function Junk({ junk = null, error }) {
+  const { t } = useTranslation();
 
+  let content;
   if (error) {
     content = error;
   } else if (!junk) {
-    content = <div>Loading...</div>;
+    content = <div>{t.loading}...</div>;
   } else {
     content = <JunkDetails junk={junk} />;
   }
@@ -19,7 +22,9 @@ export default function Junk({ junk, error }) {
   return (
     <>
       <Head>
-        <title>{junk?.title || "404"} | Artur Veselovski</title>
+        <title>
+          {junk?.title || "404"} | {siteConf.name}
+        </title>
         <meta description={junk?.description || "-"} />
       </Head>
 

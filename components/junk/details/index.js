@@ -9,7 +9,7 @@ export default function JunkDetails({ junk }) {
         slug={junk.slug}
         tags={junk.tags}
         title={junk.title}
-        updatedAt={junk.updatedAt}
+        // updatedAt={junk.updatedAt}
       />
       <JunkContent content={junk.content} slug={junk.slug} />
     </article>

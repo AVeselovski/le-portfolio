@@ -1,4 +1,5 @@
 {
+  "siteDescription": "Software developer testing Next.js, playing at having a \"pOrTFoliO and bLoG\", in case it makes them smarter. It doesn't",
   "blogName": "Junkyard",
   "blogDescription": "A collection of \"Might be useful later\" pieces, code snippets, \"Gotchas\" & \"How to's\" for quick reference. Not a blog, just me mumbling in the corner to myself.",
   "blogShowAll": "All",
@@ -17,6 +18,7 @@
   "showcaseName": "Projects",
   "showcaseDescription": "Few little projects to demonstrate basic technical knowhow.",
   "showcaseApiFail": "Failed to fetch projects...",
+  "showcaseNoContent": "No projects here yet!",
   "aboutName": "About",
   "aboutKeywords": "Relevant key words",
   "adminName": "Admin",

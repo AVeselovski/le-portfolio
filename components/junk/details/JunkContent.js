@@ -14,6 +14,7 @@ export default function JunkContent({ content, slug }) {
         /***
          * This needs more work & thought. Ignoring for now.
          * How to provide proper dimensions without sacrificing Image performance?
+         * Do I even want images here?
          ***/
 
         return (

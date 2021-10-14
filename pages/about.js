@@ -1,15 +1,14 @@
 // arveselovski.com/about
 import Head from "next/head";
-import { useContext } from "react";
 
 import siteConf from "../data/config.json";
 import { readAbout } from "../lib/api-utils";
-import I18nContext from "../store/i18n";
+import { useTranslation } from "../store/i18n";
 
 import Content from "../components/about/Content";
 
 export default function About({ content, hardSkills, softSkills }) {
-  const { t } = useContext(I18nContext);
+  const { t } = useTranslation();
 
   return (
     <>

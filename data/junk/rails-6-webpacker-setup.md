@@ -1,15 +1,14 @@
 ---
-title: "Rails 6 Webpacker Setup"
+title: "Rails 6 Webpacker setup"
 slug: "rails-6-webpacker-setup"
-description: 'Basic webpacker setup for Rails 6 with "default" jQuery option and / or React.'
+description: 'Basic Webpacker setup for Rails 6 with "default" jQuery option and / or React.'
+tags: "Rails,JavaScript,CSS"
+pinned: false
 image:
   height: 2848
   width: 4288
   src: junk-rails.jpg
-tags: "Rails,JavaScript,CSS"
 createdAt: "2021-10-01T17:00:00.816Z"
-updatedAt: "2021-10-01T17:00:00.816Z"
-pinned: false
 ---
 
 ### Important notes regarding "tags"

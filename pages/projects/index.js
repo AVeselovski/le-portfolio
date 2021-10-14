@@ -15,6 +15,7 @@ import ProjectList from "../../components/projects/ProjectList";
 import ProjectsHeader from "../../components/projects/ProjectsHeader";
 
 export default function Projects(props) {
+  const t = props.translation;
   const [projects, setProjects] = useState(props.projects);
   const { showNotification } = useContext(NotificationContext);
 
@@ -35,14 +36,14 @@ export default function Projects(props) {
 
   let content;
   if (error && !projects) {
-    content = <div>{props.translation.showcaseApiFail}</div>;
+    content = <div>{t.showcaseApiFail}</div>;
   } else if (!data && !projects) {
-    content = <div>{props.translation.loading}...</div>;
+    content = <div>{t.loading}...</div>;
   } else {
     content = (
       <>
         <ProjectsHeader />
-        {!projects.length && "No projects yet!"}
+        {!projects.length && t.showcaseNoContent}
         <ProjectList projects={projects} />
       </>
     );
@@ -52,9 +53,9 @@ export default function Projects(props) {
     <>
       <Head>
         <title>
-          {props.translation.showcaseName} | {siteConf.name}
+          {t.showcaseName} | {siteConf.name}
         </title>
-        <meta description="A bunch of projects." />
+        <meta description={t.showcaseDescription} />
       </Head>
 
       <div className="container">{content}</div>

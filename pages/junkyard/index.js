@@ -2,18 +2,24 @@
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
+import en from "../../locales/en.json";
+import fi from "../../locales/fi.json";
 import { readAllJunk, readAllTags } from "../../lib/api-utils";
 
 import JunkHeader from "../../components/junk/JunkHeader";
 import JunkTags from "../../components/junk/JunkTags";
 import JunkList from "../../components/junk/JunkList";
 
-export default function Junkyard({ junk = [], tags = [] }) {
+export default function Junkyard({ junk = [], tags = [], translation }) {
+  const t = translation;
+
   return (
     <>
       <Head>
-        <title>Junkyard | {siteConf.name}</title>
-        <meta description={siteConf.blogDescription} />
+        <title>
+          {t.blogName} | {siteConf.name}
+        </title>
+        <meta description={t.blogDescription} />
       </Head>
 
       <div className="container">
@@ -28,7 +34,7 @@ export default function Junkyard({ junk = [], tags = [] }) {
 }
 
 /** The static generation way. */
-export async function getStaticProps(context) {
+export async function getStaticProps({ locale }) {
   /*** File based example:
    * const filePath = path.join(process.cwd(), "data", "dummy_data.json");
    * const jsonData = await fs.readFile(filePath);
@@ -37,6 +43,7 @@ export async function getStaticProps(context) {
 
   const allTags = readAllTags();
   const allJunk = readAllJunk();
+  const translation = locale === "en" ? en : fi;
 
   if (!allJunk) {
     return {
@@ -47,5 +54,8 @@ export async function getStaticProps(context) {
     };
   }
 
-  return { props: { junk: allJunk, tags: allTags }, revalidate: 30 };
+  return {
+    props: { junk: allJunk, tags: allTags, translation },
+    revalidate: 30,
+  };
 }

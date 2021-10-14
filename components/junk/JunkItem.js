@@ -9,13 +9,13 @@ import JunkTags from "./JunkTags";
 function JunkItem({ junk }) {
   const { t } = useContext(I18nContext);
 
-  const { description, slug, tags = [], title, updatedAt } = junk;
+  const { description, slug, tags = [], title } = junk;
   const junkLink = `/junkyard/${slug}`;
-  const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
-  });
+  // const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
+  //   day: "numeric",
+  //   month: "numeric",
+  //   year: "numeric",
+  // });
 
   return (
     <li className="post-item">
@@ -25,9 +25,9 @@ function JunkItem({ junk }) {
             <a className="flex items-start justify-between">
               <div>
                 <h2 className="text-3xl md:text-4xl">{title}</h2>
-                <span className="text-gray-500 text-sm">
+                {/* <span className="text-gray-500 text-sm">
                   {t.postLastUpdated}: {humanReadableDate}
-                </span>
+                </span> */}
               </div>
               <div className="text-3xl md:text-4xl ml-2">&rarr;</div>
             </a>

@@ -1,5 +1,6 @@
 import Head from "next/head";
 
+import siteConf from "../data/config.json";
 import { I18nProvider } from "../store/i18n";
 import { NotificationProvider } from "../store/notificatons";
 import { NavigationProvider } from "../store/navigation";
@@ -14,8 +15,9 @@ function MyApp({ Component, pageProps }) {
         <NavigationProvider>
           <Layout>
             <Head>
-              <title>AV. | Portfolio & Blog</title>
-              <meta description="Software developer..." />
+              <title>
+                {siteConf.shortName} | {siteConf.name}
+              </title>
               <meta
                 name="viewport"
                 content="initial-scale=1.0, width=device-width"
