@@ -1,16 +1,16 @@
-// arveselovski.com/junkyard
+// domain.com/junkyard
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
 import en from "../../locales/en.json";
 import fi from "../../locales/fi.json";
-import { readAllJunk, readAllTags } from "../../lib/api-utils";
+import { readAllPosts, readAllTags } from "../../lib/api-utils";
 
-import JunkHeader from "../../components/junk/JunkHeader";
-import JunkTags from "../../components/junk/JunkTags";
-import JunkList from "../../components/junk/JunkList";
+import PostsHeader from "../../components/posts/PostsHeader";
+import PostTags from "../../components/posts/PostTags";
+import PostList from "../../components/posts/PostList";
 
-export default function Junkyard({ junk = [], tags = [], translation }) {
+export default function Junkyard({ posts = [], tags = [], translation }) {
   const t = translation;
 
   return (
@@ -23,11 +23,11 @@ export default function Junkyard({ junk = [], tags = [], translation }) {
       </Head>
 
       <div className="container">
-        <JunkHeader>
-          <JunkTags tags={tags} />
-        </JunkHeader>
+        <PostsHeader>
+          <PostTags tags={tags} />
+        </PostsHeader>
 
-        <JunkList junk={junk} />
+        <PostList posts={posts} />
       </div>
     </>
   );
@@ -42,10 +42,10 @@ export async function getStaticProps({ locale }) {
    ***/
 
   const allTags = readAllTags();
-  const allJunk = readAllJunk();
+  const allPosts = readAllPosts();
   const translation = locale === "en" ? en : fi;
 
-  if (!allJunk) {
+  if (!allPosts) {
     return {
       // notFound: true,
       redirect: {
@@ -55,7 +55,7 @@ export async function getStaticProps({ locale }) {
   }
 
   return {
-    props: { junk: allJunk, tags: allTags, translation },
+    props: { posts: allPosts, tags: allTags, translation },
     revalidate: 30,
   };
 }

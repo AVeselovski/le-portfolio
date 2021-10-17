@@ -1,4 +1,4 @@
-// arveselovski.com/about
+// domain.com/about
 import Head from "next/head";
 
 import siteConf from "../data/config.json";

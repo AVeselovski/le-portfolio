@@ -4,13 +4,13 @@ import { useContext } from "react";
 
 import I18nContext from "../../store/i18n";
 
-import JunkTags from "./JunkTags";
+import PostTags from "./PostTags";
 
-function JunkItem({ junk }) {
+function PostItem({ post = {} }) {
   const { t } = useContext(I18nContext);
 
-  const { description, slug, tags = [], title } = junk;
-  const junkLink = `/junkyard/${slug}`;
+  const { description, slug, tags = [], title } = post;
+  const postLink = `/junkyard/${slug}`;
   // const humanReadableDate = new Date(updatedAt).toLocaleDateString("fi-FI", {
   //   day: "numeric",
   //   month: "numeric",
@@ -21,7 +21,7 @@ function JunkItem({ junk }) {
     <li className="post-item">
       <div>
         <header className="mb-5">
-          <Link href={junkLink}>
+          <Link href={postLink}>
             <a className="flex items-start justify-between">
               <div>
                 <h2 className="text-3xl md:text-4xl">{title}</h2>
@@ -37,8 +37,8 @@ function JunkItem({ junk }) {
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
         <footer className="flex justify-between items-center flex-wrap">
-          <JunkTags tags={tags} />
-          <Link href={junkLink}>
+          <PostTags tags={tags} />
+          <Link href={postLink}>
             <a className="post-link">{t.postRead}...</a>
           </Link>
         </footer>
@@ -47,4 +47,4 @@ function JunkItem({ junk }) {
   );
 }
 
-export default JunkItem;
+export default PostItem;

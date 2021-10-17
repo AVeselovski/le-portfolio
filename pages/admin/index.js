@@ -1,4 +1,4 @@
-// arveselovski.com/admin
+// domain.com/admin
 import Head from "next/head";
 
 export default function Admin() {

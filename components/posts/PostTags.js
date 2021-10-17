@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import I18nContext from "../../store/i18n";
 
-export function JunkTagSelector({ tags, selected, onSelect }) {
+export function PostTagSelector({ tags, selected, onSelect }) {
   const activeClasses = ["bg-indigo-400", "text-white"];
   const inactiveClasses = ["bg-gray-300", "text-gray-500"];
 
@@ -22,7 +22,7 @@ export function JunkTagSelector({ tags, selected, onSelect }) {
   );
 }
 
-export default function JunkTags({ tags, withAll = false }) {
+function PostTags({ tags, withAll = false }) {
   const { t } = useContext(I18nContext);
 
   return (
@@ -48,3 +48,5 @@ export default function JunkTags({ tags, withAll = false }) {
     </div>
   );
 }
+
+export default PostTags;

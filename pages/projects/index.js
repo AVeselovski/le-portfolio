@@ -1,4 +1,4 @@
-// arveselovski.com/projects
+// domain.com/projects
 import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import useSWR from "swr";

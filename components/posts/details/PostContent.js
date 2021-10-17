@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { ghcolors } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-export default function JunkContent({ content, slug }) {
+function PostContent({ content, slug }) {
   const customRenderers = {
     p(paragraph) {
       const { node } = paragraph;
@@ -22,7 +22,7 @@ export default function JunkContent({ content, slug }) {
             <Image
               className="rounded-md"
               alt={image.alt}
-              src={`/images/junk/${slug}/${image.properties.src}`}
+              src={`/images/posts/${slug}/${image.properties.src}`}
               height={400}
               width={600}
             />
@@ -56,3 +56,5 @@ export default function JunkContent({ content, slug }) {
     </section>
   );
 }
+
+export default PostContent;

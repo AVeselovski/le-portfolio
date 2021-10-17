@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import JunkTags from "../JunkTags";
+import PostTags from "../PostTags";
 
-export default function JunkSummary({
+function PostSummary({
   image = null,
   slug,
   tags,
@@ -14,7 +14,7 @@ export default function JunkSummary({
   //   month: "numeric",
   //   year: "numeric",
   // });
-  const imagePath = `/images/junk/${slug}/${image?.src}`;
+  const imagePath = `/images/posts/${slug}/${image?.src}`;
   const aspectRatio = image?.width / image?.height;
   const imageWidth = 752;
   const imageHeight = imageWidth / aspectRatio;
@@ -37,7 +37,7 @@ export default function JunkSummary({
       <div>
         <h2 className="text-4xl">{title}</h2>
         <div className="mt-3">
-          <JunkTags tags={tags} />
+          <PostTags tags={tags} />
         </div>
         {/* <span className="text-gray-500 text-sm">
           Last updated: {humanReadableDate}
@@ -46,3 +46,5 @@ export default function JunkSummary({
     </header>
   );
 }
+
+export default PostSummary;

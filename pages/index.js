@@ -1,15 +1,15 @@
-// arveselovski.com/
+// domain.com/
 import Head from "next/head";
 
 import en from "../locales/en.json";
 import fi from "../locales/fi.json";
-import { readPinnedJunk, readPinnedProjects } from "../lib/api-utils";
+import { readPinnedPosts, readPinnedProjects } from "../lib/api-utils";
 
-import JunkList from "../components/junk/JunkList";
+import PostList from "../components/posts/PostList";
 import ProjectList from "../components/projects/ProjectList";
 import PinIcon from "../components/icons/PinIcon";
 
-export default function Home({ junk = [], projects = [], translation }) {
+export default function Home({ posts = [], projects = [], translation }) {
   const t = translation;
 
   return (
@@ -23,7 +23,7 @@ export default function Home({ junk = [], projects = [], translation }) {
           <span className="text-2xl mb-4 text-indigo-500 block">
             <PinIcon />
           </span>
-          <JunkList junk={junk} />
+          <PostList posts={posts} />
         </div>
         <div className="mt-4">
           <span className="text-2xl mb-4 text-indigo-500 block">
@@ -37,12 +37,12 @@ export default function Home({ junk = [], projects = [], translation }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const pinnedJunk = readPinnedJunk();
+  const pinnedPosts = readPinnedPosts();
   const pinnedProjects = readPinnedProjects();
 
   const translation = locale === "en" ? en : fi;
 
   return {
-    props: { junk: pinnedJunk, projects: pinnedProjects, translation },
+    props: { posts: pinnedPosts, projects: pinnedProjects, translation },
   };
 }

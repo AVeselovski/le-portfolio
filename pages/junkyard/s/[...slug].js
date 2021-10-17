@@ -1,23 +1,23 @@
-// arveselovski.com/junkyard/[...slug]
+// domain.com/junkyard/[...slug]
 import Head from "next/head";
 
 import siteConf from "../../../data/config.json";
 import en from "../../../locales/en.json";
 import fi from "../../../locales/fi.json";
-import { readAllTags, readFilteredJunk } from "../../../lib/api-utils";
+import { readAllTags, readFilteredPosts } from "../../../lib/api-utils";
 
-import JunkHeader from "../../../components/junk/JunkHeader";
-import JunkTags from "../../../components/junk/JunkTags";
-import JunkList from "../../../components/junk/JunkList";
+import PostsHeader from "../../../components/posts/PostsHeader";
+import PostTags from "../../../components/posts/PostTags";
+import PostList from "../../../components/posts/PostList";
 
-export default function FilteredJunk({ junk = [], tags = [], translation }) {
+export default function FilteredPosts({ posts = [], tags = [], translation }) {
   const t = translation;
 
   let content;
-  if (!junk.length) {
+  if (!posts.length) {
     content = <div>{t.postNoContent}</div>;
   } else {
-    content = <JunkList junk={junk} />;
+    content = <PostList posts={posts} />;
   }
 
   return (
@@ -30,9 +30,9 @@ export default function FilteredJunk({ junk = [], tags = [], translation }) {
       </Head>
 
       <div className="container">
-        <JunkHeader>
-          <JunkTags tags={tags} withAll />
-        </JunkHeader>
+        <PostsHeader>
+          <PostTags tags={tags} withAll />
+        </PostsHeader>
 
         {content}
       </div>
@@ -48,12 +48,12 @@ export async function getServerSideProps(context) {
   } = context;
 
   const allTags = readAllTags();
-  const filteredJunk = readFilteredJunk(slug[0]);
+  const filteredPosts = readFilteredPosts(slug[0]);
   const translation = locale === "en" ? en : fi;
 
   return {
     props: {
-      junk: filteredJunk,
+      posts: filteredPosts,
       tags: allTags,
       translation,
     },

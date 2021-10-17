@@ -1,15 +1,15 @@
-// arveselovski.com/admin/junk/new
+// domain.com/admin/posts/new
 import Head from "next/head";
 import router from "next/router";
 import { useContext, useRef, useState } from "react";
-import { JunkTagSelector } from "../../../components/junk/JunkTags";
+import { PostTagSelector } from "../../../components/posts/PostTags";
 
 import NotificationContext from "../../../store/notificatons";
 
-import { postNewJunk } from "../../../services/client";
+import { postNewPost } from "../../../services/client";
 import { readAllTags } from "../../../lib/api-utils";
 
-export default function NewJunk(props) {
+export default function NewPost(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tags, setTags] = useState([]);
   const [image, setImage] = useState(null);
@@ -24,7 +24,7 @@ export default function NewJunk(props) {
   const pinnedRef = useRef();
   const imageRef = useRef();
 
-  function junkIsValid() {
+  function postIsValid() {
     if (
       titleRef.current?.value?.length < 5 ||
       slugRef.current?.value?.length < 5 ||
@@ -57,7 +57,7 @@ export default function NewJunk(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!junkIsValid()) {
+    if (!postIsValid()) {
       showNotification("Please fill the form properly.", "warning");
 
       return;
@@ -80,9 +80,9 @@ export default function NewJunk(props) {
 
     setIsSubmitting(true);
     try {
-      const { data } = await postNewJunk(body);
+      const { data } = await postNewPost(body);
 
-      showNotification("Junk added.", "success");
+      showNotification("Post added.", "success");
       router.push(`/junkyard/${data.slug}`);
     } catch (error) {
       setIsSubmitting(false);
@@ -100,12 +100,12 @@ export default function NewJunk(props) {
       <div className="max-w-3xl">
         <form className="w-96" onSubmit={handleSubmit}>
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkTitle">
+            <label className="block mb-1 text-sm" htmlFor="postTitle">
               Title
             </label>
             <input
               className="w-full border py-1 px-3"
-              id="junkTitle"
+              id="postTitle"
               name="title"
               ref={titleRef}
               required
@@ -114,12 +114,12 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkSlug">
+            <label className="block mb-1 text-sm" htmlFor="postSlug">
               Slug
             </label>
             <input
               className="w-full border py-1 px-3"
-              id="junkSlug"
+              id="postSlug"
               name="slug"
               ref={slugRef}
               required
@@ -128,12 +128,12 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkBody">
+            <label className="block mb-1 text-sm" htmlFor="postBody">
               Content
             </label>
             <textarea
               className="w-full border py-1 px-3"
-              id="junkBody"
+              id="postBody"
               name="body"
               ref={bodyRef}
               rows={10}
@@ -142,12 +142,12 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkDescription">
+            <label className="block mb-1 text-sm" htmlFor="postDescription">
               Description
             </label>
             <textarea
               className="w-full border py-1 px-3"
-              id="junkDescription"
+              id="postDescription"
               name="description"
               ref={descriptionRef}
               required
@@ -156,7 +156,7 @@ export default function NewJunk(props) {
 
           <div className="input-group">
             <label className="block mb-1 text-sm">Tags</label>
-            <JunkTagSelector
+            <PostTagSelector
               tags={props.tags}
               selected={tags}
               onSelect={handleTagSelect}
@@ -164,12 +164,12 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkPinned">
-              Pin this junk
+            <label className="block mb-1 text-sm" htmlFor="postPinned">
+              Pin this post
             </label>
             <input
               className="rounded-sm border p-2"
-              id="junkPinned"
+              id="postPinned"
               name="pinned"
               ref={pinnedRef}
               type="checkbox"
@@ -177,12 +177,12 @@ export default function NewJunk(props) {
           </div>
 
           <div className="input-group">
-            <label className="block mb-1 text-sm" htmlFor="junkImage">
+            <label className="block mb-1 text-sm" htmlFor="postImage">
               Image
             </label>
             <input
               className="w-full rounded-sm border p-2"
-              id="junkImage"
+              id="postImage"
               name="image"
               onChange={handleFileSelect}
               // style={{ display: "none" }}

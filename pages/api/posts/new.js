@@ -2,9 +2,9 @@ import { v4 as uuid } from "uuid";
 import formidable from "formidable";
 
 import {
-  writeNewJunk,
-  saveJunkImage,
-  readAllJunk,
+  writeNewPost,
+  savePostImage,
+  readAllPosts,
 } from "../../../lib/api-utils";
 
 // disable automatic parsing to consume the stream instead
@@ -19,9 +19,9 @@ export const config = {
  * @param {string} slug
  */
 function slugIsUnique(slug) {
-  const junk = readAllJunk();
+  const posts = readAllPosts();
 
-  return !junk.some((j) => j.slug === slug);
+  return !posts.some((j) => j.slug === slug);
 }
 
 /**
@@ -78,7 +78,7 @@ function handler(req, res) {
 
       const { title, slug, description, body, pinned, tags, image } = fields;
       const imageData = { ...JSON.parse(image), src: files?.file?.name || "" };
-      const newJunk = {
+      const newPost = {
         id: uuid(),
         title,
         slug,
@@ -92,12 +92,12 @@ function handler(req, res) {
       };
 
       if (files?.file) {
-        await saveJunkImage(files.file, slug);
+        await savePostImage(files.file, slug);
       }
 
-      writeNewJunk(newJunk);
+      writeNewPost(newPost);
 
-      res.status(201).json({ success: true, data: newJunk });
+      res.status(201).json({ success: true, data: newPost });
 
       return;
     });

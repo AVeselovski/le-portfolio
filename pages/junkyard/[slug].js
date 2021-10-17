@@ -1,31 +1,31 @@
-// arveselovski.com/junkyard/:junkId
+// domain.com/junkyard/[slug]
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
 import { useTranslation } from "../../store/i18n";
-import { readJunkBySlug, readPinnedJunk } from "../../lib/api-utils";
+import { readPostBySlug, readPinnedPosts } from "../../lib/api-utils";
 
-import JunkDetails from "../../components/junk/details";
+import PostDetails from "../../components/posts/details";
 
-export default function Junk({ junk = null, error }) {
+export default function Post({ post = null, error }) {
   const { t } = useTranslation();
 
   let content;
   if (error) {
     content = error;
-  } else if (!junk) {
+  } else if (!post) {
     content = <div>{t.loading}...</div>;
   } else {
-    content = <JunkDetails junk={junk} />;
+    content = <PostDetails post={post} />;
   }
 
   return (
     <>
       <Head>
         <title>
-          {junk?.title || "404"} | {siteConf.name}
+          {post?.title || "404"} | {siteConf.name}
         </title>
-        <meta description={junk?.description || "-"} />
+        <meta description={post?.description || "-"} />
       </Head>
 
       <div className="container content-container">{content}</div>
@@ -39,24 +39,24 @@ export async function getStaticProps(context) {
     params: { slug },
   } = context;
 
-  const junk = readJunkBySlug(slug) || null;
+  const post = readPostBySlug(slug) || null;
 
   /***
    * Using alternative in component 404 handling,
    * as returning { notFound: true } causes next router error.
    ***/
   let error = "";
-  if (!junk) {
+  if (!post) {
     error = "404 | This page could not be found.";
   }
 
-  return { props: { junk, error }, revalidate: 30 };
+  return { props: { post, error }, revalidate: 30 };
 }
 
 export async function getStaticPaths() {
   /** Only pre-generate "important" items. */
-  const data = readPinnedJunk();
-  const paths = data?.map((junk) => junk.slug);
+  const data = readPinnedPosts();
+  const paths = data?.map((post) => post.slug);
   const pathsWithParams = paths.map((slug) => ({ params: { slug } }));
 
   return {

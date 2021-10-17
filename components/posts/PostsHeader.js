@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import I18nContext from "../../store/i18n";
 
-export default function JunkHeader({ children }) {
+function PostsHeader({ children }) {
   const { t } = useContext(I18nContext);
 
   return (
@@ -14,3 +14,5 @@ export default function JunkHeader({ children }) {
     </header>
   );
 }
+
+export default PostsHeader;

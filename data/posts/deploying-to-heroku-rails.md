@@ -38,7 +38,7 @@ end
 
 Run `bundle install --without production` to install the gems properly, without installing `pg` locally. This will make the necessary updates to Gemfile.lock file, which is necessary for production. Finally, push the code to Git.
 
-**IMPORTANT: Don't forget to change stylesheet_link_tag to stylesheet_pack_tag, for assets to compile the right way in production. [Why?](/junkyard/15 "Rails 6 Webpacker Setup")**
+**IMPORTANT: Don't forget to change stylesheet_link_tag to stylesheet_pack_tag, for assets to compile the right way in production. [Why?](/junkyard/rails-6-webpacker-setup "Rails 6 Webpacker Setup")**
 
 ## Deploying
 
