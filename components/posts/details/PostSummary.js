@@ -20,12 +20,11 @@ function PostSummary({
   const imageHeight = imageWidth / aspectRatio;
 
   return (
-    <header className="mb-8">
+    <header className="mb-10">
       {!!image?.height && (
-        <div className="mb-2">
+        <div className="post-image mb-4">
           <Image
             alt={title}
-            className="rounded-md"
             // priority
             height={imageHeight}
             width={imageWidth}
@@ -35,8 +34,8 @@ function PostSummary({
       )}
 
       <div>
-        <h2 className="text-4xl">{title}</h2>
-        <div className="mt-3">
+        <h1 className="text-4xl">{title}</h1>
+        <div className="mt-4">
           <PostTags tags={tags} />
         </div>
         {/* <span className="text-gray-500 text-sm">

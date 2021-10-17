@@ -11,7 +11,7 @@ function PostDetails({ post }) {
         title={post.title}
         // updatedAt={post.updatedAt}
       />
-      <PostContent content={post.content} slug={post.slug} />
+      <PostContent content={post.body} slug={post.slug} />
     </article>
   );
 }

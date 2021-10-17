@@ -9,7 +9,7 @@ import Notification from "../ui/Notification";
 
 const navLinks = [
   { name: "blogName", pathname: "/junkyard" },
-  { name: "showcaseName", pathname: "/projects" },
+  { name: "projectsName", pathname: "/projects" },
   { name: "aboutName", pathname: "/about" },
 ];
 

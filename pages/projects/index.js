@@ -36,14 +36,14 @@ export default function Projects(props) {
 
   let content;
   if (error && !projects) {
-    content = <div>{t.showcaseApiFail}</div>;
+    content = <div>{t.projectsApiFail}</div>;
   } else if (!data && !projects) {
     content = <div>{t.loading}...</div>;
   } else {
     content = (
       <>
         <ProjectsHeader />
-        {!projects.length && t.showcaseNoContent}
+        {!projects.length && t.projectsNoContent}
         <ProjectList projects={projects} />
       </>
     );
@@ -53,9 +53,9 @@ export default function Projects(props) {
     <>
       <Head>
         <title>
-          {t.showcaseName} | {siteConf.name}
+          {t.projectsName} | {siteConf.name}
         </title>
-        <meta description={t.showcaseDescription} />
+        <meta description={t.projectsDescription} />
       </Head>
 
       <div className="container">{content}</div>

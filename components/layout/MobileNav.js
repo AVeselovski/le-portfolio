@@ -23,6 +23,7 @@ export default function MobileNav({ links = [] }) {
                   router.pathname == l.pathname ? " active" : ""
                 }`}
                 onClick={toggleMobileNav.bind(null)}
+                tabIndex={isOpen ? 0 : -1}
               >
                 {t[l.name]}
               </a>
@@ -40,6 +41,7 @@ export default function MobileNav({ links = [] }) {
           <button
             className="rounded-full p-1 hover:bg-gray-100"
             onClick={toggleMobileNav}
+            tabIndex={isOpen ? 0 : -1}
           >
             <CloseIcon />
           </button>

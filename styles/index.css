@@ -3,10 +3,17 @@
 @tailwind utilities;
 
 .header {
-  @apply fixed flex items-center justify-between w-full h-16 bg-white border-b;
+  @apply fixed flex items-center justify-between h-16 bg-white border-b;
 
-  /* transition: box-shadow 0.5s ease-in, border 0.5s ease-in; */
+  left: 0;
+  right: 0;
   z-index: 1;
+}
+.header-content {
+  @apply flex justify-between items-center w-full max-w-5xl;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main {
@@ -18,21 +25,43 @@
 .footer {
   @apply h-16 flex items-center justify-center border-t mx-4 md:mx-8 p-2;
 }
-/* @media (min-width: 640px) {
+/* 
+@media (min-width: 640px) {
   .footer {
     @apply h-16 flex items-center justify-center border-t mx-8 p-2;
   }
-} */
+} 
+*/
 
 .project-item {
-  @apply border border-gray-200 rounded-md py-3 px-5 mb-2 w-full hover:text-blue-600 focus:text-blue-600;
+  @apply border border-gray-200 rounded-md mb-2 w-full hover:border-blue-500;
+
+  overflow: hidden;
+}
+.project-item-body {
+  @apply py-3 px-5;
 }
 @media (min-width: 640px) {
   .project-item {
-    @apply py-3 px-5 mb-2 hover:text-blue-600 focus:text-blue-600;
+    @apply mb-2;
 
     width: calc(50% - 0.5rem);
   }
+  .project-item-body {
+    @apply py-3 px-5;
+  }
+}
+.project-item .link {
+  @apply text-blue-500 underline;
+}
+.project-image {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.image-link:hover img {
+  filter: brightness(0.95);
+  /* transform: scale(1.015); */
 }
 
 .nav-link {
@@ -124,18 +153,29 @@
   @apply rounded-md;
 
   display: flex;
-  max-width: 300px;
+  overflow: hidden;
+}
+@media (min-width: 420px) {
+  .profile-image {
+    @apply max-w-xs;
+  }
+}
+
+.post-image {
+  @apply rounded-md;
+
+  display: flex;
   overflow: hidden;
 }
 
 .markdown h2 {
-  @apply text-3xl mb-4;
+  @apply text-3xl mb-4 mt-6;
 }
 .markdown h3 {
-  @apply text-2xl mb-4;
+  @apply text-2xl mb-4 mt-6;
 }
 .markdown h4 {
-  @apply text-xl mb-4;
+  @apply text-xl mb-4 mt-6;
 }
 .markdown p {
   @apply mb-4;
@@ -144,20 +184,20 @@
   word-break: break-word;
 }
 .markdown ol {
-  @apply pl-6 my-2;
+  @apply pl-6 my-1;
 
   list-style-type: decimal;
 }
-.markdown li {
-  @apply my-2;
-}
 .markdown ul {
-  @apply pl-6 my-2;
+  @apply pl-6 my-1;
 
   list-style-type: circle;
 }
 .markdown li {
-  @apply my-2;
+  @apply my-1;
+
+  line-height: 1.7;
+  word-break: break-word;
 }
 .markdown p code,
 .markdown ol code,
@@ -222,4 +262,8 @@
 }
 .backdrop.open {
   display: block;
+}
+
+.lang-select {
+  @apply bg-transparent mr-6 flex text-indigo-500 font-mono text-sm p-2 hover:bg-gray-100 rounded-md;
 }

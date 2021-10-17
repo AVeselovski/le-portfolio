@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Zero Tool",
+    "slug": "zero-tool",
+    "description": "Kanban tool akin to Trello.",
+    "tags": ["Next.js", "React"],
+    "pinned": true,
+    "image": { "height": 1396, "width": 1660, "src": "project.png" },
+    "liveUrl": "",
+    "sourceUrl": "",
+    "createdAt": "2021-10-17"
+  },
+  {
+    "title": "Photo Browser",
+    "slug": "photo-browser",
+    "description": "Recruitment assignment made useful. La bomba madre.",
+    "tags": ["React"],
+    "pinned": false,
+    "image": { "height": 1396, "width": 1660, "src": "project.png" },
+    "liveUrl": "https://photo-browser-app.vercel.app",
+    "sourceUrl": "https://github.com/AVeselovski/photo-browser",
+    "createdAt": "2021-10-17"
+  },
+  {
+    "title": "Component library",
+    "slug": "component-library",
+    "description": "React component library.",
+    "tags": ["React"],
+    "pinned": true,
+    "image": { "height": 1396, "width": 1660, "src": "project.png" },
+    "liveUrl": "",
+    "sourceUrl": "",
+    "createdAt": "2021-10-17"
+  }
+]

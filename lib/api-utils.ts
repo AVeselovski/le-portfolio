@@ -3,14 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 
 import type { File } from "formidable";
-import type { Post, NewPost, Project } from "../types";
+import type { Post, Project } from "../types";
 
 // POSTS
 
 const postsDataDir = path.join(process.cwd(), "data", "posts");
 
 /**
- * Reads individual markdown files from file system and makes necessary data transformations.
+ * Reads individual post markdown files from file system and makes necessary data transformations.
  * @param fileName File to read
  */
 export function readPost(fileName: string) {
@@ -30,7 +30,7 @@ export function readPost(fileName: string) {
     pinned: data.pinned,
     image: data.image,
     createdAt: data.createdAt,
-    content,
+    body: content,
   };
 
   return postData;
@@ -84,10 +84,10 @@ export function readFilteredPosts(tag: string) {
 }
 
 /**
- * Stores `NewPost` data in the file system.
+ * Stores `Post` data in the file system.
  * @param post New post data.
  */
-export function writeNewPost(post: NewPost) {
+export function writeNewPost(post: Post) {
   const filePath = path.join(process.cwd(), "data", "posts", `${post.slug}.md`);
   const { body, ...rest } = post;
   const data = matter.stringify(body, rest);
@@ -129,16 +129,65 @@ export function readAllTags() {
 
 // PROJECTS
 
+const projectsDataPath = path.join(
+  process.cwd(),
+  "data",
+  "projects",
+  "projects.json"
+);
+
+// /**
+//  * Reads individual project markdown files from file system and makes necessary data transformations.
+//  * @param fileName File to read
+//  */
+// export function readProject(fileName: string) {
+//   const slug = fileName.replace(/\.md$/, "");
+
+//   const filePath = path.join(projectsDataDir, `${slug}.md`);
+//   const fileContents = fs.readFileSync(filePath, "utf-8");
+//   const { data, content } = matter(fileContents);
+//   const { tags } = data;
+//   const tagsArray: string[] = Array.isArray(tags) ? tags : tags?.split(",");
+
+//   const projectData: Project = {
+//     title: data.title,
+//     slug,
+//     description: data.description,
+//     tags: tagsArray,
+//     pinned: data.pinned,
+//     image: data.image,
+//     createdAt: data.createdAt,
+//     body: content,
+//   };
+
+//   return projectData;
+// }
+
 /**
  * Returns array of all `Project`s.
  */
 export function readAllProjects() {
-  const filePath = path.join(process.cwd(), "data", "projects.json");
+  const filePath = projectsDataPath;
   const fileData = fs.readFileSync(filePath, "utf-8");
   const data: Project[] = JSON.parse(fileData);
 
   return data;
 }
+
+// /**
+//  * Returns `Project` with provided `slug`.
+//  * @param slug Post slug
+//  */
+// export function readProjectBySlug(slug: string) {
+//   let data: Post;
+//   try {
+//     data = readProject(slug);
+//   } catch (error) {
+//     return null;
+//   }
+
+//   return data;
+// }
 
 /**
  * Returns `Project` array with `pinned: true`.

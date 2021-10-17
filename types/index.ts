@@ -15,10 +15,10 @@ export interface Post {
     width?: number;
   };
   createdAt: string;
-  content: string;
+  body: string;
 }
 
-export interface NewPost {
+export interface Project {
   title: string;
   slug: string;
   description: string;
@@ -31,11 +31,4 @@ export interface NewPost {
   };
   createdAt: string;
   body: string;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  pinned: boolean;
 }

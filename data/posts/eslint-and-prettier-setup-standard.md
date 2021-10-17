@@ -34,7 +34,7 @@ Run `prettier --check .` to help identify unwanted files and update **.prettieri
 
 Use magic comment “prettier-ignore” to ignore “next node”, “prettier-ignore-attribute” / “prettier-ignore-attribute (mouseup)” for more specific cases and “prettier-ignore-start” and “prettier-ignore-end” for larger blocks of code.
 
-Eslint integration
+#### Eslint integration
 
 Prettier team’s stand on Eslint plugins, such as “eslint-plugin-prettier”, “prettier-eslint”, is that they are “generally not recommended”, although have their uses. What is advised is to use “eslint-config-prettier”, which turns off linter’s formatting rules, not to conflict with Prettier.
 
