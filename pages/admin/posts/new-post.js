@@ -2,12 +2,12 @@
 import Head from "next/head";
 import router from "next/router";
 import { useContext, useRef, useState } from "react";
-import { PostTagSelector } from "../../components/posts/PostTags";
+import { PostTagSelector } from "../../../components/posts/PostTags";
 
-import NotificationContext from "../../store/notificatons";
+import NotificationContext from "../../../store/notificatons";
 
-import { postNewPost } from "../../services/client";
-import { readAllTags } from "../../lib/api-utils";
+import { postNewPost } from "../../../services/client";
+import { readAllTags } from "../../../lib/api-utils";
 
 export default function NewPost(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -158,7 +158,7 @@ export default function NewPost(props) {
           <div className="input-group">
             <label className="block mb-1 text-sm">Tags</label>
             <PostTagSelector
-              tags={props.tags}
+              tags={props?.tags || []}
               selected={tags}
               onSelect={handleTagSelect}
             />
@@ -219,10 +219,10 @@ export default function NewPost(props) {
   );
 }
 
-export async function getServerSideProps() {
-  const allTags = readAllTags();
+// export async function getServerSideProps() {
+//   const allTags = readAllTags();
 
-  return {
-    props: { tags: allTags },
-  };
-}
+//   return {
+//     props: { tags: allTags },
+//   };
+// }

@@ -168,10 +168,13 @@ const projectsDataPath = path.join(
  */
 export function readAllProjects() {
   const filePath = projectsDataPath;
-  const fileData = fs.readFileSync(filePath, "utf-8");
-  const data: Project[] = JSON.parse(fileData);
-
-  return data;
+  try {
+    const fileData = fs.readFileSync(filePath, "utf-8");
+    const data: Project[] = JSON.parse(fileData);
+    return data;
+  } catch (error) {
+    console.log("Fug");
+  }
 }
 
 // /**

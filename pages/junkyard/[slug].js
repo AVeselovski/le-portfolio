@@ -58,13 +58,12 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  /** Only pre-generate "important" items. */
   const data = readAllPosts();
   const paths = data?.map((post) => post.slug);
   const pathsWithParams = paths.map((slug) => ({ params: { slug } }));
 
   return {
     paths: pathsWithParams,
-    fallback: true,
+    fallback: false,
   };
 }
