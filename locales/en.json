@@ -19,11 +19,14 @@
   "projectsDescription": "Few little projects to demonstrate basic technical knowhow.",
   "projectsApiFail": "Failed to fetch projects...",
   "projectsNoContent": "No projects here yet!",
+  "projectSourceUrl": "Repo",
+  "projectLiveUrl": "Live",
   "aboutName": "About me",
   "aboutKeywords": "Relevant key words",
   "adminName": "Admin",
   "error": "Error",
   "success": "Success",
   "warning": "Warning",
-  "loading": "Loading"
+  "loading": "Loading",
+  "back": "Back"
 }

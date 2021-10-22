@@ -1,10 +1,10 @@
 import ProjectItem from "./ProjectItem";
 
-function ProjectList({ projects }) {
+function ProjectList({ projects, t }) {
   return (
-    <ul className="flex flex-wrap gap-2 sm:w-full justify-between">
-      {projects.map((project) => (
-        <ProjectItem key={project.id} project={project} />
+    <ul className="flex flex-wrap gap-2 sm:w-full justify-center sm:justify-between">
+      {projects.map((project, i) => (
+        <ProjectItem key={`${i}-${project.slug}`} project={project} t={t} />
       ))}
     </ul>
   );

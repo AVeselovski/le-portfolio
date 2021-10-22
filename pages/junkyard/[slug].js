@@ -6,6 +6,7 @@ import { useTranslation } from "../../store/i18n";
 import { readPostBySlug, readPinnedPosts } from "../../lib/api-utils";
 
 import PostDetails from "../../components/posts/details";
+import ContentHeader from "../../components/ui/ContentHeader";
 
 export default function Post({ post = null, error }) {
   const { t } = useTranslation();
@@ -28,7 +29,10 @@ export default function Post({ post = null, error }) {
         <meta description={post?.description || "-"} />
       </Head>
 
-      <div className="container content-container">{content}</div>
+      <div className="container content-container pt-8 md:pt-0">
+        <ContentHeader t={t} />
+        {content}
+      </div>
     </>
   );
 }

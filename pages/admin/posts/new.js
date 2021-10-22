@@ -97,14 +97,14 @@ export default function NewPost(props) {
         <title>Admin | AV.</title>
       </Head>
 
-      <div className="max-w-3xl">
-        <form className="w-96" onSubmit={handleSubmit}>
+      <div className="container">
+        <form className="w-full" onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="block mb-1 text-sm" htmlFor="postTitle">
               Title
             </label>
             <input
-              className="w-full border py-1 px-3"
+              className="w-full border py-1 px-3 rounded"
               id="postTitle"
               name="title"
               ref={titleRef}
@@ -118,7 +118,7 @@ export default function NewPost(props) {
               Slug
             </label>
             <input
-              className="w-full border py-1 px-3"
+              className="w-full border py-1 px-3 rounded"
               id="postSlug"
               name="slug"
               ref={slugRef}
@@ -132,11 +132,11 @@ export default function NewPost(props) {
               Content
             </label>
             <textarea
-              className="w-full border py-1 px-3"
+              className="w-full border py-1 px-3 rounded"
               id="postBody"
               name="body"
               ref={bodyRef}
-              rows={10}
+              rows={16}
               required
             ></textarea>
           </div>
@@ -146,10 +146,11 @@ export default function NewPost(props) {
               Description
             </label>
             <textarea
-              className="w-full border py-1 px-3"
+              className="w-full border py-1 px-3 rounded"
               id="postDescription"
               name="description"
               ref={descriptionRef}
+              rows={4}
               required
             ></textarea>
           </div>
@@ -181,7 +182,7 @@ export default function NewPost(props) {
               Image
             </label>
             <input
-              className="w-full rounded-sm border p-2"
+              className="w-full rounded border p-2"
               id="postImage"
               name="image"
               onChange={handleFileSelect}
@@ -205,7 +206,7 @@ export default function NewPost(props) {
 
           <div className="mt-6">
             <button
-              className="w-full bg-indigo-400 text-white py-2 rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-indigo-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isSubmitting}
               type="submit"
             >

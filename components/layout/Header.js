@@ -56,7 +56,9 @@ export default function Header({ links = [] }) {
   return (
     <header
       className={`header${
-        !isTop ? " border-gray-200 shadow-sm" : " border-white"
+        !isTop
+          ? " border-white md:border-gray-200 shadow md:shadow-sm"
+          : " border-white"
       }`}
     >
       <div className="header-content">
@@ -77,7 +79,9 @@ export default function Header({ links = [] }) {
             onChange={changeLanguage}
           >
             {router.locales.map((l) => (
-              <option value={l}>{l.toUpperCase()}</option>
+              <option key={l} value={l}>
+                {l.toUpperCase()}
+              </option>
             ))}
           </select>
           <button

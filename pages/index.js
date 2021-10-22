@@ -29,7 +29,7 @@ export default function Home({ posts = [], projects = [], translation }) {
           <span className="text-2xl mb-4 text-indigo-500 block">
             <PinIcon />
           </span>
-          <ProjectList projects={projects} />
+          <ProjectList projects={projects} t={t} />
         </div>
       </div>
     </>

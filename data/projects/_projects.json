@@ -5,7 +5,7 @@
     "description": "Kanban tool akin to Trello.",
     "tags": ["Next.js", "React"],
     "pinned": true,
-    "image": { "height": 1396, "width": 1660, "src": "project.png" },
+    "image": { "height": 1844, "width": 2030, "src": "project.png" },
     "liveUrl": "",
     "sourceUrl": "",
     "createdAt": "2021-10-17"
@@ -27,7 +27,7 @@
     "description": "React component library.",
     "tags": ["React"],
     "pinned": true,
-    "image": { "height": 1396, "width": 1660, "src": "project.png" },
+    "image": { "height": 1860, "width": 2146, "src": "project.png" },
     "liveUrl": "",
     "sourceUrl": "",
     "createdAt": "2021-10-17"

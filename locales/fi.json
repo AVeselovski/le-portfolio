@@ -19,11 +19,14 @@
   "projectsDescription": "Muutama projekti teknistä perusosaamisen näyttöä varten. NDA sopimuksilla kun on tapana pikkasen estää sitä \"oikean maailman\" näyttöä.",
   "projectsApiFail": "Epäonnistui hakemaan projektit...",
   "projectsNoContent": "Ei projekteja vielä!",
+  "projectSourceUrl": "Repo",
+  "projectLiveUrl": "Live",
   "aboutName": "Minusta",
   "aboutKeywords": "Avainsanoja",
   "adminName": "Admin",
   "error": "Virhe",
   "success": "Success",
   "warning": "Varoitus",
-  "loading": "Lataa"
+  "loading": "Lataa",
+  "back": "Takaisin"
 }

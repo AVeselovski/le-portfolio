@@ -42,9 +42,9 @@ export default function Projects(props) {
   } else {
     content = (
       <>
-        <ProjectsHeader />
+        <ProjectsHeader t={t} />
         {!projects.length && t.projectsNoContent}
-        <ProjectList projects={projects} />
+        <ProjectList projects={projects} t={t} />
       </>
     );
   }

@@ -1,7 +1,24 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { ghcolors } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import ghcolors from "react-syntax-highlighter/dist/cjs/styles/prism/ghcolors";
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx";
+import json from "react-syntax-highlighter/dist/cjs/languages/prism/json";
+import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
+import scss from "react-syntax-highlighter/dist/cjs/languages/prism/scss";
+import ruby from "react-syntax-highlighter/dist/cjs/languages/prism/ruby";
+import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
+import yml from "react-syntax-highlighter/dist/cjs/languages/prism/yaml";
+
+SyntaxHighlighter.registerLanguage("js", js);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("scss", scss);
+SyntaxHighlighter.registerLanguage("ruby", ruby);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("yml", yml);
 
 function PostContent({ content, slug }) {
   const customRenderers = {

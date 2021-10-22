@@ -1,5 +1,5 @@
 ---
-hardSkills: "JavaScript,Node,React,NextJS,Vue,Ruby on Rails,SQL,NoSQL"
+hardSkills: "JavaScript,Node,NextJS,React,Vue,Ruby on Rails,SQL,NoSQL"
 softSkills: "Agile,Scrum"
 ---
 
