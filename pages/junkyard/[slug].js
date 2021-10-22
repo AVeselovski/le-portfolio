@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import siteConf from "../../data/config.json";
 import { useTranslation } from "../../store/i18n";
-import { readPostBySlug, readPinnedPosts } from "../../lib/api-utils";
+import { readPostBySlug, readAllPosts } from "../../lib/api-utils";
 
 import PostDetails from "../../components/posts/details";
 import ContentHeader from "../../components/ui/ContentHeader";
@@ -59,7 +59,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   /** Only pre-generate "important" items. */
-  const data = readPinnedPosts();
+  const data = readAllPosts();
   const paths = data?.map((post) => post.slug);
   const pathsWithParams = paths.map((slug) => ({ params: { slug } }));
 
