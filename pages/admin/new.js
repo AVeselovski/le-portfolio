@@ -2,12 +2,12 @@
 import Head from "next/head";
 import router from "next/router";
 import { useContext, useRef, useState } from "react";
-import { PostTagSelector } from "../../../components/posts/PostTags";
+import { PostTagSelector } from "../../components/posts/PostTags";
 
-import NotificationContext from "../../../store/notificatons";
+import NotificationContext from "../../store/notificatons";
 
-import { postNewPost } from "../../../services/client";
-import { readAllTags } from "../../../lib/api-utils";
+import { postNewPost } from "../../services/client";
+import { readAllTags } from "../../lib/api-utils";
 
 export default function NewPost(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
