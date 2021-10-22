@@ -7,7 +7,7 @@ import { PostTagSelector } from "../../../components/posts/PostTags";
 import NotificationContext from "../../../store/notificatons";
 
 import { postNewPost } from "../../../services/client";
-import { readAllTags } from "../../../lib/api-utils";
+// import { readAllTags } from "../../../lib/api-utils";
 
 export default function NewPost(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
