@@ -19,7 +19,7 @@ export default function Projects(props) {
   const [projects, setProjects] = useState(props.projects);
   const { showNotification } = useContext(NotificationContext);
 
-  const { data, error } = useSWR("api/projects", getAllProjects);
+  // const { data, error } = useSWR("api/projects", getAllProjects);
 
   useEffect(() => {
     if (data) {
