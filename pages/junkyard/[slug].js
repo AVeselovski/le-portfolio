@@ -43,18 +43,18 @@ export async function getStaticProps(context) {
     params: { slug },
   } = context;
 
-  const post = readPostBySlug(slug) || null;
+  const post = readPostBySlug(slug);
 
   /***
    * Using alternative in component 404 handling,
-   * as returning { notFound: true } causes next router error.
+   * as returning { notFound: true } causes next router error (with fallback: true).
    ***/
-  let error = "";
-  if (!post) {
-    error = "404 | This page could not be found.";
-  }
+  // let error = "";
+  // if (!post) {
+  //   error = "404 | This page could not be found.";
+  // }
 
-  return { props: { post, error }, revalidate: 30 };
+  return { props: { post }, revalidate: 30 };
 }
 
 export async function getStaticPaths() {
