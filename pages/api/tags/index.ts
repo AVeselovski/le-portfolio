@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/db-connect";
-import Post from "../../../models/post";
+import Tag from "../../../models/tag";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,9 +8,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     try {
-      const posts = await Post.find({}).select("-__v");
+      const tagsObj = await Tag.findOne({});
 
-      res.status(200).json({ success: true, data: posts });
+      res.status(200).json({ success: true, data: tagsObj.tags });
       return;
     } catch (error) {
       console.error(error);

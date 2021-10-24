@@ -4,8 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { getAllProjects } from "../../services/client";
-import { readAllProjects } from "../../lib/api-utils";
-
+import { getAllProjects as _getAllProjects } from "../../lib/api-utils";
 import siteConf from "../../data/config.json";
 import en from "../../locales/en.json";
 import fi from "../../locales/fi.json";
@@ -65,9 +64,9 @@ export default function Projects(props) {
 
 /** Hybrid way - prepare some data with static generation, then update clientside. */
 export async function getStaticProps({ locale }) {
-  const allProjects = readAllProjects();
-
   const translation = locale === "en" ? en : fi;
+
+  const allProjects = await _getAllProjects();
 
   return {
     props: {

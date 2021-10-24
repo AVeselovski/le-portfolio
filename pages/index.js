@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import en from "../locales/en.json";
 import fi from "../locales/fi.json";
-import { readPinnedPosts, readPinnedProjects } from "../lib/api-utils";
+import { getPinnedPosts, getPinnedProjects } from "../lib/api-utils";
 
 import PostList from "../components/posts/PostList";
 import ProjectList from "../components/projects/ProjectList";
@@ -37,10 +37,10 @@ export default function Home({ posts = [], projects = [], translation }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const pinnedPosts = readPinnedPosts();
-  const pinnedProjects = readPinnedProjects();
-
   const translation = locale === "en" ? en : fi;
+
+  const pinnedPosts = await getPinnedPosts();
+  const pinnedProjects = await getPinnedProjects();
 
   return {
     props: { posts: pinnedPosts, projects: pinnedProjects, translation },

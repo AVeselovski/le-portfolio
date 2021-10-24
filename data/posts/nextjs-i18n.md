@@ -91,7 +91,17 @@ const { t } = useContext(I18nContext);
 return <div>{t.someValue}</div>;
 ```
 
-This works well enough for client-side translations, if SEO and serverside is of no concern. Note that the source ("View Page Source") will have default values specified in context despite locale. For serverside, locale can be accessed in `getStaticProps(context)` and passed down in props.
+Or with custom hook:
+
+```jsx
+const { t } = useTranslate();
+
+return <div>{t.someValue}</div>;
+```
+
+### Serverside
+
+Above works well enough for client-side translations, if SEO and serverside is of no concern. Note that the source ("View Page Source") will have default values specified in context despite locale. For serverside, locale can be accessed in `getStaticProps(context)` and passed down in props.
 
 ```jsx
 import en from "./locale/en.json";
@@ -112,4 +122,32 @@ export async function getStaticProps({ locale }) {
 }
 ```
 
-This ensures serverside translation for proper SEO. Props then can be passed down to components via drilling or context. This can then be repeated on every page. HOWEVER, it seems context cannot be accessed "serverside", so trying to update it in `useEffect()` after receiving the props will not give the expected results. It will only update clientside and so page source, once again will be empty (or have context default value). For better, and more serious solutions, look into `next-translate` package (or other similar).
+This ensures serverside translation for proper SEO. Props then can be passed down to components via drilling or context. This can then be repeated on every page. HOWEVER, it seems context cannot be accessed "serverside", so trying to update it in `useEffect()` after receiving the props will not give the expected results. It will only update clientside and so page source, once again will be empty (or have context default value). For better, and more serious solutions, look into `react-intl` package (or other similar).
+
+### Dynamic routes
+
+Note that `getStaticPaths` need to be instructed manually to generate paths for all locales. For other non-dynamic path `getStaticProps` pages this will be done automatically. What does it mean practically?
+
+If `getStaticPaths` has `fallback: false`, other locale paths (besides `defaultLocale`) will need to be generated and Next will not do it automatically. There are 3 options here to deal with this:
+
+#### Set `fallback: "blocking"`
+
+Paths not returned by `getStaticPaths` will be generated and served at runtime (SSR).
+
+#### Set `fallback: true`
+
+Same as above, but handle no data in component (loading spinner).
+
+#### Generate locale paths
+
+```jsx
+export const getStaticPaths = ({ locales }) => {
+  return {
+    paths: [
+      // if no `locale` is provided only the defaultLocale will be generated
+      { params: { slug: 'post-1' }, locale: 'en' },
+      { params: { slug: 'post-1' }, locale: 'fi' },
+    ],
+    // ...
+  }
+```

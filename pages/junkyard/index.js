@@ -4,7 +4,7 @@ import Head from "next/head";
 import siteConf from "../../data/config.json";
 import en from "../../locales/en.json";
 import fi from "../../locales/fi.json";
-import { readAllPosts, readAllTags } from "../../lib/api-utils";
+import { getAllPosts, extractAllTags } from "../../lib/api-utils";
 
 import PostsHeader from "../../components/posts/PostsHeader";
 import PostTags from "../../components/posts/PostTags";
@@ -35,15 +35,10 @@ export default function Junkyard({ posts = [], tags = [], translation }) {
 
 /** The static generation way. */
 export async function getStaticProps({ locale }) {
-  /*** File based example:
-   * const filePath = path.join(process.cwd(), "data", "dummy_data.json");
-   * const jsonData = await fs.readFile(filePath);
-   * const data = JSON.parse(jsonData);
-   ***/
-
-  const allTags = readAllTags();
-  const allPosts = readAllPosts();
   const translation = locale === "en" ? en : fi;
+
+  const allPosts = await getAllPosts();
+  const allTags = await extractAllTags();
 
   if (!allPosts) {
     return {
@@ -56,6 +51,6 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: { posts: allPosts, tags: allTags, translation },
-    revalidate: 30,
+    revalidate: 60,
   };
 }

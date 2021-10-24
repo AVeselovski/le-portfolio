@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/db-connect";
-import Post from "../../../models/post";
+import Project from "../../../models/project";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,9 +8,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     try {
-      const posts = await Post.find({}).select("-__v");
+      const projects = await Project.find({}).select("-__v");
 
-      res.status(200).json({ success: true, data: posts });
+      res.status(200).json({ success: true, data: projects });
       return;
     } catch (error) {
       console.error(error);

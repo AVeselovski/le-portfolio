@@ -2,68 +2,50 @@
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
-import { useTranslation } from "../../store/i18n";
-import { readPostBySlug, readAllPosts } from "../../lib/api-utils";
+import en from "../../locales/en.json";
+import fi from "../../locales/fi.json";
+import { getPostBySlug, getAllPosts } from "../../lib/api-utils";
 
 import PostDetails from "../../components/posts/details";
 import ContentHeader from "../../components/ui/ContentHeader";
 
-export default function Post({ post = null, error }) {
-  const { t } = useTranslation();
-
-  let content;
-  if (error) {
-    content = error;
-  } else if (!post) {
-    content = <div>{t.loading}...</div>;
-  } else {
-    content = <PostDetails post={post} />;
-  }
+export default function Post({ post, translation }) {
+  const t = translation;
 
   return (
     <>
       <Head>
         <title>
-          {post?.title || "404"} | {siteConf.name}
+          {post?.title || "-"} | {siteConf.name}
         </title>
         <meta description={post?.description || "-"} />
       </Head>
 
       <div className="container content-container pt-8 md:pt-0">
         <ContentHeader t={t} />
-        {content}
+        <PostDetails post={post} />
       </div>
     </>
   );
 }
 
 /** The static generation way - with dynamic pages. */
-export async function getStaticProps(context) {
-  const {
-    params: { slug },
-  } = context;
+export async function getStaticProps({ locale, params }) {
+  const { slug } = params;
+  const translation = locale === "en" ? en : fi;
 
-  const post = readPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
-  /***
-   * Using alternative in component 404 handling,
-   * as returning { notFound: true } causes next router error (with fallback: true).
-   ***/
-  // let error = "";
-  // if (!post) {
-  //   error = "404 | This page could not be found.";
-  // }
-
-  return { props: { post }, revalidate: 30 };
+  return { props: { post, translation }, revalidate: 60 };
 }
 
-export async function getStaticPaths() {
-  const data = readAllPosts();
-  const paths = data?.map((post) => post.slug);
+export async function getStaticPaths(con) {
+  const allPosts = await getAllPosts();
+  const paths = allPosts?.map((post) => post.slug);
   const pathsWithParams = paths.map((slug) => ({ params: { slug } }));
 
   return {
     paths: pathsWithParams,
-    fallback: false,
+    fallback: "blocking",
   };
 }

@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom";
-import { useContext } from "react";
+import { useTranslation } from "../../store/i18n";
 
 export default function Notification(props) {
   const { status = "error", message = "" } = props;
 
-  const { t } = useContext();
+  const { t } = useTranslation();
 
   const titles = {
     error: `${t.error}:`,

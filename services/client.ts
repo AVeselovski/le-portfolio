@@ -46,13 +46,17 @@ export async function getAllPosts(url = "api/posts") {
 }
 
 /**
- * API POST request to save `Post`object.
- * @param post New post object
+ * API POST request to save `Post` object.
+ * @param post New `Post` object
  */
-export async function postNewPost(post: any) {
+export async function postNewPost(post: Post) {
   const res = await fetch("/api/posts/new", {
     method: "POST",
-    body: post,
+    body: JSON.stringify(post),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
   });
 
   if (!res.ok) {
@@ -66,34 +70,7 @@ export async function postNewPost(post: any) {
     throw error;
   }
 
-  const data = await res.json();
-
-  return data;
-}
-
-// // should be refactored to pass slug as query param before use
-// export async function getPostBySlug(slug: string) {
-//   const data = await getAllPosts();
-
-//   return data.find((post) => post.slug === slug);
-// }
-// // should be refactored to pass pinned as query param before use
-// export async function getPinnedPosts() {
-//   const data = await getAllPosts();
-
-//   return data.filter((post) => post.pinned);
-// }
-// // should be refactored to pass tag as query param before use
-// export async function getFilteredPosts(tag: string) {
-//   const data = await getAllPosts();
-
-//   return data.filter((post) => post.tags.includes(tag));
-// }
-
-// TAGS
-
-export async function getAllTags(url = "api/tags") {
-  const data = await fetcher(url);
+  const { data } = await res.json();
 
   return data;
 }
@@ -106,9 +83,70 @@ export async function getAllProjects(url = "api/projects") {
   return data;
 }
 
-// // should be refactored to pass pinned as query param before use
-// export async function getPinnedProjects() {
-//   const data: Project[] = await getAllProjects();
+/**
+ * API POST request to save `Post` object.
+ * @param post New `Post` object
+ */
+export async function postNewProject(project: Project) {
+  const res = await fetch("/api/projects/new", {
+    method: "POST",
+    body: JSON.stringify(project),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
 
-//   return data.filter((project) => project.pinned);
-// }
+  if (!res.ok) {
+    const error: ResponseError = new Error(
+      "An error occurred while fetching the data."
+    );
+    console.error(error);
+    // Attach extra info to the error object.
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
+  }
+
+  const { data } = await res.json();
+
+  return data;
+}
+
+// TAGS
+
+export async function getAllTags(url = "api/tags") {
+  const data = await fetcher(url);
+
+  return data;
+}
+
+/**
+ * API POST request to save `Post` object.
+ * @param post New `Post` object
+ */
+export async function postNewTag(tag: string) {
+  const res = await fetch("/api/tags/new", {
+    method: "POST",
+    body: JSON.stringify(tag),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    const error: ResponseError = new Error(
+      "An error occurred while fetching the data."
+    );
+    console.error(error);
+    // Attach extra info to the error object.
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
+  }
+
+  const { data } = await res.json();
+
+  return data;
+}
