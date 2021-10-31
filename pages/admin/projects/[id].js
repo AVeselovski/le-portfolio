@@ -6,8 +6,8 @@ import { getSession } from "next-auth/client";
 
 import siteConf from "../../../data/config.json";
 import { getLocale } from "../../../locales";
-import { createNewProject } from "../../../services/client";
-import { getAllTags } from "../../../lib/api-utils";
+import { updateProject } from "../../../services/client";
+import { getAllTags, getProjectById } from "../../../lib/api-utils";
 import NotificationContext from "../../../store/notificatons";
 
 import ProjectForm from "../../../components/admin/ProjectForm";
@@ -40,10 +40,15 @@ export default function NewProject(props) {
 
     setIsSubmitting(true);
 
-    try {
-      await createNewProject(project);
+    const projectData = {
+      ...props.project, // _id
+      ...project,
+    };
 
-      showNotification("Project added.", "success");
+    try {
+      await updateProject(projectData);
+
+      showNotification("Project updated.", "success");
       router.push("/projects");
     } catch (error) {
       setIsSubmitting(false);
@@ -72,8 +77,9 @@ export default function NewProject(props) {
     content = (
       <ProjectForm
         isSubmitting={isSubmitting}
+        project={props.project}
         submitProject={handleSubmitProject}
-        tags={props?.tags}
+        tags={props.tags}
         t={t}
       />
     );
@@ -92,23 +98,33 @@ export default function NewProject(props) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
-  // const session = await getSession({ req });
+export async function getServerSideProps({ locale, params, req }) {
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/admin",
+        permanent: false,
+      },
+    };
+  }
 
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/admin",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  const { id } = params;
+
+  const project = await getProjectById(id);
+  if (!project) {
+    return {
+      redirect: {
+        destination: "/admin",
+        permanent: false,
+      },
+    };
+  }
 
   const translation = getLocale(locale);
-
-  const allTags = await getAllTags();
+  const tags = await getAllTags();
 
   return {
-    props: { tags: allTags, translation },
+    props: { project, tags, translation },
   };
 }

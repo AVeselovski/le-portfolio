@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Provider as AuthProvider } from "next-auth/client";
 
 import siteConf from "../data/config.json";
 import { I18nProvider } from "../store/i18n";
@@ -10,25 +11,27 @@ import Layout from "../components/layout/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <I18nProvider>
-      <NotificationProvider>
-        <NavigationProvider>
-          <Layout>
-            <Head>
-              <title>
-                {siteConf.shortName} | {siteConf.name}
-              </title>
-              <meta
-                name="viewport"
-                content="initial-scale=1.0, width=device-width"
-              />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Component {...pageProps} />
-          </Layout>
-        </NavigationProvider>
-      </NotificationProvider>
-    </I18nProvider>
+    <AuthProvider session={pageProps.session}>
+      <I18nProvider>
+        <NotificationProvider>
+          <NavigationProvider>
+            <Layout>
+              <Head>
+                <title>
+                  {siteConf.shortName} | {siteConf.name}
+                </title>
+                <meta
+                  name="viewport"
+                  content="initial-scale=1.0, width=device-width"
+                />
+                <link rel="icon" href="/favicon.ico" />
+              </Head>
+              <Component {...pageProps} />
+            </Layout>
+          </NavigationProvider>
+        </NotificationProvider>
+      </I18nProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,39 @@
+.table {
+  @apply flex flex-col md:table;
+
+  width: 100%;
+}
+
+.table .tableHead {
+  @apply hidden md:table-header-group;
+}
+.table .tableHead th {
+  @apply font-medium;
+}
+.table .tableHead th,
+.table .tableHead td {
+  @apply px-2 py-1 text-left;
+}
+
+.table .tableBody tr {
+  @apply border-t flex flex-col self-stretch md:table-row;
+
+  flex-basis: 100%;
+}
+.table .tableBody tr:first-of-type {
+  @apply border-t-2;
+}
+
+.table .tableBody tr th {
+  @apply font-medium;
+}
+.table .tableBody tr th,
+.table .tableBody tr td {
+  @apply flex md:table-cell items-center px-2 py-1 text-left min-h-[32px] border-b md:border-none;
+}
+
+.table .tableBody tr td:last-child {
+  @apply justify-end;
+
+  text-align: right;
+}

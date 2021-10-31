@@ -1,16 +1,15 @@
 // domain.com/
 import Head from "next/head";
 
-import en from "../locales/en.json";
-import fi from "../locales/fi.json";
+import { getLocale } from "../locales";
 import { getPinnedPosts, getPinnedProjects } from "../lib/api-utils";
 
 import PostList from "../components/posts/PostList";
 import ProjectList from "../components/projects/ProjectList";
 import PinIcon from "../components/icons/PinIcon";
 
-export default function Home({ posts = [], projects = [], translation }) {
-  const t = translation;
+export default function Home(props) {
+  const t = props.translation;
 
   return (
     <>
@@ -20,16 +19,16 @@ export default function Home({ posts = [], projects = [], translation }) {
 
       <div className="container">
         <div className="mb-4">
-          <span className="text-2xl mb-4 text-indigo-500 block">
-            <PinIcon />
+          <span className="text-2xl mb-4 block text-blue-500">
+            <PinIcon className="-rotate-12" />
           </span>
-          <PostList posts={posts} />
+          <PostList posts={props.posts} />
         </div>
         <div className="mt-4">
-          <span className="text-2xl mb-4 text-indigo-500 block">
-            <PinIcon />
+          <span className="text-2xl mb-4 text-red-500 block">
+            <PinIcon className="-rotate-12" />
           </span>
-          <ProjectList projects={projects} t={t} />
+          <ProjectList projects={props.projects} t={t} />
         </div>
       </div>
     </>
@@ -37,7 +36,7 @@ export default function Home({ posts = [], projects = [], translation }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const translation = locale === "en" ? en : fi;
+  const translation = getLocale(locale);
 
   const pinnedPosts = await getPinnedPosts();
   const pinnedProjects = await getPinnedProjects();

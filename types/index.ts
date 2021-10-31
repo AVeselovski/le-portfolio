@@ -36,3 +36,9 @@ export interface Project {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export interface Meta {
+  _id?: string;
+  tags: string[];
+  aboutContent: string;
+}

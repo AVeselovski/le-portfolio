@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession, signOut } from "next-auth/client";
 
 import I18nContext from "../../store/i18n";
 import NavigationContext from "../../store/navigation";
@@ -11,6 +12,13 @@ export default function MobileNav({ links = [] }) {
   const { t } = useContext(I18nContext);
 
   const router = useRouter();
+
+  const [session, loading] = useSession();
+
+  function handleLogout(e) {
+    e.preventDefault();
+    signOut();
+  }
 
   function renderNav() {
     return (
@@ -30,6 +38,33 @@ export default function MobileNav({ links = [] }) {
             </Link>
           </li>
         ))}
+        {session && !loading && (
+          <>
+            <li key="admin">
+              <Link href="/admin">
+                <a
+                  className={`nav-link${
+                    router.pathname == "/admin" ? " active" : ""
+                  }`}
+                  onClick={toggleMobileNav.bind(null)}
+                  tabIndex={isOpen ? 0 : -1}
+                >
+                  {t.adminName}
+                </a>
+              </Link>
+            </li>
+            <li key="logout">
+              <a
+                className="nav-link"
+                href="#"
+                onClick={handleLogout}
+                tabIndex={isOpen ? 0 : -1}
+              >
+                Logout
+              </a>
+            </li>
+          </>
+        )}
       </ul>
     );
   }

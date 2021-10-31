@@ -2,28 +2,27 @@
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
-import en from "../../locales/en.json";
-import fi from "../../locales/fi.json";
+import { getLocale } from "../../locales";
 import { getPostBySlug, getAllPosts } from "../../lib/api-utils";
 
 import PostDetails from "../../components/posts/details";
 import ContentHeader from "../../components/ui/ContentHeader";
 
-export default function Post({ post, translation }) {
-  const t = translation;
+export default function Post(props) {
+  const t = props.translation;
 
   return (
     <>
       <Head>
         <title>
-          {post?.title || "-"} | {siteConf.name}
+          {props.post?.title || "-"} | {siteConf.name}
         </title>
-        <meta description={post?.description || "-"} />
+        <meta description={props.post?.description || "-"} />
       </Head>
 
       <div className="container content-container pt-8 md:pt-0">
         <ContentHeader t={t} />
-        <PostDetails post={post} />
+        <PostDetails post={props.post} />
       </div>
     </>
   );
@@ -32,7 +31,7 @@ export default function Post({ post, translation }) {
 /** The static generation way - with dynamic pages. */
 export async function getStaticProps({ locale, params }) {
   const { slug } = params;
-  const translation = locale === "en" ? en : fi;
+  const translation = getLocale(locale);
 
   const post = await getPostBySlug(slug);
 

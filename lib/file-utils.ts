@@ -102,3 +102,25 @@ export function readPinnedProjects() {
 
   return data.filter((project) => project.pinned);
 }
+
+// ABOUT
+
+const aboutDataPath = path.join(process.cwd(), "data", "about.md");
+
+/**
+ * Returns about page data.
+ */
+export function readAbout() {
+  const fileContents = fs.readFileSync(aboutDataPath, "utf-8");
+  console.log(fileContents);
+  const { data, content } = matter(fileContents);
+  const { hardSkills, softSkills } = data;
+  const hardSkillsArray = Array.isArray(hardSkills)
+    ? hardSkills
+    : hardSkills?.split(",");
+  const softSkillsArray = Array.isArray(softSkills)
+    ? softSkills
+    : softSkills?.split(",");
+
+  return { content, hardSkills: hardSkillsArray, softSkills: softSkillsArray };
+}

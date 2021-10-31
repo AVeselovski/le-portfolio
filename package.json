@@ -6,10 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "formidable": "^1.2.2",
     "gray-matter": "^4.0.3",
     "mongoose": "^6.0.12",
     "next": "latest",
+    "next-auth": "^3.29.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.0.1",
@@ -18,6 +20,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/formidable": "^1.2.4",
     "@types/react": "^17.0.30",
     "autoprefixer": "^10.2.6",

@@ -6,8 +6,8 @@ import { getSession } from "next-auth/client";
 
 import siteConf from "../../../data/config.json";
 import { getLocale } from "../../../locales";
-import { createNewPost, createNewTag } from "../../../services/client";
-import { getAllTags } from "../../../lib/api-utils";
+import { updatePost, createNewTag } from "../../../services/client";
+import { getAllTags, getPostBySlug } from "../../../lib/api-utils";
 import NotificationContext from "../../../store/notificatons";
 
 import PostForm from "../../../components/admin/PostForm";
@@ -39,11 +39,16 @@ export default function NewPost(props) {
 
     setIsSubmitting(true);
 
-    try {
-      const newPost = await createNewPost(post);
+    const postData = {
+      ...props.post, // _id
+      ...post,
+    };
 
-      showNotification("Post added.", "success");
-      router.push(`/junkyard/${newPost.slug}`);
+    try {
+      const updatedPost = await updatePost(postData);
+
+      showNotification("Post updated.", "success");
+      router.push(`/junkyard/${updatedPost.slug}`);
     } catch (error) {
       setIsSubmitting(false);
       console.error(error?.info?.message || error);
@@ -76,6 +81,7 @@ export default function NewPost(props) {
       <div className="container">
         <PostForm
           isSubmitting={isSubmitting}
+          post={props.post}
           submitPost={handleSubmitPost}
           submitTag={handleSubmitTag}
           tags={allTags}
@@ -86,9 +92,8 @@ export default function NewPost(props) {
   );
 }
 
-export async function getServerSideProps({ locale, req }) {
+export async function getServerSideProps({ locale, params, req }) {
   const session = await getSession({ req });
-
   if (!session) {
     return {
       redirect: {
@@ -98,11 +103,22 @@ export async function getServerSideProps({ locale, req }) {
     };
   }
 
-  const translation = getLocale(locale);
+  const { slug } = params;
 
-  const allTags = await getAllTags();
+  const post = await getPostBySlug(slug);
+  if (!post) {
+    return {
+      redirect: {
+        destination: "/admin",
+        permanent: false,
+      },
+    };
+  }
+
+  const translation = getLocale(locale);
+  const tags = await getAllTags();
 
   return {
-    props: { tags: allTags, session, translation },
+    props: { post, tags, session, translation },
   };
 }

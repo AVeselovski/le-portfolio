@@ -10,18 +10,8 @@ export function PostTagSelector({ tags, selected, onSelect, onSubmit }) {
   const tagContainerRef = useRef();
   const inputRef = useRef();
 
-  const activeClasses = [
-    "bg-indigo-400",
-    "border",
-    "border-indigo-400",
-    "text-white",
-  ];
-  const inactiveClasses = [
-    "bg-gray-300",
-    "border",
-    "border-gray-300",
-    "text-gray-500",
-  ];
+  const activeClasses = ["bg-indigo-400", "border-indigo-400", "text-white"];
+  const inactiveClasses = ["bg-gray-300", "border-gray-300", "text-gray-500"];
 
   function getClasses(tag) {
     return selected.includes(tag) ? activeClasses : inactiveClasses;
@@ -44,7 +34,7 @@ export function PostTagSelector({ tags, selected, onSelect, onSubmit }) {
   }
 
   return (
-    <div className="tag-container h-[30px]" ref={tagContainerRef}>
+    <div className="tag-container min-h-[30px]" ref={tagContainerRef}>
       {tags.map((tag) => (
         <button key={tag} onClick={onSelect.bind(null, tag)}>
           <span className={`tag ${getClasses(tag).join(" ")}`}>{tag}</span>
@@ -55,7 +45,7 @@ export function PostTagSelector({ tags, selected, onSelect, onSubmit }) {
           <form className="new-tag" onSubmit={handleSubmit}>
             <input
               autoFocus
-              className="border py-1 px-3 rounded text-sm"
+              className="input"
               onBlur={toggleInput}
               ref={inputRef}
               type="text"
@@ -65,7 +55,7 @@ export function PostTagSelector({ tags, selected, onSelect, onSubmit }) {
         )
       ) : (
         <button key="new-tag" onClick={toggleInput}>
-          <span className="tag border">+ Add tag</span>
+          <span className="tag">+ Add tag</span>
         </button>
       )}
     </div>
@@ -80,7 +70,7 @@ function PostTags({ tags, withAll = false }) {
       {withAll && (
         <Link href={`/junkyard`} key="all">
           <a>
-            <span className="tag bg-white border border-indigo-400 text-indigo-400">
+            <span className="tag bg-white border-indigo-400 text-indigo-400">
               {t.blogShowAll}...
             </span>
           </a>
@@ -89,7 +79,7 @@ function PostTags({ tags, withAll = false }) {
       {tags.map((tag) => (
         <Link href={`/junkyard/s/${tag}`} key={tag}>
           <a>
-            <span className="tag bg-indigo-400 border border-indigo-400 text-white">
+            <span className="tag bg-indigo-400 border-indigo-400 text-white">
               {tag}
             </span>
           </a>

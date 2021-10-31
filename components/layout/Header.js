@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession, signOut } from "next-auth/client";
 
 import I18nContext from "../../store/i18n";
 import siteConf from "../../data/config.json";
@@ -16,15 +17,22 @@ export default function Header({ links = [] }) {
 
   const router = useRouter();
 
+  const [session, loading] = useSession();
+
   function changeLanguage(e) {
     const locale = e.target.value + router.asPath;
     router.replace("/", "/", { locale });
   }
 
-  function onScroll() {
+  function handleOnScroll() {
     const top = document.documentElement.scrollTop < 32;
 
     setIsTop(top);
+  }
+
+  function handleLogout(e) {
+    e.preventDefault();
+    signOut();
   }
 
   function renderNav() {
@@ -43,14 +51,34 @@ export default function Header({ links = [] }) {
             </Link>
           </li>
         ))}
+        {session && !loading && (
+          <>
+            <li key="admin">
+              <Link href="/admin">
+                <a
+                  className={`nav-link${
+                    router.pathname == "/admin" ? " active" : ""
+                  }`}
+                >
+                  {t.adminName}
+                </a>
+              </Link>
+            </li>
+            <li key="logout">
+              <a className="nav-link" href="#" onClick={handleLogout}>
+                Logout
+              </a>
+            </li>
+          </>
+        )}
       </ul>
     );
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleOnScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", handleOnScroll);
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/db-connect";
-import Tag from "../../../models/tag";
+import Meta from "../../../models/meta";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,9 +8,31 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     try {
-      const tagsObj = await Tag.findOne({});
+      const metaObj = await Meta.findOne({});
 
-      res.status(200).json({ success: true, data: tagsObj.tags });
+      res.status(200).json({ success: true, data: metaObj.tags });
+      return;
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message:
+          error.errors?.title?.message || error._message || error.message,
+      });
+      return;
+    }
+  }
+
+  if (req.method === "PUT") {
+    try {
+      const tags = req.body;
+      const metaObj = await Meta.findOne({});
+
+      metaObj.tags = tags;
+
+      await metaObj.save();
+
+      res.status(200).json({ success: true, data: metaObj.tags });
       return;
     } catch (error) {
       console.error(error);

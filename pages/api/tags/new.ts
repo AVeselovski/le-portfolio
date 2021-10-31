@@ -1,5 +1,7 @@
+import { getSession } from "next-auth/client";
+
 import dbConnect from "../../../lib/db-connect";
-import Tag from "../../../models/tag";
+import Meta from "../../../models/meta";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -13,7 +15,7 @@ function tagIsUnique(tag: string, tags: string[]) {
   if (!unique) {
     return {
       valid: false,
-      errorMsg: "Invalid input. Tag must be unique.",
+      errorMsg: "Invalid input. Tag must be unique!",
     };
   }
 
@@ -24,12 +26,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
 
   if (req.method === "POST") {
+    const session = await getSession({ req });
+    if (!session) {
+      res.status(401).json({ success: false, message: "Not authenticated!" });
+      return;
+    }
+
     try {
       const newTag: string = req.body;
-      const tag = await Tag.findOne({});
+      const metaObj = await Meta.findOne({});
 
-      if (tag) {
-        const { valid, errorMsg } = tagIsUnique(req.body, tag.tags);
+      if (metaObj) {
+        const { valid, errorMsg } = tagIsUnique(req.body, metaObj.tags);
         if (!valid) {
           res.status(422).json({
             success: false,
@@ -38,15 +46,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           return;
         }
 
-        tag.tags.push(newTag);
-        await tag.save();
+        metaObj.tags.push(newTag);
+        await metaObj.save();
 
-        res.status(201).json({ success: true, data: tag.tags });
+        res.status(201).json({ success: true, data: metaObj.tags });
         return;
       } else {
-        const newTagsDoc = await Tag.create({ tags: [newTag] });
+        const newMetaDoc = await Meta.create({ tags: [newTag] });
 
-        res.status(201).json({ success: true, data: newTagsDoc.tags });
+        res.status(201).json({ success: true, data: newMetaDoc.tags });
         return;
       }
     } catch (error) {

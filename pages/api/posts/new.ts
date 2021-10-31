@@ -1,3 +1,5 @@
+import { getSession } from "next-auth/client";
+
 import dbConnect from "../../../lib/db-connect";
 import Post from "../../../models/post";
 
@@ -53,6 +55,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
 
   if (req.method === "POST") {
+    const session = await getSession({ req });
+    if (!session) {
+      res.status(401).json({ success: false, message: "Not authenticated!" });
+      return;
+    }
+
     try {
       const { valid, errorMsg } = await validate(req.body);
       if (!valid) {

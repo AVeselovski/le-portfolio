@@ -5,7 +5,7 @@ import dbConnect from "./db-connect";
 
 import PostModel from "../models/post";
 import ProjectModel from "../models/project";
-import TagModel from "../models/tag";
+import MetaModel from "../models/meta";
 
 import type { Post, Project } from "../types";
 
@@ -38,6 +38,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   await dbConnect();
 
   const post: Post = await PostModel.findOne({ slug: slug }).lean();
+  if (!post) return null;
+
   post._id = post._id.toString();
   post.createdAt = post.createdAt.toString();
   post.updatedAt = post.updatedAt.toString();
@@ -130,6 +132,23 @@ export async function getPinnedProjects(): Promise<Project[]> {
   return projects;
 }
 
+/**
+ * Returns `Project` with provided id.
+ * @param id Project id
+ */
+export async function getProjectById(id: string): Promise<Project> {
+  await dbConnect();
+
+  const project: Project = await ProjectModel.findById(id).lean();
+  if (!project) return null;
+
+  project._id = project._id.toString();
+  project.createdAt = project.createdAt.toString();
+  project.updatedAt = project.updatedAt.toString();
+
+  return project;
+}
+
 // TAGS
 
 /**
@@ -155,22 +174,23 @@ export async function extractAllTags() {
 export async function getAllTags() {
   await dbConnect();
 
-  const result = await TagModel.findOne({});
-  const tags = result.tags || [];
+  const result = await MetaModel.findOne({});
+  const tags = result?.tags || [];
 
   return tags;
 }
 
 // ABOUT
 
-const aboutDataPath = path.join(process.cwd(), "data", "about.md");
-
 /**
  * Returns about page data.
  */
-export function readAbout() {
-  const fileContents = fs.readFileSync(aboutDataPath, "utf-8");
-  const { data, content } = matter(fileContents);
+export async function getAboutContent() {
+  await dbConnect();
+
+  const result = await MetaModel.findOne({});
+  const rawContent = result?.aboutContent || "";
+  const { data, content } = matter(rawContent);
   const { hardSkills, softSkills } = data;
   const hardSkillsArray = Array.isArray(hardSkills)
     ? hardSkills
@@ -179,5 +199,10 @@ export function readAbout() {
     ? softSkills
     : softSkills?.split(",");
 
-  return { content, hardSkills: hardSkillsArray, softSkills: softSkillsArray };
+  return {
+    content,
+    hardSkills: hardSkillsArray,
+    softSkills: softSkillsArray,
+    raw: rawContent,
+  };
 }

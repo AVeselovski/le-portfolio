@@ -2,13 +2,13 @@
 import Head from "next/head";
 
 import siteConf from "../data/config.json";
-import { readAbout } from "../lib/api-utils";
-import { useTranslation } from "../store/i18n";
+import { getLocale } from "../locales";
+import { getAboutContent } from "../lib/api-utils";
 
 import Content from "../components/about/Content";
 
-export default function About({ content, hardSkills, softSkills }) {
-  const { t } = useTranslation();
+export default function About(props) {
+  const t = props.translation;
 
   return (
     <>
@@ -21,17 +21,19 @@ export default function About({ content, hardSkills, softSkills }) {
 
       <div className="container content-container">
         <Content
-          content={content}
-          hardSkills={hardSkills}
-          softSkills={softSkills}
+          content={props.content}
+          hardSkills={props.hardSkills}
+          softSkills={props.softSkills}
         />
       </div>
     </>
   );
 }
 
-export async function getStaticProps() {
-  const data = await readAbout();
+export async function getStaticProps({ locale }) {
+  const translation = getLocale(locale);
+
+  const data = await getAboutContent();
   const { content, hardSkills, softSkills } = data;
 
   return {
@@ -39,6 +41,7 @@ export async function getStaticProps() {
       content,
       hardSkills,
       softSkills,
+      translation,
     },
   };
 }

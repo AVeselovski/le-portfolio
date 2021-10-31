@@ -3,11 +3,10 @@ import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 
+import siteConf from "../../data/config.json";
+import { getLocale } from "../../locales";
 import { getAllProjects } from "../../services/client";
 import { getAllProjects as _getAllProjects } from "../../lib/api-utils";
-import siteConf from "../../data/config.json";
-import en from "../../locales/en.json";
-import fi from "../../locales/fi.json";
 
 import NotificationContext from "../../store/notificatons";
 import ProjectList from "../../components/projects/ProjectList";
@@ -15,6 +14,7 @@ import ProjectsHeader from "../../components/projects/ProjectsHeader";
 
 export default function Projects(props) {
   const t = props.translation;
+
   const [projects, setProjects] = useState(props.projects);
   const { showNotification } = useContext(NotificationContext);
 
@@ -64,7 +64,7 @@ export default function Projects(props) {
 
 /** Hybrid way - prepare some data with static generation, then update clientside. */
 export async function getStaticProps({ locale }) {
-  const translation = locale === "en" ? en : fi;
+  const translation = getLocale(locale);
 
   const allProjects = await _getAllProjects();
 

@@ -2,16 +2,15 @@
 import Head from "next/head";
 
 import siteConf from "../../data/config.json";
-import en from "../../locales/en.json";
-import fi from "../../locales/fi.json";
+import { getLocale } from "../../locales";
 import { getAllPosts, extractAllTags } from "../../lib/api-utils";
 
 import PostsHeader from "../../components/posts/PostsHeader";
 import PostTags from "../../components/posts/PostTags";
 import PostList from "../../components/posts/PostList";
 
-export default function Junkyard({ posts = [], tags = [], translation }) {
-  const t = translation;
+export default function Junkyard(props) {
+  const t = props.translation;
 
   return (
     <>
@@ -24,10 +23,10 @@ export default function Junkyard({ posts = [], tags = [], translation }) {
 
       <div className="container">
         <PostsHeader>
-          <PostTags tags={tags} />
+          <PostTags tags={props.tags} />
         </PostsHeader>
 
-        <PostList posts={posts} />
+        <PostList posts={props.posts} />
       </div>
     </>
   );
@@ -35,19 +34,19 @@ export default function Junkyard({ posts = [], tags = [], translation }) {
 
 /** The static generation way. */
 export async function getStaticProps({ locale }) {
-  const translation = locale === "en" ? en : fi;
+  const translation = getLocale(locale);
 
-  const allPosts = await getAllPosts();
-  const allTags = await extractAllTags();
+  const allPosts = (await getAllPosts()) || [];
+  const allTags = (await extractAllTags()) || [];
 
-  if (!allPosts) {
-    return {
-      // notFound: true,
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
+  // if (!allPosts) {
+  //   return {
+  //     // notFound: true,
+  //     redirect: {
+  //       destination: "/",
+  //     },
+  //   };
+  // }
 
   return {
     props: { posts: allPosts, tags: allTags, translation },

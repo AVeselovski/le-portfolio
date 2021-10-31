@@ -91,10 +91,10 @@
 }
 
 .nav-link {
-  @apply py-2 px-3 rounded hover:bg-gray-100;
+  @apply py-2 px-3 rounded hover:bg-gray-100 hover:text-blue-600;
 }
 .nav-link.active {
-  @apply bg-gray-200 hover:bg-gray-200 text-blue-500;
+  @apply bg-gray-200 hover:bg-gray-200 text-gray-900;
 }
 
 .input-group {
@@ -105,6 +105,14 @@
   display: block;
 }
 
+.input {
+  @apply border py-1 px-2 rounded text-sm;
+}
+input.input.big,
+textarea.input.big {
+  @apply py-2 px-4 text-base;
+}
+
 .tag-container {
   @apply gap-1;
 
@@ -112,11 +120,18 @@
   flex-wrap: wrap;
 }
 .tag {
-  @apply rounded-full py-0.5 px-2 text-sm block;
+  @apply rounded-full py-0.5 px-2 text-sm block border;
 }
 
 .post-item {
   @apply border border-gray-200 rounded-md py-3 pb-4 px-3 md:px-5 mb-3 hover:border-blue-500;
+}
+
+.item-button-container {
+  @apply flex gap-2 flex-wrap mb-4;
+}
+.item-button {
+  @apply flex items-center justify-center border border-gray-200 rounded-md py-3 pb-4 px-3 md:px-5 mb-3 hover:border-blue-500 hover:text-blue-600 whitespace-nowrap;
 }
 
 .post-link {
@@ -284,5 +299,5 @@
 }
 
 .lang-select {
-  @apply bg-transparent mr-6 flex text-indigo-500 font-mono text-sm p-2 hover:bg-gray-100 rounded;
+  @apply bg-transparent mr-6 flex text-gray-700 font-mono text-sm p-2 hover:bg-gray-100 hover:text-blue-600 rounded;
 }

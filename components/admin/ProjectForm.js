@@ -1,23 +1,24 @@
-import { useContext, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { PostTagSelector } from "../PostTags";
+import { TagSelector } from "../projects/Tags";
 
 const DEFAULT_TAGS = ["JavaScript", "CSS", "React", "Node", "Next.js"];
 
-function Form(props) {
-  const t = props.t;
-  const allTags = (props?.tags?.length && props.tags) || DEFAULT_TAGS;
+function ProjectForm(props) {
+  const { t } = props;
 
   const [tags, setTags] = useState([]);
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
 
   const titleRef = useRef();
-  const slugRef = useRef();
-  const bodyRef = useRef();
   const descriptionRef = useRef();
+  const sourceUrlRef = useRef();
+  const liveUrlRef = useRef();
   const pinnedRef = useRef();
   const imageRef = useRef();
+
+  const allTags = (props.tags?.length && props.tags) || DEFAULT_TAGS;
 
   function handleTagSelect(selected, e) {
     e.preventDefault();
@@ -43,35 +44,46 @@ function Form(props) {
     setCreateObjectURL(URL.createObjectURL(img));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const body = {
       title: titleRef.current.value,
-      slug: slugRef.current.value,
-      body: bodyRef.current.value,
       description: descriptionRef.current.value,
       tags,
+      sourceUrl: sourceUrlRef.current.value,
+      liveUrl: liveUrlRef.current.value,
       pinned: pinnedRef.current.checked,
     };
 
-    props.submitPost(body);
+    props.submitProject(body);
   }
 
-  function handleSubmitTag(tag) {
-    props.submitTag(tag);
-  }
+  useEffect(() => {
+    if (props.project) {
+      const { title, description, sourceUrl, liveUrl, pinned } = props.project;
+
+      titleRef.current.value = title;
+      descriptionRef.current.value = description;
+      sourceUrlRef.current.value = sourceUrl;
+      liveUrlRef.current.value = liveUrl;
+      pinnedRef.current.checked = pinned;
+      // imageRef.current.value = props;
+
+      setTags(props.project.tags);
+    }
+  }, []);
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postTitle">
-          {t.postTitle}
+        <label className="block mb-1 text-sm" htmlFor="projectTitle">
+          {t.projectTitle}
         </label>
         <input
-          className="w-full border py-1 px-3 rounded"
+          className="input big w-full"
           disabled={props?.isSubmitting}
-          id="postTitle"
+          id="projectTitle"
           name="title"
           ref={titleRef}
           required
@@ -80,43 +92,13 @@ function Form(props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postSlug">
-          {t.postSlug}
-        </label>
-        <input
-          className="w-full border py-1 px-3 rounded"
-          disabled={props?.isSubmitting}
-          id="postSlug"
-          name="slug"
-          ref={slugRef}
-          required
-          type="text"
-        />
-      </div>
-
-      <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postBody">
-          {t.postBody}
+        <label className="block mb-1 text-sm" htmlFor="projectDescription">
+          {t.projectDescription}
         </label>
         <textarea
-          className="w-full border py-1 px-3 rounded font-mono"
+          className="input big w-full font-mono"
           disabled={props?.isSubmitting}
-          id="postBody"
-          name="body"
-          ref={bodyRef}
-          rows={16}
-          required
-        ></textarea>
-      </div>
-
-      <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postDescription">
-          {t.postDescription}
-        </label>
-        <textarea
-          className="w-full border py-1 px-3 rounded"
-          disabled={props?.isSubmitting}
-          id="postDescription"
+          id="projectDescription"
           name="description"
           ref={descriptionRef}
           rows={4}
@@ -125,23 +107,51 @@ function Form(props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm">Tags</label>
-        <PostTagSelector
+        <label className="block mb-1 text-sm">{t.projectTags}</label>
+        <TagSelector
           tags={allTags}
           selected={tags}
           onSelect={handleTagSelect}
-          onSubmit={handleSubmitTag}
         />
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postPinned">
-          {t.postPinned}
+        <label className="block mb-1 text-sm" htmlFor="projectSourceUrl">
+          {t.projectSourceUrl}
         </label>
         <input
-          className="rounded-sm border p-2"
+          className="input big w-full"
           disabled={props?.isSubmitting}
-          id="postPinned"
+          id="projectSourceUrl"
+          name="sourceUrl"
+          ref={sourceUrlRef}
+          required
+          type="text"
+        />
+      </div>
+
+      <div className="input-group">
+        <label className="block mb-1 text-sm" htmlFor="projectLiveUrl">
+          {t.projectLiveUrl}
+        </label>
+        <input
+          className="input big w-full"
+          disabled={props?.isSubmitting}
+          id="projectLiveUrl"
+          name="liveUrl"
+          ref={liveUrlRef}
+          required
+          type="text"
+        />
+      </div>
+
+      <div className="input-group">
+        <label className="block mb-1 text-sm" htmlFor="projectPinned">
+          {t.projectPinned}
+        </label>
+        <input
+          disabled={props?.isSubmitting}
+          id="projectPinned"
           name="pinned"
           ref={pinnedRef}
           type="checkbox"
@@ -149,13 +159,12 @@ function Form(props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postImage">
-          {t.postImage}
+        <label className="block mb-1 text-sm" htmlFor="projectImage">
+          {t.projectImage}
         </label>
         <input
-          className="w-full rounded border p-2"
           disabled={props?.isSubmitting}
-          id="postImage"
+          id="projectImage"
           name="image"
           onChange={handleFileSelect}
           // style={{ display: "none" }}
@@ -182,11 +191,11 @@ function Form(props) {
           disabled={props?.isSubmitting}
           type="submit"
         >
-          {t.postSave}
+          {t.projectSave}
         </button>
       </div>
     </form>
   );
 }
 
-export default Form;
+export default ProjectForm;

@@ -34,11 +34,7 @@ function ProjectItem({ project, t = {} }) {
       )}
       <div className="project-item-body">
         <header className="mb-5">
-          <a
-            className="image-link hover:text-blue-500"
-            href={sourceUrl}
-            target="_blank"
-          >
+          <a className="image-link" href={sourceUrl} target="_blank">
             <div className="flex items-center justify-between mt-2">
               <h2 className="text-3xl">{title}</h2>
               <div className="text-3xl">&rarr;</div>
@@ -48,13 +44,13 @@ function ProjectItem({ project, t = {} }) {
         <div className="mb-5 self-stretch flex-1">
           <ReactMarkdown>{description}</ReactMarkdown>
           <a
-            className="link inline-block mr-4"
+            className="link inline-block mr-4 mt-4"
             href={sourceUrl}
             target="_blank"
           >
             {t.projectSourceUrl} &rarr;
           </a>
-          <a className="link" href={liveUrl} target="_blank">
+          <a className="link inline-block mt-4" href={liveUrl} target="_blank">
             {t.projectLiveUrl} &rarr;
           </a>
         </div>
