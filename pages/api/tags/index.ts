@@ -1,3 +1,5 @@
+import { getSession } from "next-auth/client";
+
 import dbConnect from "../../../lib/db-connect";
 import Meta from "../../../models/meta";
 
@@ -24,6 +26,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === "PUT") {
+    const session = await getSession({ req });
+    if (!session) {
+      res.status(401).json({ success: false, message: "Not authenticated!" });
+      return;
+    }
+
     try {
       const tags = req.body;
       const metaObj = await Meta.findOne({});

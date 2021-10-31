@@ -105,6 +105,35 @@ export async function updatePost(post: Post) {
   return data;
 }
 
+/**
+ * API DELETE request to delete `Post`.
+ * @param id `Post` id
+ */
+export async function deletePost(id: string) {
+  const res = await fetch(`/api/posts/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    const error: ResponseError = new Error(
+      "An error occurred while fetching the data."
+    );
+    console.error(error);
+    // Attach extra info to the error object.
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
+  }
+
+  const { data } = await res.json();
+
+  return data;
+}
+
 // PROJECTS
 
 /**
@@ -155,6 +184,35 @@ export async function updateProject(project: Project) {
   const res = await fetch(`/api/projects/${project._id}`, {
     method: "PUT",
     body: JSON.stringify(project),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    const error: ResponseError = new Error(
+      "An error occurred while fetching the data."
+    );
+    console.error(error);
+    // Attach extra info to the error object.
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
+  }
+
+  const { data } = await res.json();
+
+  return data;
+}
+
+/**
+ * API DELETE request to delete `Project`.
+ * @param id `Project` id
+ */
+export async function deleteProject(id: string) {
+  const res = await fetch(`/api/projects/${id}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

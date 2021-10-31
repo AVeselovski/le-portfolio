@@ -1,5 +1,4 @@
 import dbConnect from "../../../lib/db-connect";
-import User from "../../../models/user";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,7 +7,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "POST") {
     try {
-      res.status(200).json({ success: true, message: "Hello" });
+      res.status(200).json({ success: true, message: "Hello?" });
     } catch (error) {
       console.error(error);
       res.status(500).json({

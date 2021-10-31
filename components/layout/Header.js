@@ -65,7 +65,11 @@ export default function Header({ links = [] }) {
               </Link>
             </li>
             <li key="logout">
-              <a className="nav-link" href="#" onClick={handleLogout}>
+              <a
+                className="nav-link text-red-500"
+                href="#"
+                onClick={handleLogout}
+              >
                 Logout
               </a>
             </li>

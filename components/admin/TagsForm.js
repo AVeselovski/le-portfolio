@@ -41,6 +41,16 @@ function TagsForm(props) {
         rows="2"
         value={tags}
       ></textarea>
+
+      <div>
+        <button
+          className="w-full bg-blue-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={props?.isSubmitting}
+          type="submit"
+        >
+          {t.adminUpdateTags}
+        </button>
+      </div>
     </form>
   );
 }
