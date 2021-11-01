@@ -94,10 +94,10 @@ export default function Header({ links = [] }) {
       }`}
     >
       <div className="header-content">
-        <div className="p-2 pl-5 text-3xl">
+        <div className="p-2 pl-4 text-3xl">
           <Link href="/">{siteConf.shortName}</Link>
         </div>
-        <nav className="px-2 pr-3 sm:pr-5 flex items-center">
+        <nav className="px-2 pr-3 sm:pr-4 flex items-center">
           {/** Another simple way 
           <Link href="/" locale={router.locale === "en" ? "fi" : "en"}>
             <button className="text-indigo-500 mr-6">

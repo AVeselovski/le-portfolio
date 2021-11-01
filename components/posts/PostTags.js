@@ -70,7 +70,7 @@ function PostTags({ tags, withAll = false }) {
       {withAll && (
         <Link href={`/junkyard`} key="all">
           <a>
-            <span className="tag bg-white border-indigo-400 text-indigo-400">
+            <span className="tag bg-white border-blue-500 text-blue-500">
               {t.blogShowAll}...
             </span>
           </a>
@@ -79,7 +79,7 @@ function PostTags({ tags, withAll = false }) {
       {tags.map((tag) => (
         <Link href={`/junkyard/s/${tag}`} key={tag}>
           <a>
-            <span className="tag bg-indigo-400 border-indigo-400 text-white">
+            <span className="tag bg-blue-500 border-blue-500 text-white">
               {tag}
             </span>
           </a>

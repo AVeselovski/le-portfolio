@@ -17,9 +17,7 @@ function MyApp({ Component, pageProps }) {
           <NavigationProvider>
             <Layout>
               <Head>
-                <title>
-                  {siteConf.shortName} | {siteConf.name}
-                </title>
+                <title>{siteConf.name}</title>
                 <meta
                   name="viewport"
                   content="initial-scale=1.0, width=device-width"
