@@ -43,5 +43,6 @@ export async function getStaticProps({ locale }) {
       softSkills,
       translation,
     },
+    revalidate: 60,
   };
 }

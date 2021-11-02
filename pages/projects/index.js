@@ -73,5 +73,6 @@ export async function getStaticProps({ locale }) {
       projects: allProjects,
       translation,
     },
+    revalidate: 60,
   };
 }

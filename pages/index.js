@@ -43,5 +43,6 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: { posts: pinnedPosts, projects: pinnedProjects, translation },
+    revalidate: 60,
   };
 }
