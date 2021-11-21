@@ -57,7 +57,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.status(201).json({ success: true, data: newMetaDoc.tags });
         return;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

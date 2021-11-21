@@ -1,21 +1,21 @@
 import { getSession } from "next-auth/client";
 
 import dbConnect from "../../../lib/db-connect";
-import MetaModel from "../../../models/meta";
+import Meta from "../../../models/meta";
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Meta } from "../../../types";
+import type { IMeta } from "../../../types";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
 
   if (req.method === "GET") {
     try {
-      const metaObj = await MetaModel.findOne({});
+      const metaObj = await Meta.findOne({});
 
       res.status(200).json({ success: true, data: metaObj.aboutContent });
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,
@@ -34,8 +34,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
-      const content: Meta = req.body;
-      const metaObj = await MetaModel.findOne({});
+      const content: IMeta = req.body;
+      const metaObj = await Meta.findOne({});
 
       if (metaObj) {
         metaObj.aboutContent = content.aboutContent;
@@ -44,12 +44,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.status(201).json({ success: true, data: metaObj.aboutContent });
         return;
       } else {
-        const newMetaDoc = await MetaModel.create({ tags: [] }); // aboutContent created by default
+        const newMetaDoc = await Meta.create({ tags: [] }); // aboutContent created by default
 
         res.status(201).json({ success: true, data: newMetaDoc.aboutContent });
         return;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

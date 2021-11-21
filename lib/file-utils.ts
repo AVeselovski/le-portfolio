@@ -7,7 +7,7 @@ import path from "path";
 import matter from "gray-matter";
 
 import type { File } from "formidable";
-import type { Post, Project } from "../types";
+import type { IPost, IProject } from "../types";
 
 // POSTS
 
@@ -44,7 +44,7 @@ export function readPost(fileName: string) {
  * Stores `Post` data in the file system.
  * @param post New post data.
  */
-export function writeNewPost(post: Post) {
+export function writeNewPost(post: IPost) {
   const filePath = path.join(process.cwd(), "data", "posts", `${post.slug}.md`);
   const { body, ...rest } = post;
   const data = matter.stringify(body, rest);
@@ -64,7 +64,7 @@ export async function savePostImage(file: File, slug: string) {
   fs.mkdir(dirPath, { recursive: true }, (err, dir) => {
     if (err) throw err;
 
-    fs.writeFileSync(path.join(dir || dirPath, file.name), data);
+    fs.writeFileSync(path.join(dir || dirPath, file.name || ""), data);
     fs.unlinkSync(file.path);
   });
 
@@ -87,10 +87,10 @@ export function readAllProjects() {
   const filePath = projectsDataPath;
   try {
     const fileData = fs.readFileSync(filePath, "utf-8");
-    const data: Project[] = JSON.parse(fileData);
+    const data: IProject[] = JSON.parse(fileData);
     return data;
   } catch (error) {
-    console.log("Fug");
+    console.log("Something went wrong!");
   }
 }
 
@@ -100,7 +100,7 @@ export function readAllProjects() {
 export function readPinnedProjects() {
   const data = readAllProjects();
 
-  return data.filter((project) => project.pinned);
+  return data?.filter((project) => project.pinned) || [];
 }
 
 // ABOUT

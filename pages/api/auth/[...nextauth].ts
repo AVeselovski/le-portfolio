@@ -1,11 +1,21 @@
-import NextAuth from "next-auth";
+import NextAuth, { User as IUser } from "next-auth";
 import Providers from "next-auth/providers";
 import { compare } from "bcryptjs";
 
 import dbConnect from "../../../lib/db-connect";
 import User from "../../../models/user";
 
-async function verifyPassword(password, hashedPassword) {
+declare module "next-auth" {
+  interface Session {
+    user: string;
+  }
+}
+
+interface IExtendedUser extends IUser {
+  user: string;
+}
+
+async function verifyPassword(password: string, hashedPassword: string) {
   const isValid = await compare(password, hashedPassword);
 
   return isValid;
@@ -46,7 +56,7 @@ export default NextAuth({
 
       return token;
     },
-    async session(session, user) {
+    async session(session, user: IExtendedUser) {
       session.user = user.user;
 
       return session;

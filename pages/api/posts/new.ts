@@ -6,7 +6,7 @@ import Post from "../../../models/post";
 import { getAllPosts } from "../../../lib/api-utils";
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Post as PostType } from "../../../types";
+import type { IPost } from "../../../types";
 
 /**
  * Check uniqueness of provided slug.
@@ -23,7 +23,7 @@ async function slugIsUnique(slug: string) {
  * Simple data validation.
  * @param fields Request body
  */
-async function validate(fields: PostType) {
+async function validate(fields: IPost) {
   if (
     !fields.title ||
     fields.title.trim() === "" ||
@@ -75,8 +75,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(201).json({ success: true, data: post });
       return;
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error("Heyyyy", error);
       res.status(500).json({
         success: false,
         message:

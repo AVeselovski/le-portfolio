@@ -1,4 +1,4 @@
-import type { ResponseError, Post, Project } from "../types";
+import type { IResponseError, IPost, IProject } from "../types";
 
 /**
  * "To hell with it, I tried" - type of solution for Next i18n sub-path
@@ -9,16 +9,17 @@ function getUrl(url: string) {
   let baseUrl: string;
   if (typeof window !== "undefined") {
     baseUrl = window.location.origin;
+    return `${baseUrl}/${url}`;
   }
 
-  return `${baseUrl}/${url}`;
+  return `/${url}`;
 }
 
 export const fetcher = async (url: string) => {
   const res = await fetch(getUrl(url));
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -40,7 +41,7 @@ export const fetcher = async (url: string) => {
  * @param url API path
  */
 export async function getAllPosts(url = "api/posts") {
-  const data: Post[] = await fetcher(url);
+  const data: IPost[] = await fetcher(url);
 
   return data;
 }
@@ -49,7 +50,7 @@ export async function getAllPosts(url = "api/posts") {
  * API POST request to save `Post` object.
  * @param post New `Post` object
  */
-export async function createNewPost(post: Post) {
+export async function createNewPost(post: IPost) {
   const res = await fetch("/api/posts/new", {
     method: "POST",
     body: JSON.stringify(post),
@@ -60,7 +61,7 @@ export async function createNewPost(post: Post) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -79,7 +80,7 @@ export async function createNewPost(post: Post) {
  * API PUT request to update `Post`.
  * @param post Updated `Post` object
  */
-export async function updatePost(post: Post) {
+export async function updatePost(post: IPost) {
   const res = await fetch(`/api/posts/${post._id}`, {
     method: "PUT",
     body: JSON.stringify(post),
@@ -90,7 +91,7 @@ export async function updatePost(post: Post) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -119,7 +120,7 @@ export async function deletePost(id: string) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -150,7 +151,7 @@ export async function getAllProjects(url = "api/projects") {
  * API POST request to save `Project` object.
  * @param project New `Project` object
  */
-export async function createNewProject(project: Project) {
+export async function createNewProject(project: IProject) {
   const res = await fetch("/api/projects/new", {
     method: "POST",
     body: JSON.stringify(project),
@@ -161,7 +162,7 @@ export async function createNewProject(project: Project) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -180,7 +181,7 @@ export async function createNewProject(project: Project) {
  * API PUT request to update `Project`.
  * @param project Updated `Project` object
  */
-export async function updateProject(project: Project) {
+export async function updateProject(project: IProject) {
   const res = await fetch(`/api/projects/${project._id}`, {
     method: "PUT",
     body: JSON.stringify(project),
@@ -191,7 +192,7 @@ export async function updateProject(project: Project) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -220,7 +221,7 @@ export async function deleteProject(id: string) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -262,7 +263,7 @@ export async function createNewTag(tag: string) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -292,7 +293,7 @@ export async function updateTags(tags: string[]) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -324,7 +325,7 @@ export async function updateAbout(content: object) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);
@@ -356,7 +357,7 @@ export async function createUser(user: object) {
   });
 
   if (!res.ok) {
-    const error: ResponseError = new Error(
+    const error: IResponseError = new Error(
       "An error occurred while fetching the data."
     );
     console.error(error);

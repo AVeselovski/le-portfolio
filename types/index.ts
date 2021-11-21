@@ -1,9 +1,9 @@
-export interface ResponseError extends Error {
+export interface IResponseError extends Error {
   info?: object;
   status?: number;
 }
 
-export interface Post {
+export interface IPost {
   _id?: string;
   title: string;
   slug: string;
@@ -11,16 +11,18 @@ export interface Post {
   description: string;
   tags: string[];
   pinned: boolean;
-  image: {
-    src?: string;
-    height?: number;
-    width?: number;
-  } | null;
+  image?:
+    | {
+        src: string;
+        height: number;
+        width: number;
+      }
+    | undefined;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export interface Project {
+export interface IProject {
   _id?: string;
   title: string;
   description: string;
@@ -28,17 +30,28 @@ export interface Project {
   sourceUrl: string;
   liveUrl: string;
   pinned: boolean;
-  image: {
-    src?: string;
-    height?: number;
-    width?: number;
-  } | null;
+  image?:
+    | {
+        src: string;
+        height: number;
+        width: number;
+      }
+    | undefined;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export interface Meta {
+export interface IMeta {
   _id?: string;
   tags: string[];
   aboutContent: string;
+}
+
+export interface ITranslation {
+  [key: string]: string;
+}
+
+export interface INotification {
+  message: string | { [key: string]: string };
+  status?: "error" | "warning" | "success";
 }

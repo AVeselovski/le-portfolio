@@ -1,16 +1,16 @@
 import { getSession } from "next-auth/client";
 
 import dbConnect from "../../../lib/db-connect";
-import ProjectModel from "../../../models/project";
+import Project from "../../../models/project";
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Project } from "../../../types";
+import type { IProject } from "../../../types";
 
 /**
  * Simple data validation.
  * @param fields Request body
  */
-function validate(fields: Project) {
+function validate(fields: IProject) {
   if (
     !fields.title ||
     fields.title.trim() === "" ||
@@ -49,11 +49,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return;
       }
 
-      const project = await ProjectModel.create(req.body);
+      const project = await Project.create(req.body);
 
       res.status(201).json({ success: true, data: project });
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

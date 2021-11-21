@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).json({ success: true, data: posts });
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

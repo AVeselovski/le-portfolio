@@ -30,7 +30,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(201).json({ success: true, data: post });
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,
@@ -54,7 +54,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(204).json({ success: true, data: post });
       return;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

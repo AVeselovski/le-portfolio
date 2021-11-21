@@ -38,7 +38,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const newUser = await User.create({ username, password });
 
       res.status(201).json({ success: true, data: newUser });
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(500).json({
         success: false,

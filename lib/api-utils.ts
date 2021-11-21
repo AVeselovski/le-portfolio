@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import dbConnect from "./db-connect";
 
@@ -7,22 +5,22 @@ import PostModel from "../models/post";
 import ProjectModel from "../models/project";
 import MetaModel from "../models/meta";
 
-import type { Post, Project } from "../types";
+import type { IPost, IProject } from "../types";
 
 // POSTS
 
 /**
  * Returns sorted array of all `Post`s.
  */
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(): Promise<IPost[]> {
   await dbConnect();
 
   const result = await PostModel.find({}).select("-__v").sort("-createdAt");
-  const posts: Post[] = result.map((doc) => {
-    const post: Post = doc.toObject();
-    post._id = post._id.toString();
-    post.createdAt = post.createdAt.toString();
-    post.updatedAt = post.updatedAt.toString();
+  const posts: IPost[] = result.map((doc) => {
+    const post: IPost = doc.toObject();
+    post._id = post._id?.toString();
+    post.createdAt = post.createdAt?.toString();
+    post.updatedAt = post.updatedAt?.toString();
 
     return post;
   });
@@ -34,15 +32,17 @@ export async function getAllPosts(): Promise<Post[]> {
  * Returns `Post` with provided `slug`.
  * @param slug Post path slug
  */
-export async function getPostBySlug(slug: string): Promise<Post> {
+export async function getPostBySlug(
+  slug: string | string[]
+): Promise<IPost | null> {
   await dbConnect();
 
-  const post: Post = await PostModel.findOne({ slug: slug }).lean();
+  const post: IPost = await PostModel.findOne({ slug: slug }).lean();
   if (!post) return null;
 
-  post._id = post._id.toString();
-  post.createdAt = post.createdAt.toString();
-  post.updatedAt = post.updatedAt.toString();
+  post._id = post._id?.toString();
+  post.createdAt = post.createdAt?.toString();
+  post.updatedAt = post.updatedAt?.toString();
 
   return post;
 }
@@ -50,17 +50,17 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 /**
  * Returns `Post` array with `pinned: true`.
  */
-export async function getPinnedPosts(): Promise<Post[]> {
+export async function getPinnedPosts(): Promise<IPost[]> {
   await dbConnect();
 
   const result = await PostModel.find({ pinned: true })
     .select("-__v")
     .sort("-createdAt");
-  const posts: Post[] = result.map((doc) => {
-    const post: Post = doc.toObject();
-    post._id = post._id.toString();
-    post.createdAt = post.createdAt.toString();
-    post.updatedAt = post.updatedAt.toString();
+  const posts: IPost[] = result.map((doc) => {
+    const post: IPost = doc.toObject();
+    post._id = post._id?.toString();
+    post.createdAt = post.createdAt?.toString();
+    post.updatedAt = post.updatedAt?.toString();
 
     return post;
   });
@@ -72,17 +72,17 @@ export async function getPinnedPosts(): Promise<Post[]> {
  * Returns `Post` array with provided `tag`.
  * @param tag Tag to filter posts by
  */
-export async function getFilteredPosts(tag: string): Promise<Post[]> {
+export async function getFilteredPosts(tag: string): Promise<IPost[]> {
   await dbConnect();
 
   const result = await PostModel.find({ tags: tag })
     .select("-__v")
     .sort("-createdAt");
-  const posts: Post[] = result.map((doc) => {
-    const post: Post = doc.toObject();
-    post._id = post._id.toString();
-    post.createdAt = post.createdAt.toString();
-    post.updatedAt = post.updatedAt.toString();
+  const posts: IPost[] = result.map((doc) => {
+    const post: IPost = doc.toObject();
+    post._id = post._id?.toString();
+    post.createdAt = post.createdAt?.toString();
+    post.updatedAt = post.updatedAt?.toString();
 
     return post;
   });
@@ -95,15 +95,15 @@ export async function getFilteredPosts(tag: string): Promise<Post[]> {
 /**
  * Returns array of all `Project`s.
  */
-export async function getAllProjects(): Promise<Project[]> {
+export async function getAllProjects(): Promise<IProject[]> {
   await dbConnect();
 
   const result = await ProjectModel.find({}).select("-__v").sort("-createdAt");
-  const projects: Project[] = result.map((doc) => {
-    const project: Project = doc.toObject();
-    project._id = project._id.toString();
-    project.createdAt = project.createdAt.toString();
-    project.updatedAt = project.updatedAt.toString();
+  const projects: IProject[] = result.map((doc) => {
+    const project: IProject = doc.toObject();
+    project._id = project._id?.toString();
+    project.createdAt = project.createdAt?.toString();
+    project.updatedAt = project.updatedAt?.toString();
 
     return project;
   });
@@ -114,17 +114,17 @@ export async function getAllProjects(): Promise<Project[]> {
 /**
  * Returns `Project` array with `pinned: true`.
  */
-export async function getPinnedProjects(): Promise<Project[]> {
+export async function getPinnedProjects(): Promise<IProject[]> {
   await dbConnect();
 
   const result = await ProjectModel.find({ pinned: true })
     .select("-__v")
     .sort("-createdAt");
-  const projects: Project[] = result.map((doc) => {
-    const project: Project = doc.toObject();
-    project._id = project._id.toString();
-    project.createdAt = project.createdAt.toString();
-    project.updatedAt = project.updatedAt.toString();
+  const projects: IProject[] = result.map((doc) => {
+    const project: IProject = doc.toObject();
+    project._id = project._id?.toString();
+    project.createdAt = project.createdAt?.toString();
+    project.updatedAt = project.updatedAt?.toString();
 
     return project;
   });
@@ -136,15 +136,15 @@ export async function getPinnedProjects(): Promise<Project[]> {
  * Returns `Project` with provided id.
  * @param id Project id
  */
-export async function getProjectById(id: string): Promise<Project> {
+export async function getProjectById(id: string): Promise<IProject | null> {
   await dbConnect();
 
-  const project: Project = await ProjectModel.findById(id).lean();
+  const project: IProject = await ProjectModel.findById(id).lean();
   if (!project) return null;
 
-  project._id = project._id.toString();
-  project.createdAt = project.createdAt.toString();
-  project.updatedAt = project.updatedAt.toString();
+  project._id = project._id?.toString();
+  project.createdAt = project.createdAt?.toString();
+  project.updatedAt = project.updatedAt?.toString();
 
   return project;
 }
@@ -191,7 +191,7 @@ export async function getAboutContent() {
   const result = await MetaModel.findOne({});
   const rawContent = result?.aboutContent || "";
   const { data, content } = matter(rawContent);
-  const { hardSkills, softSkills } = data;
+  const { hardSkills, softSkills, metaDescription } = data;
   const hardSkillsArray = Array.isArray(hardSkills)
     ? hardSkills
     : hardSkills?.split(",");
@@ -203,6 +203,7 @@ export async function getAboutContent() {
     content,
     hardSkills: hardSkillsArray,
     softSkills: softSkillsArray,
+    metaDescription,
     raw: rawContent,
   };
 }
