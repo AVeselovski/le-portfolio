@@ -1,0 +1,38 @@
+.header {
+  @apply flex fixed items-center justify-between z-[2];
+  @apply h-16 bg-white border-b border-white;
+
+  left: 0;
+  right: 0;
+}
+.header.scrolled {
+  @apply md:border-gray-200 shadow md:shadow-sm;
+}
+
+.headerContent {
+  @apply flex items-center justify-between ml-auto mr-auto w-full max-w-3xl;
+}
+
+.brand {
+  @apply p-2 pl-4 text-3xl;
+}
+
+.nav {
+  @apply flex items-center px-2 pr-3 sm:pr-4;
+}
+
+.langSelect {
+  @apply flex p-2 mr-6;
+  @apply rounded bg-transparent text-gray-700 font-mono text-sm;
+  @apply hover:bg-gray-100 hover:text-blue-600;
+}
+
+.navList {
+  @apply hidden sm:flex gap-1;
+}
+
+.mobileNavToggle {
+  @apply block sm:hidden p-1;
+  @apply rounded-full;
+  @apply hover:bg-gray-100;
+}

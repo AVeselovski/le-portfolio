@@ -5,8 +5,8 @@ import siteConf from "../../../data/config.json";
 import { getLocale } from "../../../locales";
 import { extractAllTags, getFilteredPosts } from "../../../lib/api-utils";
 
+import { LinkTags } from "../../../components/ui/Tags";
 import PostsHeader from "../../../components/posts/PostsHeader";
-import PostTags from "../../../components/posts/PostTags";
 import PostList from "../../../components/posts/PostList";
 
 import type { GetServerSidePropsContext } from "next";
@@ -39,7 +39,7 @@ export default function FilteredPosts(props: Props) {
 
       <div className="container">
         <PostsHeader t={t}>
-          <PostTags tags={props.tags} withAll />
+          <LinkTags tags={props.tags} showAll={t.blogShowAll} />
         </PostsHeader>
 
         {content}

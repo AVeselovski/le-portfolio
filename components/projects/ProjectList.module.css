@@ -1,0 +1,3 @@
+.projectList {
+  @apply flex flex-wrap gap-2 sm:w-full justify-center sm:justify-between;
+}

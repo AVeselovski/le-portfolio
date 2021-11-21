@@ -1,0 +1,25 @@
+.contentHeader {
+  @apply fixed md:sticky flex justify-between items-center h-10 md:h-12 px-2 md:px-2 md:-mt-3 md:-mx-4 md:mb-4 z-[2];
+  @apply bg-white shadow md:border-b md:shadow-none;
+
+  left: 0;
+  right: 0;
+  top: calc(4rem - 1px);
+}
+
+.button {
+  @apply px-2 py-1;
+  @apply text-blue-500 rounded;
+
+  line-height: 1;
+}
+.button:hover:not(:disabled) {
+  @apply text-blue-600 bg-gray-100 opacity-90;
+}
+
+@media (min-width: 640px) {
+  .contentHeader {
+    top: 4rem;
+    z-index: 1;
+  }
+}

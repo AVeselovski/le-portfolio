@@ -1,0 +1,4 @@
+.warning {
+  @apply mb-4 p-2 px-3;
+  @apply text-lg bg-gray-100 rounded-md;
+}

@@ -1,5 +1,9 @@
 import { useTranslation } from "../../store/i18n";
 
+import styles from "./KeyWords.module.css";
+
+import Tags from "../ui/Tags";
+
 type Props = {
   hardSkills: string[];
   softSkills: string[];
@@ -10,23 +14,8 @@ export default function KeyWords({ softSkills = [], hardSkills = [] }: Props) {
 
   return (
     <section>
-      <h2 className="text-2xl mt-8 mb-6">{t.aboutKeywords}</h2>
-      <ul className="tag-container">
-        {softSkills.map((s, i) => (
-          <li key={`${i}-${s}`}>
-            <span className="tag bg-gray-100 border border-gray-700 text-black">
-              {s}
-            </span>
-          </li>
-        ))}
-        {hardSkills.map((s, i) => (
-          <li key={`${i}-${s}`}>
-            <span className="tag bg-gray-700 border border-gray-700 text-white">
-              {s}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <h2 className={styles.title}>{t.aboutKeywords}</h2>
+      <Tags lightTags={softSkills} darkTags={hardSkills} />
     </section>
   );
 }

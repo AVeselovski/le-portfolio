@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 
+import styles from "./AuthForm.module.css";
+
 import type { ITranslation } from "../../types";
 
 interface ICredentials {
@@ -39,7 +41,7 @@ function AuthForm({
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="username">
+        <label className="label" htmlFor="username">
           {t.adminUsername}
         </label>
         <input
@@ -53,7 +55,7 @@ function AuthForm({
         />
       </div>
       <div className="input-group big">
-        <label className="block mb-1 text-sm" htmlFor="password">
+        <label className="label" htmlFor="password">
           {t.adminPassword}
         </label>
         <input
@@ -67,17 +69,13 @@ function AuthForm({
         />
       </div>
 
-      <div className="mt-6 flex flex-row-reverse gap-2">
-        <button
-          className="w-full border border-indigo-400 bg-indigo-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={isSubmitting}
-          type="submit"
-        >
+      <div className={styles.buttons}>
+        <button className="submit-button" disabled={isSubmitting} type="submit">
           {isLogin ? t.adminLogin : t.adminSignup}
         </button>
 
         <button
-          className="w-full border border-indigo-400 bg-white text-indigo-500 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          className="secondary-button"
           // disabled={true}
           disabled={isSubmitting}
           onClick={toggleLogin}

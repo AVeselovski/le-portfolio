@@ -1,0 +1,56 @@
+.projectItem {
+  @apply flex flex-col mb-2 w-full max-w-md;
+  @apply border rounded-md border-gray-200;
+  @apply hover:border-blue-500;
+
+  overflow: hidden;
+}
+
+.projectImage {
+  @apply flex relative w-auto;
+  @apply border-b;
+
+  overflow: hidden;
+}
+
+.projectContent {
+  @apply flex flex-col flex-1 py-3 px-5;
+}
+.projectContent header {
+  @apply mb-5;
+}
+
+@media (min-width: 640px) {
+  .projectItem {
+    @apply mb-2;
+
+    width: calc(50% - 0.5rem);
+  }
+  .projectContent {
+    @apply py-3 px-5;
+  }
+}
+
+/*
+.imageLink:hover img {
+  transform: scale(1.01);
+} 
+*/
+
+.headerContent {
+  @apply flex items-center justify-between mt-2;
+  @apply text-3xl;
+}
+
+.body {
+  @apply mb-5 self-stretch flex-1;
+}
+
+.link {
+  @apply inline-block mt-4;
+  @apply text-blue-500 underline;
+}
+
+.footer {
+  @apply flex flex-wrap justify-between items-center;
+}

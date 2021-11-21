@@ -1,3 +1,5 @@
+import styles from "./PostsHeader.module.css";
+
 import type { ITranslation } from "../../types";
 
 type Props = {
@@ -7,10 +9,8 @@ type Props = {
 
 function PostsHeader({ children, t = {} }: Props) {
   return (
-    <header className="mb-8">
-      <p className="text-lg mb-10 bg-gray-100 rounded-md p-2 px-3">
-        {t.blogDescription}
-      </p>
+    <header className={styles.header}>
+      <p>{t.blogDescription}</p>
       {children}
     </header>
   );

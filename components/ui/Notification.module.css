@@ -1,0 +1,19 @@
+.overlay {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+}
+
+.notification {
+  @apply max-w-xs p-3 px-4 mr-2 mb-2;
+  @apply border shadow rounded;
+}
+.notification.error {
+  @apply bg-red-500 text-white;
+}
+.notification.success {
+  @apply bg-green-500 text-white;
+}
+.notification.warning {
+  @apply bg-yellow-500 text-white;
+}

@@ -1,7 +1,10 @@
 import Image from "next/image";
-import { IPost } from "../../../types";
 
-import PostTags from "../PostTags";
+import styles from "./PostSummary.module.css";
+
+import { LinkTags } from "../../ui/Tags";
+
+import type { IPost } from "../../../types";
 
 type Props = {
   image: IPost["image"];
@@ -24,7 +27,7 @@ function PostSummary({ image, slug, tags, title }: Props) {
   return (
     <header className="mb-10">
       {!!image?.height && (
-        <div className="post-image mb-4">
+        <div className={styles.postImage}>
           <Image
             alt={title}
             // priority
@@ -38,7 +41,7 @@ function PostSummary({ image, slug, tags, title }: Props) {
       <div>
         <h1 className="text-4xl">{title}</h1>
         <div className="mt-4">
-          <PostTags tags={tags} />
+          <LinkTags tags={tags} />
         </div>
         {/* <span className="text-gray-500 text-sm">
           Last updated: {humanReadableDate}

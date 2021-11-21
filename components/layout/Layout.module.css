@@ -1,0 +1,10 @@
+.main {
+  @apply w-full py-6 pt-24;
+
+  min-height: calc(100vh - 4rem);
+}
+
+.footer {
+  @apply flex items-center justify-center h-16 md:max-w-5xl mx-auto p-2;
+  @apply border-t;
+}

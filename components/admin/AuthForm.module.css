@@ -1,0 +1,3 @@
+.buttons {
+  @apply flex flex-row-reverse gap-2 mt-6;
+}

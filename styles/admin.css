@@ -1,0 +1,43 @@
+/* Admin buttons */
+
+.item-button-container {
+  @apply flex gap-2 flex-wrap mb-4;
+}
+.item-button {
+  @apply flex items-center justify-center py-3 pb-4 px-3 md:px-5 mb-3;
+  @apply border border-gray-200 rounded-md whitespace-nowrap;
+  @apply hover:border-blue-500 hover:text-blue-600;
+}
+
+/* Forms */
+
+.input-group {
+  @apply mb-3;
+}
+.input-group input,
+.input-group textarea {
+  display: block;
+}
+
+.input {
+  @apply border py-1 px-2 rounded text-sm;
+}
+input.input.big,
+textarea.input.big {
+  @apply py-2 px-4 text-base;
+}
+
+.label {
+  @apply block mb-1 text-sm;
+}
+
+.secondary-button {
+  @apply w-full py-2;
+  @apply border-blue-500 bg-white text-blue-500 border rounded;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.submit-button {
+  @apply w-full py-2;
+  @apply border-blue-500 bg-blue-500 text-white border rounded;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}

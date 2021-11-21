@@ -1,0 +1,7 @@
+.header {
+  @apply mb-8;
+}
+.header p {
+  @apply mb-10 p-2 px-3;
+  @apply text-lg bg-gray-100 rounded-md;
+}

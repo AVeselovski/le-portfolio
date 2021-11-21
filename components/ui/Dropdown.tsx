@@ -20,7 +20,7 @@ function Dropdown({
   const [isActive, setIsActive] = useClickOutside(dropdownRef, false);
 
   const classNames = className ? className.split(" ") : [];
-  const ddMenuPosition = {
+  const menuPosition = {
     bottom: { right: "0", top: "calc(100% + 0.5rem)" },
     right: { left: "calc(100% + 0.5rem)", top: 0 },
   };
@@ -30,18 +30,18 @@ function Dropdown({
   }
 
   return (
-    <div className={styles.ddContainer}>
+    <div className={styles.dropdown}>
       <button
-        className={[styles.ddTrigger, ...classNames].join(" ")}
+        className={[styles.trigger, ...classNames].join(" ")}
         onClick={handleClick}
       >
         {toggleContent}
       </button>
 
       <nav
-        className={`${styles.ddMenu}${isActive ? ` ${styles.active}` : ""}`}
+        className={`${styles.menu}${isActive ? ` ${styles.active}` : ""}`}
         ref={dropdownRef}
-        style={ddMenuPosition[position]}
+        style={menuPosition[position]}
       >
         {children}
       </nav>

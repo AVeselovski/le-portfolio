@@ -5,8 +5,8 @@ import siteConf from "../../data/config.json";
 import { getLocale } from "../../locales";
 import { getAllPosts, extractAllTags } from "../../lib/api-utils";
 
+import { LinkTags } from "../../components/ui/Tags";
 import PostsHeader from "../../components/posts/PostsHeader";
-import PostTags from "../../components/posts/PostTags";
 import PostList from "../../components/posts/PostList";
 
 import type { GetStaticPropsContext } from "next";
@@ -32,7 +32,7 @@ export default function Junkyard(props: Props) {
 
       <div className="container">
         <PostsHeader t={t}>
-          <PostTags tags={props.tags} />
+          <LinkTags tags={props.tags} />
         </PostsHeader>
 
         <PostList posts={props.posts} />

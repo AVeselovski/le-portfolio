@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { PostTagSelector } from "../posts/PostTags";
+import { TagSelector } from "../ui/Tags";
 
 import type { IProject, ITranslation } from "../../types";
 
@@ -89,7 +89,7 @@ function ProjectForm(props: Props) {
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectTitle">
+        <label className="label" htmlFor="projectTitle">
           {t.projectTitle}
         </label>
         <input
@@ -104,7 +104,7 @@ function ProjectForm(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectDescription">
+        <label className="label" htmlFor="projectDescription">
           {t.projectDescription}
         </label>
         <textarea
@@ -119,17 +119,18 @@ function ProjectForm(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm">{t.projectTags}</label>
-        <PostTagSelector
+        <label className="label">{t.projectTags}</label>
+        <TagSelector
           tags={allTags}
           selected={tags}
           onSelect={handleTagSelect}
           onSubmit={handleTagSubmit}
+          t={t}
         />
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectSourceUrl">
+        <label className="label" htmlFor="projectSourceUrl">
           {t.projectSourceUrl}
         </label>
         <input
@@ -144,7 +145,7 @@ function ProjectForm(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectLiveUrl">
+        <label className="label" htmlFor="projectLiveUrl">
           {t.projectLiveUrl}
         </label>
         <input
@@ -159,7 +160,7 @@ function ProjectForm(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectPinned">
+        <label className="label" htmlFor="projectPinned">
           {t.projectPinned}
         </label>
         <input
@@ -173,7 +174,7 @@ function ProjectForm(props: Props) {
 
       {/* 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="projectImage">
+        <label className="label" htmlFor="projectImage">
           {t.projectImage}
         </label>
         <input
@@ -191,7 +192,7 @@ function ProjectForm(props: Props) {
 
       <div className="mt-6">
         <button
-          className="w-full bg-indigo-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          className="submit-button"
           disabled={props?.isSubmitting}
           type="submit"
         >

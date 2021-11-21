@@ -46,6 +46,7 @@
   "adminPosts": "Postaukset",
   "adminProjects": "Projektit",
   "adminTags": "Avainsanat",
+  "adminAddTag": "Lisää avainsana",
   "adminAllTags": "Kaikki avainsanat",
   "adminEdit": "Muokkaa",
   "adminDelete": "Poista",

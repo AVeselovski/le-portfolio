@@ -3,8 +3,9 @@ import ReactMarkdown from "react-markdown";
 import { useContext } from "react";
 
 import I18nContext from "../../store/i18n";
+import styles from "./PostItem.module.css";
 
-import PostTags from "./PostTags";
+import { LinkTags } from "../ui/Tags";
 
 import type { IPost } from "../../types";
 
@@ -20,28 +21,28 @@ function PostItem({ post }: { post: IPost }) {
   // });
 
   return (
-    <li className="post-item">
+    <li className={styles.postItem}>
       <div>
-        <header className="mb-5">
+        <header className={styles.header}>
           <Link href={postLink}>
-            <a className="flex items-start justify-between">
+            <a>
               <div>
-                <h2 className="text-3xl md:text-4xl">{title}</h2>
+                <h2>{title}</h2>
                 {/* <span className="text-gray-500 text-sm">
                   {t.postLastUpdated}: {humanReadableDate}
                 </span> */}
               </div>
-              <div className="text-3xl md:text-4xl ml-2">&rarr;</div>
+              <div className={styles.linkArrow}>&rarr;</div>
             </a>
           </Link>
         </header>
         <div className="markdown mb-6">
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
-        <footer className="flex justify-between items-center flex-wrap">
-          <PostTags tags={tags} />
+        <footer className={styles.footer}>
+          <LinkTags tags={tags} />
           <Link href={postLink}>
-            <a className="post-link">{t.postRead}...</a>
+            <a className={styles.footerLink}>{t.postRead}...</a>
           </Link>
         </footer>
       </div>

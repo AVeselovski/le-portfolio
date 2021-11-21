@@ -8,6 +8,7 @@ import { NotificationProvider } from "../store/notificatons";
 import { NavigationProvider } from "../store/navigation";
 
 import "../styles/index.css";
+import "../styles/admin.css";
 import Layout from "../components/layout/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom";
+
 import { useTranslation } from "../../store/i18n";
+import styles from "./Notification.module.css";
+
 import type { INotification } from "../../types";
 
 type Props = {
@@ -19,8 +22,8 @@ export default function Notification(props: Props) {
   };
 
   return ReactDOM.createPortal(
-    <div className="notification-overlay">
-      <div className={`notification ${status}`}>
+    <div className={styles.overlay}>
+      <div className={`${styles.notification} ${styles[status]}`}>
         <span className="font-semibold">{titles[status]}</span>{" "}
         <span>{message}</span>
       </div>

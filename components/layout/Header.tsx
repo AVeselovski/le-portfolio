@@ -6,6 +6,7 @@ import { useSession, signOut } from "next-auth/client";
 import I18nContext from "../../store/i18n";
 import siteConf from "../../data/config.json";
 import NavigationContext from "../../store/navigation";
+import styles from "./Header.module.css";
 
 import MenuIcon from "../icons/MenuIcon";
 
@@ -35,7 +36,6 @@ export default function Header({ links = [] }: Props) {
 
   function handleOnScroll() {
     const top = document.documentElement.scrollTop < 32;
-
     setIsTop(top);
   }
 
@@ -46,7 +46,7 @@ export default function Header({ links = [] }: Props) {
 
   function renderNav() {
     return (
-      <ul className="hidden sm:flex gap-1">
+      <ul className={styles.navList}>
         {links.map((l, i) => (
           <li key={i}>
             <Link href={l.pathname}>
@@ -96,26 +96,21 @@ export default function Header({ links = [] }: Props) {
 
   return (
     <header
-      className={`header${
-        !isTop
-          ? " border-white md:border-gray-200 shadow md:shadow-sm"
-          : " border-white"
-      }`}
+      className={`${styles.header}${!isTop ? ` ${styles.scrolled}` : ""}`}
     >
-      <div className="header-content">
-        <div className="p-2 pl-4 text-3xl">
+      <div className={styles.headerContent}>
+        <div className={styles.brand}>
           <Link href="/">{siteConf.shortName}</Link>
         </div>
-        <nav className="px-2 pr-3 sm:pr-4 flex items-center">
+        <nav className={styles.nav}>
           {/** Another simple way 
           <Link href="/" locale={router.locale === "en" ? "fi" : "en"}>
             <button className="text-indigo-500 mr-6">
               {router.locale.toUpperCase()}
             </button>
-          </Link> 
-          */}
+          </Link> */}
           <select
-            className="lang-select"
+            className={styles.langSelect}
             defaultValue={router.locale}
             onChange={changeLanguage}
           >
@@ -125,10 +120,7 @@ export default function Header({ links = [] }: Props) {
               </option>
             ))}
           </select>
-          <button
-            className="block sm:hidden rounded-full p-1 hover:bg-gray-100"
-            onClick={toggleMobileNav}
-          >
+          <button className={styles.mobileNavToggle} onClick={toggleMobileNav}>
             <MenuIcon />
           </button>
           {!!links.length && renderNav()}

@@ -29,13 +29,13 @@ export default function Home(props: Props) {
 
       <div className="container">
         <div className="mb-4">
-          <span className="text-2xl mb-4 block text-blue-500">
+          <span className="pin text-blue-500">
             <PinIcon className="-rotate-12" />
           </span>
           <PostList posts={props.posts} />
         </div>
         <div className="mt-4">
-          <span className="text-2xl mb-4 text-red-500 block">
+          <span className="pin text-red-500">
             <PinIcon className="-rotate-12" />
           </span>
           <ProjectList projects={props.projects} t={t} />

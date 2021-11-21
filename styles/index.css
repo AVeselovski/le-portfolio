@@ -2,48 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.header {
-  @apply fixed flex items-center justify-between h-16 bg-white border-b;
+/*
+Rules:
 
-  left: 0;
-  right: 0;
-  z-index: 2;
-}
-.header-content {
-  @apply flex justify-between items-center w-full max-w-3xl;
+1. When there's more than 2 tailwind classes on element, they are extracted into a custom class.
+2. Applied custom classes (@apply) are separated by layout, styling, pseudo for some structure.
+    .example {
+      @apply flex items-center p-2;
+      @apply text-lg text-gray-500 bg-gray-50;
+      @apply hover:bg-gray-100;
+    }
+3. Custom rules allowed.
+*/
 
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.content-header {
-  @apply fixed flex justify-between items-center bg-white shadow h-10 px-2 md:border-b md:shadow-none md:h-12 md:-mt-3 md:-mx-4 md:mb-4 md:px-2 md:sticky;
-
-  left: 0;
-  right: 0;
-  top: calc(4rem - 1px);
-  z-index: 2;
-}
-.content-header .button {
-  @apply text-blue-500 rounded px-2 py-1;
-
-  line-height: 1;
-}
-.content-header .button:hover:not(:disabled) {
-  @apply text-blue-600 bg-gray-100 opacity-90;
-}
-@media (min-width: 640px) {
-  .content-header {
-    top: 4rem;
-    z-index: 1;
-  }
-}
-
-.main {
-  @apply w-full py-6 pt-24;
-
-  min-height: calc(100vh - 4rem);
-}
+/* Containers */
 
 .container {
   @apply max-w-3xl px-4 pb-8 mx-auto;
@@ -52,164 +24,42 @@
   @apply sm:px-6;
 }
 
-.footer {
-  @apply h-16 flex items-center justify-center border-t md:max-w-5xl mx-auto p-2;
-}
-
-.project-item {
-  @apply flex flex-col border border-gray-200 rounded-md mb-2 w-full hover:border-blue-500 max-w-md;
-
-  overflow: hidden;
-}
-.project-item-body {
-  @apply py-3 px-5 flex flex-col flex-1;
-}
-@media (min-width: 640px) {
-  .project-item {
-    @apply mb-2;
-
-    width: calc(50% - 0.5rem);
-  }
-  .project-item-body {
-    @apply py-3 px-5;
-  }
-}
-.project-item .link {
-  @apply text-blue-500 underline;
-}
-.project-image {
-  @apply border-b;
-
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  width: auto;
-}
-.image-link:hover img {
-  /* filter: brightness(0.95); */
-  transform: scale(1.01);
-}
+/* Navigation links */
 
 .nav-link {
-  @apply py-2 px-3 rounded hover:bg-gray-100 hover:text-blue-600;
+  @apply py-2 px-3;
+  @apply rounded;
+  @apply hover:bg-gray-100 hover:text-blue-600;
 }
 .nav-link.active {
-  @apply bg-gray-200 hover:bg-gray-200 text-gray-900;
+  @apply text-gray-900 bg-gray-200;
+  @apply hover:bg-gray-200;
 }
 
-.input-group {
-  @apply mb-3;
-}
-.input-group input,
-.input-group textarea {
-  display: block;
-}
-
-.input {
-  @apply border py-1 px-2 rounded text-sm;
-}
-input.input.big,
-textarea.input.big {
-  @apply py-2 px-4 text-base;
-}
+/* Tags */
 
 .tag-container {
-  @apply gap-1;
-
-  display: flex;
-  flex-wrap: wrap;
+  @apply flex flex-wrap gap-1;
 }
+
 .tag {
-  @apply rounded-full py-0.5 px-2 text-sm block border;
+  @apply block py-0.5 px-2;
+  @apply rounded-full border text-sm;
 }
 
-.post-item {
-  @apply border border-gray-200 rounded-md py-3 pb-4 px-3 md:px-5 mb-3 hover:border-blue-500;
-}
-
-.item-button-container {
-  @apply flex gap-2 flex-wrap mb-4;
-}
-.item-button {
-  @apply flex items-center justify-center border border-gray-200 rounded-md py-3 pb-4 px-3 md:px-5 mb-3 hover:border-blue-500 hover:text-blue-600 whitespace-nowrap;
-}
-
-.post-link {
-  @apply text-blue-500 whitespace-nowrap;
-
-  display: none;
-}
-@media (min-width: 640px) {
-  .post-link {
-    display: unset;
-  }
-}
-
-.notification-overlay {
-  bottom: 0;
-  position: fixed;
-  right: 0;
-}
-.notification {
-  @apply max-w-xs p-3 px-4 shadow rounded-sm mr-2 mb-2;
-
-  border-width: 1px;
-}
-.notification.error {
-  @apply bg-red-500 text-white;
-}
-.notification.success {
-  @apply bg-green-500 text-white;
-}
-.notification.warning {
-  @apply bg-yellow-500 text-white;
-}
-
-/** 
- * Trick to get NextJS Image component responsive without pre-defining height/width.
- * Courtesy of https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351.
- * Not used, but leaving here just in case.
- **/
-.image-container {
-  width: 100%;
-}
-.image-container > div {
-  position: unset !important;
-}
-.image-container .image {
-  object-fit: contain;
-  width: 100% !important;
-  position: relative !important;
-  height: unset !important;
-}
-
-.profile-image {
-  @apply rounded-md;
-
-  display: flex;
-  overflow: hidden;
-}
-@media (min-width: 420px) {
-  .profile-image {
-    @apply max-w-xs;
-  }
-}
-
-.post-image {
-  @apply rounded-md;
-
-  display: flex;
-  overflow: hidden;
-}
+/* Markdown */
 
 .markdown h2 {
-  @apply text-3xl mb-4 mt-6;
+  @apply mb-4 mt-6;
+  @apply text-3xl;
 }
 .markdown h3 {
-  @apply text-2xl mb-4 mt-6;
+  @apply mb-4 mt-6;
+  @apply text-2xl;
 }
 .markdown h4 {
-  @apply text-xl mb-4 mt-6;
+  @apply mb-4 mt-6;
+  @apply text-xl;
 }
 .markdown p {
   @apply mb-4;
@@ -236,7 +86,8 @@ textarea.input.big {
 .markdown p code,
 .markdown ol code,
 .markdown ul code {
-  @apply bg-gray-100 p-1 px-2 rounded text-indigo-600 text-sm;
+  @apply p-1 px-2;
+  @apply bg-gray-100 rounded text-indigo-600 text-sm;
 }
 .markdown pre {
   @apply mb-4 pb-0;
@@ -250,54 +101,27 @@ textarea.input.big {
   @apply text-blue-500 underline;
 }
 
-.mobile-nav {
-  @apply bg-white;
+/* Pins */
 
-  background-color: white;
-  bottom: -100px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transform: translateX(10rem);
-  transition: transform 0.15s ease;
-  width: 10rem;
-  z-index: 4;
-}
-.mobile-nav-header {
-  @apply h-16 pr-3;
-
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
-}
-.mobile-nav-body {
-  @apply py-1 px-3;
-}
-.mobile-nav-body .nav-link {
-  @apply mb-1;
-
-  display: block;
-}
-.mobile-nav.open {
-  @apply shadow-md;
-
-  transform: translateX(0);
-}
-.backdrop {
-  @apply bg-black bg-opacity-10;
-
-  bottom: -100px;
-  display: none;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 3;
-}
-.backdrop.open {
-  display: block;
+.pin {
+  @apply block mb-4;
+  @apply text-2xl;
 }
 
-.lang-select {
-  @apply bg-transparent mr-6 flex text-gray-700 font-mono text-sm p-2 hover:bg-gray-100 hover:text-blue-600 rounded;
+/** 
+ * Trick to get NextJS Image component responsive without pre-defining height/width.
+ * Courtesy of https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351.
+ * Not used, but leaving here just in case.
+ **/
+.image-container {
+  width: 100%;
+}
+.image-container > div {
+  position: unset !important;
+}
+.image-container .image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }

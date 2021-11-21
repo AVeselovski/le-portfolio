@@ -5,6 +5,8 @@ import { useSession, signOut } from "next-auth/client";
 
 import I18nContext from "../../store/i18n";
 import NavigationContext from "../../store/navigation";
+import styles from "./MobileNav.module.css";
+
 import CloseIcon from "../icons/CloseIcon";
 
 interface ILink {
@@ -36,7 +38,7 @@ export default function MobileNav({ links = [] }: Props) {
           <li key={i}>
             <Link href={l.pathname}>
               <a
-                className={`nav-link${
+                className={`nav-link ${styles.navLink}${
                   router.pathname == l.pathname ? " active" : ""
                 }`}
                 onClick={toggleMobileNav.bind(null)}
@@ -52,7 +54,7 @@ export default function MobileNav({ links = [] }: Props) {
             <li key="admin">
               <Link href="/admin">
                 <a
-                  className={`nav-link${
+                  className={`nav-link ${styles.navLink}${
                     router.pathname == "/admin" ? " active" : ""
                   }`}
                   onClick={toggleMobileNav.bind(null)}
@@ -64,7 +66,7 @@ export default function MobileNav({ links = [] }: Props) {
             </li>
             <li key="logout">
               <a
-                className="nav-link"
+                className={`nav-link ${styles.navLink} text-red-500`}
                 href="#"
                 onClick={handleLogout}
                 tabIndex={isOpen ? 0 : -1}
@@ -80,20 +82,22 @@ export default function MobileNav({ links = [] }: Props) {
 
   return (
     <>
-      <div className={`mobile-nav${isOpen ? " open" : ""}`}>
-        <div className="mobile-nav-header">
+      <div className={`${styles.mobileNav}${isOpen ? ` ${styles.open}` : ""}`}>
+        <div className={styles.mobileNavHeader}>
           <button
-            className="rounded-full p-1 hover:bg-gray-100"
+            className={styles.mobileNavToggle}
             onClick={toggleMobileNav}
             tabIndex={isOpen ? 0 : -1}
           >
             <CloseIcon />
           </button>
         </div>
-        <div className="mobile-nav-body">{!!links.length && renderNav()}</div>
+        <div className={styles.mobileNavBody}>
+          {!!links.length && renderNav()}
+        </div>
       </div>
       <div
-        className={`backdrop${isOpen ? " open" : ""}`}
+        className={`${styles.backdrop}${isOpen ? ` ${styles.open}` : ""}`}
         onClick={toggleMobileNav}
       ></div>
     </>

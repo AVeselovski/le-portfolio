@@ -1,5 +1,7 @@
 import ProjectItem from "./ProjectItem";
 
+import styles from "./ProjectList.module.css";
+
 import type { IProject, ITranslation } from "../../types";
 
 type Props = {
@@ -9,7 +11,7 @@ type Props = {
 
 function ProjectList({ projects, t }: Props) {
   return (
-    <ul className="flex flex-wrap gap-2 sm:w-full justify-center sm:justify-between">
+    <ul className={styles.projectList}>
       {projects.map((project, i) => (
         <ProjectItem key={project._id} project={project} t={t} />
       ))}

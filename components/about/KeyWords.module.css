@@ -1,0 +1,4 @@
+.title {
+  @apply mt-8 mb-6;
+  @apply text-2xl;
+}

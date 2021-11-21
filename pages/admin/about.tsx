@@ -69,9 +69,6 @@ export default function About(props: Props) {
       </Head>
 
       <div className="container">
-        <p className="text-lg mb-4 bg-gray-100 rounded-md p-2 px-3">
-          {t.aboutWarning}
-        </p>
         <AboutForm
           content={props.data}
           isSubmitting={isSubmitting}

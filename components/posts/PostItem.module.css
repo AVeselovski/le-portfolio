@@ -1,0 +1,35 @@
+.postItem {
+  @apply py-3 pb-4 px-3 md:px-5 mb-3;
+  @apply border border-gray-200 rounded-md;
+  @apply hover:border-blue-500;
+}
+
+.header {
+  @apply mb-5;
+}
+.header a {
+  @apply flex items-start justify-between;
+}
+.header h2 {
+  @apply text-3xl md:text-4xl;
+}
+.header .linkArrow {
+  @apply ml-2;
+  @apply text-3xl md:text-4xl;
+}
+
+.footer {
+  @apply flex flex-wrap justify-between items-center;
+}
+
+.footerLink {
+  @apply text-blue-500 whitespace-nowrap;
+
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .footerLink {
+    display: unset;
+  }
+}

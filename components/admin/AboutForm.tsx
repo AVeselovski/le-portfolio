@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+import styles from "./AboutForm.module.css";
+
 import type { ITranslation } from "../../types";
 
 const DEFAULT_CONTENT = `---
@@ -49,25 +51,27 @@ function Form(props: Props) {
   }, []);
 
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
-      <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="aboutBody">
-          {t.aboutBody}
-        </label>
-        <textarea
-          className="input big w-full font-mono"
-          disabled={props.isSubmitting}
-          id="aboutBody"
-          name="body"
-          ref={bodyRef}
-          rows={16}
-          required
-        ></textarea>
-      </div>
+    <>
+      <p className={styles.warning}>{t.aboutWarning}</p>
+      <form className="w-full" onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label className="label" htmlFor="aboutBody">
+            {t.aboutBody}
+          </label>
+          <textarea
+            className="input big w-full font-mono"
+            disabled={props.isSubmitting}
+            id="aboutBody"
+            name="body"
+            ref={bodyRef}
+            rows={16}
+            required
+          ></textarea>
+        </div>
 
-      {/* 
+        {/* 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="aboutImage">
+        <label className="label" htmlFor="aboutImage">
           {t.aboutImage}
         </label>
         <input
@@ -83,16 +87,17 @@ function Form(props: Props) {
       </div>
       */}
 
-      <div className="mt-6">
-        <button
-          className="w-full bg-indigo-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={props.isSubmitting}
-          type="submit"
-        >
-          {t.postSave}
-        </button>
-      </div>
-    </form>
+        <div className="mt-6">
+          <button
+            className="submit-button"
+            disabled={props.isSubmitting}
+            type="submit"
+          >
+            {t.postSave}
+          </button>
+        </div>
+      </form>
+    </>
   );
 }
 

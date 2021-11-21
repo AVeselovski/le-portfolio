@@ -2,6 +2,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
 import profileImg from "../../public/images/profile.jpg";
+import styles from "./Content.module.css";
 
 import KeyWords from "./KeyWords";
 
@@ -19,7 +20,7 @@ export default function Content({
   return (
     <>
       <div className="flex justify-center">
-        <div className="profile-image mb-10">
+        <div className={`${styles.profileImage} mb-10`}>
           <Image alt="Profile picture" placeholder="blur" src={profileImg} />
         </div>
       </div>

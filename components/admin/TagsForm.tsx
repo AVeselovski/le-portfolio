@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ITranslation } from "../../types";
+
+import type { ITranslation } from "../../types";
 
 type Props = {
   isSubmitting: boolean;
@@ -56,7 +57,7 @@ function TagsForm(props: Props) {
 
       <div>
         <button
-          className="w-full bg-blue-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          className="submit-button"
           disabled={props?.isSubmitting}
           type="submit"
         >

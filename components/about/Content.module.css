@@ -1,0 +1,10 @@
+.profileImage {
+  @apply flex rounded-md;
+
+  overflow: hidden;
+}
+@media (min-width: 420px) {
+  .profileImage {
+    @apply max-w-xs;
+  }
+}

@@ -1,38 +1,39 @@
 .table {
-  @apply flex flex-col md:table;
-
-  width: 100%;
+  @apply flex flex-col w-full md:table;
 }
 
-.table .tableHead {
+.tableHead {
   @apply hidden md:table-header-group;
 }
-.table .tableHead th {
+.tableHead th {
   @apply font-medium;
 }
-.table .tableHead th,
-.table .tableHead td {
-  @apply px-2 py-1 text-left;
+.tableHead th,
+.tableHead td {
+  @apply px-2 py-1;
+  @apply text-left;
 }
 
-.table .tableBody tr {
-  @apply border-t flex flex-col self-stretch md:table-row;
+.tableBody tr {
+  @apply flex flex-col self-stretch md:table-row;
+  @apply border-t;
 
   flex-basis: 100%;
 }
-.table .tableBody tr:first-of-type {
+.tableBody tr:first-of-type {
   @apply border-t-2;
 }
 
-.table .tableBody tr th {
+.tableBody tr th {
   @apply font-medium;
 }
-.table .tableBody tr th,
-.table .tableBody tr td {
-  @apply flex md:table-cell items-center px-2 py-1 text-left min-h-[32px] border-b md:border-none;
+.tableBody tr th,
+.tableBody tr td {
+  @apply flex items-center md:table-cell px-2 py-1 min-h-[32px];
+  @apply text-left border-b md:border-none;
 }
 
-.table .tableBody tr td:last-child {
+.tableBody tr td:last-child {
   @apply justify-end;
 
   text-align: right;

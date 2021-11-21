@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { PostTagSelector } from "../posts/PostTags";
+import { TagSelector } from "../ui/Tags";
 
 import type { IPost, ITranslation } from "../../types";
 
@@ -89,7 +89,7 @@ function Form(props: Props) {
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postTitle">
+        <label className="label" htmlFor="postTitle">
           {t.postTitle}
         </label>
         <input
@@ -104,7 +104,7 @@ function Form(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postSlug">
+        <label className="label" htmlFor="postSlug">
           {t.postSlug}
         </label>
         <input
@@ -119,7 +119,7 @@ function Form(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postBody">
+        <label className="label" htmlFor="postBody">
           {t.postBody}
         </label>
         <textarea
@@ -134,7 +134,7 @@ function Form(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postDescription">
+        <label className="label" htmlFor="postDescription">
           {t.postDescription}
         </label>
         <textarea
@@ -149,17 +149,18 @@ function Form(props: Props) {
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm">Tags</label>
-        <PostTagSelector
+        <label className="label">{t.adminTags}</label>
+        <TagSelector
           tags={allTags}
           selected={tags}
           onSelect={handleTagSelect}
           onSubmit={handleTagSubmit}
+          t={t}
         />
       </div>
 
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postPinned">
+        <label className="label" htmlFor="postPinned">
           {t.postPinned}
         </label>
         <input
@@ -173,7 +174,7 @@ function Form(props: Props) {
 
       {/*
       <div className="input-group">
-        <label className="block mb-1 text-sm" htmlFor="postImage">
+        <label className="label" htmlFor="postImage">
           {t.postImage}
         </label>
         <input
@@ -191,7 +192,7 @@ function Form(props: Props) {
 
       <div className="mt-6">
         <button
-          className="w-full bg-indigo-400 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          className="submit-button"
           disabled={props?.isSubmitting}
           type="submit"
         >

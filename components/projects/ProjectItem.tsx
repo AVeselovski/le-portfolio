@@ -1,7 +1,9 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
-import Tags from "./Tags";
+import styles from "./ProjectItem.module.css";
+
+import Tags from "../ui/Tags";
 
 import type { IProject, ITranslation } from "../../types";
 
@@ -27,10 +29,10 @@ function ProjectItem({ project, t = {} }: Props) {
   const imageHeight = aspectRatio && imageWidth / aspectRatio;
 
   return (
-    <li className="project-item">
-      {/* <a className="image-link" href={sourceUrl} target="_blank"></a> */}
+    <li className={styles.projectItem}>
+      {/* <a className={styles.imageLink} href={sourceUrl} target="_blank"></a> */}
       {!!image && (
-        <div className="project-image">
+        <div className={styles.projectImage}>
           <Image
             alt={title}
             height={imageHeight}
@@ -40,30 +42,26 @@ function ProjectItem({ project, t = {} }: Props) {
           />
         </div>
       )}
-      <div className="project-item-body">
-        <header className="mb-5">
-          <a className="image-link" href={sourceUrl} target="_blank">
-            <div className="flex items-center justify-between mt-2">
-              <h2 className="text-3xl">{title}</h2>
-              <div className="text-3xl">&rarr;</div>
+      <div className={styles.projectContent}>
+        <header>
+          <a href={sourceUrl} target="_blank">
+            <div className={styles.headerContent}>
+              <h2>{title}</h2>
+              <div>&rarr;</div>
             </div>
           </a>
         </header>
-        <div className="mb-5 self-stretch flex-1">
+        <div className={styles.body}>
           <ReactMarkdown>{description}</ReactMarkdown>
-          <a
-            className="link inline-block mr-4 mt-4"
-            href={sourceUrl}
-            target="_blank"
-          >
+          <a className={`${styles.link} mr-4`} href={sourceUrl} target="_blank">
             {t.projectSourceUrl} &rarr;
           </a>
-          <a className="link inline-block mt-4" href={liveUrl} target="_blank">
+          <a className={styles.link} href={liveUrl} target="_blank">
             {t.projectLiveUrl} &rarr;
           </a>
         </div>
-        <footer className="flex justify-between items-center flex-wrap">
-          <Tags tags={tags} />
+        <footer className={styles.footer}>
+          <Tags darkTags={tags} />
         </footer>
       </div>
     </li>

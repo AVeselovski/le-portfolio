@@ -1,0 +1,47 @@
+.mobileNav {
+  @apply fixed z-[4];
+  @apply bg-white w-40;
+
+  bottom: -100px;
+  right: 0;
+  top: 0;
+  transform: translateX(10rem);
+  transition: transform 0.15s ease;
+}
+.mobileNav.open {
+  @apply shadow-md;
+
+  transform: translateX(0);
+}
+
+.mobileNavHeader {
+  @apply flex items-center justify-end h-16 pr-3;
+}
+
+.mobileNavBody {
+  @apply py-1 px-3;
+}
+
+.navLink {
+  @apply block mb-1;
+}
+
+.mobileNavToggle {
+  @apply p-1;
+  @apply rounded-full;
+  @apply hover:bg-gray-100;
+}
+
+.backdrop {
+  @apply fixed z-[3];
+  @apply bg-black bg-opacity-10;
+
+  bottom: -100px;
+  display: none;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.backdrop.open {
+  display: block;
+}
