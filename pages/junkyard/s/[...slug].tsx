@@ -65,6 +65,5 @@ export async function getServerSideProps({
       tags: allTags,
       translation,
     },
-    revalidate: 60,
   };
 }
