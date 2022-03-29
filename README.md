@@ -1,20 +1,16 @@
-# Next.js portfolio site / "junk" bank
-
-https://aveselovski.vercel.app/
+# Next.js portfolio site / dev notes bank
 
 ## What is this?
 
-This shall act as a personal "portfolio" website for when and if ever needed, and a personal "junk" bank. While technically might look like a blog, it isn't. Posts (or "junk") are just personal ramblings and notes for reference, written in a post format in order to force **better notes** (_compared to cryptic out of context snippets in Notes app_) for easier digestion in the future. Helping forgetfulness in a fun, more organized way.
+This shall act as a personal "portfolio" website, and a personal "junk" (dev notes) bank, where "posts" shall be personal ramblings and notes ("How to setup i18n in Next", a bunch of useful Rails commands and gotchas, etc) for future reference. These will be in a typical dev blog post format in order to force **better notes** (_compared to cryptic out of context snippets in some Notes app_). Hopefully this will ensure easier digestion in the future.
 
-Since most, if not all articles and docs (including Vercel) on the subject of learning Next.js revolves around building a blog, the though here was: "Might just as well..."
+Since most articles and docs (including Vercel official) on the subject of learning Next.js revolves around building a blog, might just as well...
 
 `¯\_(ツ)_/¯`
 
-This is also made to be reusable, so technically can be called a portfolio template. Though cool UI was far from being a priority.
-
 ## Next.js
 
-Done with Next.js with the purpose of learning & testing out Next.js capabilities. As such, there is unfinished code, with no intention to do so, unused features (such as image upload & files read/write), and purposeful inconsistencies in implemetation (i.e. SSG vs SSR vs CSR).
+Done with Next.js with the purpose of learning & testing out Next.js capabilities. Kind of a playground.
 
 ## Setting up
 
@@ -71,6 +67,4 @@ Time, will & effort.
 - Unit & end-to-end testing with jest & cypress
 - Preview for `.md` with resource forms
 - Fixing / implementing image upload would probably be great (if useless)
-- The oh so popular light/dark theme switch (how could any website be without... /s)
-
-This is a _"learn Next.js quickly"_ kind of project and it's unlikely further _real_ effort will be put here.
+- The popular light/dark theme switch (how could any website be without... /s)
