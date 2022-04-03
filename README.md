@@ -1,16 +1,10 @@
-# Next.js portfolio site / dev notes bank
+# Next.js portfolio site
 
 ## What is this?
 
-This shall act as a personal "portfolio" website, and a personal "junk" (dev notes) bank, where "posts" shall be personal ramblings and notes ("How to setup i18n in Next", a bunch of useful Rails commands and gotchas, etc) for future reference. These will be in a typical dev blog post format in order to force **better notes** (_compared to cryptic out of context snippets in some Notes app_). Hopefully this will ensure easier digestion in the future.
-
-Since most articles and docs (including Vercel official) on the subject of learning Next.js revolves around building a blog, might just as well...
+Trying out Next.js with a portfolio website template of sorts. Since most articles and docs (including Vercel official) on the subject of learning Next.js revolves around building a blog, might just as well...
 
 `¯\_(ツ)_/¯`
-
-## Next.js
-
-Done with Next.js with the purpose of learning & testing out Next.js capabilities. Kind of a playground.
 
 ## Setting up
 
@@ -64,7 +58,4 @@ Time, will & effort.
 
 ## Future updates (unlikely)
 
-- Unit & end-to-end testing with jest & cypress
-- Preview for `.md` with resource forms
-- Fixing / implementing image upload would probably be great (if useless)
-- The popular light/dark theme switch (how could any website be without... /s)
+There won't be. This project served its purpose.
