@@ -1,27 +1,28 @@
-# Next.js portfolio site
+# Next.js portfolio website template
 
 ## What is this?
 
-Trying out Next.js with a portfolio website template of sorts. Since most articles and docs (including Vercel official) on the subject of learning Next.js revolves around building a blog, might just as well...
+Not actual "portfolio website". Trying out Next.js with a portfolio website template of sorts in mind. Since at the time most articles and docs (including Vercel official) on the subject of learning Next.js revolved around building a blog... A portfolio/blog(ish) was made, but with a custom CMS setup.
 
 `¯\_(ツ)_/¯`
 
-## Setting up
+## Setup
 
-To use this as a template requires MongoDb connection. **MongoDB Atlas** is used by the author in 2021 (in case the author forgets in 2 years).
+Uses MongoDb. **MongoDB Atlas** connection in particular was used by the author in 2021.
 
-1. Pull the repo (`git clone git@github.com:AVeselovski/le-portfolio.git`)
-2. Navigate to project root and install dependencies (`cd le-portfolio` and `yarn`)
-3. Setup MongoDb with MongoDB Atlas (up-to-date instructions can be found online)
+1. Pull the repo
+2. Navigate to project root and install dependencies (`yarn`)
+3. Setup MongoDb with MongoDB Atlas (_up-to-date instructions can be found online_)
 4. Create `.env.local` file in the projects root and copy `.env.local.example` contents
-5. Update the `.env.local` file with real connection string
-6. Uncomment user creation code block in `pages/api/create.ts` to create encrypted admin user
+5. Update the `.env.local` file with actual details
+6. Uncomment user creation code block in `pages/api/create.ts` to create an admin user
 7. Run the project (`yarn dev`)
 8. Navigate to `/admin` path (via browser url bar) and create the admin user
-9. Update `data/config.json` and `locales/` to whatever and change the mugshot to a more pleasant one (`public/images/profile.jpg`)
-10. Create content via admin panel
+9. Comment out user creation code
+10. Update `data/config.json` and `locales/` to whatever and change profile pic (`public/images/profile.jpg`)
+11. Create content via admin panel
 
-## Some features
+## Features
 
 ### I18n ready
 
@@ -48,14 +49,8 @@ Content ("posts", projects) are not translate supported at this time.
 
 ### Content management
 
-All resources - "posts", projects (and tags) can be created, updated and deleted. About section can be updated as well. "Pinned" resources will be displayed on the front page.
+All resources - "posts", projects (and tags) can be created, updated and deleted. About section can be updated. "Pinned" resources will be displayed on the front page. Create, update and delete API routes are protected.
 
-All create, update and delete API routes are protected.
+## Future updates
 
-## Limitations
-
-Time, will & effort.
-
-## Future updates (unlikely)
-
-There won't be. This project served its purpose.
+There won't be. This project was just for trying things out and served it's purpose.

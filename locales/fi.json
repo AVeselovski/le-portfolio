@@ -1,7 +1,7 @@
 {
-  "siteDescription": "Softakehittäjän portfolio / omat sivut.",
+  "siteDescription": "Projektin tarkoituksena oli testata Next.js vuonna 2021.",
   "blogName": "Romu",
-  "blogDescription": "Kokoelma \"ehkä\" hyödyllisiä paloja, ajatuksia ja koodipätkiä pikaohjeiksi tulevaisuuden minulle. Ei ole ns. \"blogi\", itselle nurkassa höpötystä vaan.",
+  "blogDescription": "Kokoelma vanhentuneita \"ehkä\" hyödyllisiä paloja, ajatuksia ja koodipätkiä pikaohjeiksi tulevaisuuden minulle. (Mostly filler/placeholder content)",
   "blogShowAll": "Kaikki",
   "postName": "Romu",
   "postRead": "Lue",
@@ -16,7 +16,7 @@
   "postImage": "Kuva",
   "postSave": "Tallenna",
   "projectsName": "Projektit",
-  "projectsDescription": "Muutama projekti teknistä perusosaamisen näyttöä varten. NDA sopimuksilla kun on tapana pikkasen estää sitä \"oikean maailman\" näyttöä.",
+  "projectsDescription": "Muutama projekti teknistä perusosaamisen näyttöä varten.",
   "projectsApiFail": "Epäonnistui hakemaan projektit...",
   "projectsNoContent": "Ei projekteja vielä!",
   "projectTitle": "Projektin nimi",
